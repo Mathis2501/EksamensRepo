@@ -13,5 +13,15 @@ namespace DomainLayer
         public string Reward{ get; set; }
         public int Rounds{ get; set; }
         public string GameName{ get; set; }
+        
+
+        public Tournament(string leagueName, List<Player> playerList, string reward, int rounds, string gameName)
+        {
+            LeagueName = leagueName;
+            PlayerList = playerList;
+            Reward = reward;
+            Rounds = rounds;
+            GameName = gameName;
+        }
     }
 }
