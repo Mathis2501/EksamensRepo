@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace DomainLayer
 {
-    class Tournament
+    class League
     {
+        public int LeagueID{ get; set; }
         public string LeagueName { get; set; }
-        public List<Player> PlayerList { get; set; }
+        public List<Teams> TeamsInLeague { get; set; }
         public string Reward{ get; set; }
         public int Rounds{ get; set; }
         public string GameName{ get; set; }
         
 
-        public Tournament(string leagueName, List<Player> playerList, string reward, int rounds, string gameName)
+        public League(string leagueName, List<Teams> teamsInLeague, string reward, int rounds, string gameName)
         {
             LeagueName = leagueName;
-            PlayerList = playerList;
+            TeamsInLeague = teamsInLeague;
             Reward = reward;
             Rounds = rounds;
             GameName = gameName;
