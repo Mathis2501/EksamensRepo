@@ -12,5 +12,12 @@ namespace DomainLayer
         public List<Player> PlayersInTeam { get; set; }
         public string TeamName { get; set; }
         public int LeaguePoints { get; set; }
+
+        public Teams(List<Player> playersInTeam, string teamName)
+        {
+            PlayersInTeam = playersInTeam;
+            TeamName = teamName;
+            LeaguePoints = 0;
+        }
     }
 }
