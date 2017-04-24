@@ -24,5 +24,11 @@ namespace PresentationLayer
         {
             InitializeComponent();
         }
+
+        private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            AddPlayerWindow APW = new AddPlayerWindow();
+            APW.ShowDialog();
+        }
     }
 }

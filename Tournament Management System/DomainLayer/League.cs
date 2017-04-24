@@ -13,6 +13,14 @@ namespace DomainLayer
         public string Reward{ get; set; }
         public int Rounds{ get; set; }
         public string GameName{ get; set; }
+
+        enum LeagueStatus
+        {
+            Waiting,
+            Running,
+            Finished,
+            Cancelled
+        }
         
         //test
         public League(string leagueName, string reward, int rounds, string gameName)
