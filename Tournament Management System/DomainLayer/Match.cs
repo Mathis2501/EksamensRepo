@@ -1,15 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DomainLayer
 {
-    class Match
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("db_owner.MATCH")]
+    public partial class MATCH
     {
-        public int MatchID { get; set; }
-        public int RoundID { get; set; }
-        public int WinnerID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MatchID_PK { get; set; }
+
+        public int RoundID_FK { get; set; }
+
+        public int Winner { get; set; }
+
+        public virtual ROUND ROUND { get; set; }
+
+        public virtual TEAM TEAM { get; set; }
     }
 }

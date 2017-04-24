@@ -6,29 +6,28 @@ namespace DomainLayer
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("db_owner.ROUND")]
-    public partial class ROUND
+    [Table("db_owner.TEAM")]
+    public partial class TEAM
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ROUND()
+        public TEAM()
         {
             MATCHes = new HashSet<MATCH>();
-            TEAMs = new HashSet<TEAM>();
+            PLAYERs = new HashSet<PLAYER>();
+            ROUNDs = new HashSet<ROUND>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RoundID_PK { get; set; }
+        public int TeamID_PK { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string RoundName { get; set; }
-
-        [Required]
-        [StringLength(30)]
-        public string RoundType { get; set; }
+        public string TeamName { get; set; }
 
         public int LeagueID_FK { get; set; }
+
+        public int LeaguePoint { get; set; }
 
         public virtual LEAGUE LEAGUE { get; set; }
 
@@ -36,6 +35,9 @@ namespace DomainLayer
         public virtual ICollection<MATCH> MATCHes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TEAM> TEAMs { get; set; }
+        public virtual ICollection<PLAYER> PLAYERs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ROUND> ROUNDs { get; set; }
     }
 }

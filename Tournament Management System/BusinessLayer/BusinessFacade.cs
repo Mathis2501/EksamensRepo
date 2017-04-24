@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessLayer;
+using DomainLayer;
 
 namespace BusinessLayer
 {
-    public class BusinessFacade
+    public static class BusinessFacade
     {
-        public void TestClass()
+        public static ObservableCollection<LEAGUE> FillLeagueDataGrid()
         {
-            throw new NotImplementedException();
+            
+            return DataAccessFacade.FillLeagueDataGrid();
         }
     }
 }

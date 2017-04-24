@@ -1,25 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DomainLayer
 {
-    public class Player
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("db_owner.PLAYER")]
+    public partial class PLAYER
     {
-        public int PlayerID { get; set; }
-        public string FirstName{ get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PLAYER()
+        {
+            TEAMs = new HashSet<TEAM>();
+        }
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PlayerID_PK { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(30)]
         public string LastName { get; set; }
-        public int Phone { get; set; }
+
+        [Required]
+        [StringLength(30)]
         public string Email { get; set; }
 
-        public Player(string firstName, string lastName, int phone, string email)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Phone = phone;
-            Email = email;
-        }
+        public int PhoneNr { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEAM> TEAMs { get; set; }
     }
 }

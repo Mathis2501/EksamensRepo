@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BusinessLayer;
 
 namespace PresentationLayer
 {
@@ -23,12 +24,21 @@ namespace PresentationLayer
         public MainWindow()
         {
             InitializeComponent();
+            BusinessFacade.FillLeagueDataGrid();
         }
+
+        
+
 
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
             AddPlayerWindow APW = new AddPlayerWindow();
             APW.ShowDialog();
+        }
+
+        private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
