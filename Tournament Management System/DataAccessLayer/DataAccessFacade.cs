@@ -10,7 +10,7 @@ namespace DataAccessLayer
 {
     public static class DataAccessFacade
     {
-        public static ObservableCollection<LEAGUE> FillLeagueDataGrid()
+        public static ObservableCollection<LEAGUE> GetLeagueData()
         {
             GetData GD = new GetData();
             return GD.GetLeagues();

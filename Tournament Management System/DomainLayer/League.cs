@@ -10,8 +10,13 @@ namespace DomainLayer
     public partial class LEAGUE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LEAGUE()
+        public LEAGUE(string leagueName, string reward, int rounds, string gameName, string leagueStatus)
         {
+            LeagueName = leagueName;
+            Reward = reward;
+            Rounds = rounds;
+            GameName = gameName;
+            LeagueStatus = leagueStatus;
             ROUNDs1 = new HashSet<ROUND>();
             TEAMs = new HashSet<TEAM>();
         }

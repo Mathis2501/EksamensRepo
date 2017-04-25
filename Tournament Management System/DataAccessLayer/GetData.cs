@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Diagnostics;
 using DomainLayer;
 
 namespace DataAccessLayer
@@ -15,17 +16,25 @@ namespace DataAccessLayer
         public ObservableCollection<LEAGUE> GetLeagues()
         {
             ObservableCollection<LEAGUE> LeagueList = new ObservableCollection<LEAGUE>();
-            using (var db = new DataContext())
+            try
             {
-                var query = db.LEAGUEs;
-                foreach (var League in query)
+                using (var db = new DataContext())
                 {
-                    LeagueList.Add(League);
+                    var query = db.LEAGUEs;
+                    foreach (var League in query)
+                    {
+                        LeagueList.Add(League);
+                    }
                 }
+                return LeagueList;
             }
-            //{
+            catch (Exception e)
+            {
+                throw;
+            }
 
-            //}
+            
+            
 
 
         }

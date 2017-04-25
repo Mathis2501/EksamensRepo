@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BusinessLayer;
+using DomainLayer;
 
 namespace PresentationLayer
 {
@@ -21,10 +24,16 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<LEAGUE> LeagueList;
         public MainWindow()
         {
             InitializeComponent();
-            BusinessFacade.FillLeagueDataGrid();
+            LeagueList = new ObservableCollection<LEAGUE>();
+            LeagueList = BusinessFacade.GetLeagueData();
+            LeagueDataGrid.ItemsSource = LeagueList;
+            LeagueDataGrid.
+            
+
         }
 
         
@@ -37,6 +46,11 @@ namespace PresentationLayer
         }
 
         private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
 
         }
