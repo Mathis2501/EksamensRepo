@@ -11,10 +11,10 @@ namespace BusinessLayer
 {
     public static class BusinessFacade
     {
-        public static ObservableCollection<LEAGUE> FillLeagueDataGrid()
+        public static ObservableCollection<LEAGUE> GetLeagueData()
         {
             
-            return DataAccessFacade.FillLeagueDataGrid();
+            return DataAccessFacade.GetLeagueData();
         }
     }
 }
