@@ -28,7 +28,8 @@ namespace PresentationLayer
 
         private void btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            Player NewPlayer = new Player(txt_FirstName.Text, txt_LastName.Text, int.Parse(txt_PhoneNr.Text), txt_Email.Text);
+            
+            //PLAYER NewPlayer = new PLAYER(txt_FirstName.Text, txt_LastName.Text, int.Parse(txt_PhoneNr.Text), txt_Email.Text);
         }
 
         private void Txt_FirstName_OnTextChanged(object sender, TextChangedEventArgs e)

@@ -6,8 +6,24 @@
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <!--<local:EksamensDataBase x:Key="eksamensDataBase"/>
+        <CollectionViewSource x:Key="lEAGUEViewSource" Source="{Binding LEAGUE, Source={StaticResource eksamensDataBase}}"/>-->
+    </Window.Resources>
     <Grid>
-        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="433,10,0,0" VerticalAlignment="Top" Width="75" Click="Btn_AddPlayer_Click"/>
+        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="338,10,0,0" VerticalAlignment="Top" Width="85" Click="Btn_AddPlayer_Click"/>
+        <Button x:Name="btn_AddLeague" Content="Opret Ny Liga" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddLeague_Click"/>
+        <Button x:Name="btn_ViewPlayers" Content="Spiller Register" HorizontalAlignment="Left" Margin="428,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewPlayers_Click" />
+        <DataGrid x:Name="LeagueDataGrid" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10,34,0,0" VerticalAlignment="Top" Height="277" Width="498" ItemsSource="{Binding Source=LeagueList}" SelectionChanged="LeagueDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding LeagueID_PK}"/>
+                <DataGridTextColumn Header="Liga Navn" Binding="{Binding LeagueName}"/>
+                <DataGridTextColumn Header="Runder" Binding="{Binding Rounds}"/>
+                <DataGridTextColumn Header="Spil Titel" Binding="{Binding GameName}"/>
+                <DataGridTextColumn Header="Liga Status" Binding="{Binding LeagueStatus}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
