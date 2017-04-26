@@ -13,8 +13,12 @@ namespace BusinessLayer
     {
         public static ObservableCollection<LEAGUE> GetLeagueData()
         {
-            
             return DataAccessFacade.GetLeagueData();
+        }
+
+        public static void SaveLeague()
+        {
+            DataAccessFacade.SaveLeague();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DataAccessLayer
             {
                 using (var db = new DataContext())
                 {
-                    var query = db.LEAGUEs;
+                    var query = db.LEAGUEs.OrderBy(x=>x.LeagueID_PK);
                     foreach (var League in query)
                     {
                         LeagueList.Add(League);
@@ -32,8 +32,6 @@ namespace DataAccessLayer
             {
                 throw;
             }
-
-            //
             
 
 

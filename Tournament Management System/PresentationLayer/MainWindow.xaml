@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="533.2">
     <Window.Resources>
         <!--<local:EksamensDataBase x:Key="eksamensDataBase"/>
         <CollectionViewSource x:Key="lEAGUEViewSource" Source="{Binding LEAGUE, Source={StaticResource eksamensDataBase}}"/>-->
     </Window.Resources>
     <Grid>
-        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="338,10,0,0" VerticalAlignment="Top" Width="85" Click="Btn_AddPlayer_Click"/>
+        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top" Width="85" Click="Btn_AddPlayer_Click"/>
         <Button x:Name="btn_AddLeague" Content="Opret Ny Liga" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddLeague_Click"/>
-        <Button x:Name="btn_ViewPlayers" Content="Spiller Register" HorizontalAlignment="Left" Margin="428,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewPlayers_Click" />
-        <DataGrid x:Name="LeagueDataGrid" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10,34,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false"  >
+        <Button x:Name="btn_ViewPlayers" Content="Spiller Register" HorizontalAlignment="Left" Margin="427,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewPlayers_Click" />
+        <DataGrid x:Name="LeagueDataGrid" ColumnWidth="*" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="14,34,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding LeagueID_PK}"/>
                 <DataGridTextColumn Header="Liga Navn" Binding="{Binding LeagueName}"/>
