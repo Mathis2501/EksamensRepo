@@ -7,7 +7,7 @@ namespace DomainLayer
     using System.Data.Entity.Spatial;
 
     [Table("db_owner.TEAM")]
-    public partial class TEAM
+    public partial class TEAM : IID
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TEAM()
@@ -39,5 +39,18 @@ namespace DomainLayer
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ROUND> ROUNDs { get; set; }
+
+        public int ID
+        {
+            get
+            {
+                return TeamID_PK;
+            }
+
+            set
+            {
+                TeamID_PK = ID;
+            }
+        }
     }
 }
