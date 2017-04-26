@@ -20,7 +20,7 @@ namespace DataAccessLayer
             {
                 using (var db = new DataContext())
                 {
-                    var query = db.LEAGUEs.OrderBy(x=>x.LeagueID_PK);
+                    var query = db.LEAGUEs.OrderBy(x => x.LeagueID_PK);
                     foreach (var League in query)
                     {
                         LeagueList.Add(League);
@@ -32,9 +32,21 @@ namespace DataAccessLayer
             {
                 throw;
             }
-            
+                    
+        }
 
-
+        public ObservableCollection<IID> GetLeagueID()
+        {
+            ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
+            using (var db = new DataContext())
+            {
+                var query = db.LEAGUEs.OrderBy(x => x.LeagueID_PK);
+                foreach (var item in query)
+                {
+                    ItemList.Add(item);
+                }
+            }
+            return ItemList;
         }
     }
 }

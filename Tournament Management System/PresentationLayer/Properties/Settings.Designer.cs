@@ -26,7 +26,7 @@ namespace PresentationLayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ealdb1.eal.local;Initial Catalog=EJL44_DB;Persist Security Info=True;" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ealdb1.eal.local;Initial Catalog=EJL44_DB;Persist Security Info=True;"  
             "User ID=ejl44_usr;Password=Baz1nga44")]
         public string EJL44_DBConnectionString {
             get {

@@ -7,7 +7,7 @@ namespace DomainLayer
     using System.Data.Entity.Spatial;
 
     [Table("db_owner.MATCH")]
-    public partial class MATCH
+    public partial class MATCH : IID
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -20,5 +20,18 @@ namespace DomainLayer
         public virtual ROUND ROUND { get; set; }
 
         public virtual TEAM TEAM { get; set; }
+
+        public int ID
+        {
+            get
+            {
+                return MatchID_PK;
+            }
+
+            set
+            {
+                MatchID_PK = ID;
+            }
+        }
     }
 }
