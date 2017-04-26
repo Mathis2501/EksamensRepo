@@ -14,7 +14,14 @@ namespace DomainLayer
         {
             ROUNDs1 = new HashSet<ROUND>();
             TEAMs = new HashSet<TEAM>();
+            
         }
+
+        private void NextID()
+        {
+            
+        }
+
         TEAM t = new TEAM { };
 
         [Key]
