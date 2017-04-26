@@ -16,5 +16,11 @@ namespace DataAccessLayer
             return GD.GetLeagues();
 
         }
+
+        public static void SaveLeague(TEAM newTeam)
+        {
+            SaveData SD = new SaveData();
+            SD.SaveLeague(newTeam);
+        }
     }
 }

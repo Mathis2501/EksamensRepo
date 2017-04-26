@@ -53,7 +53,9 @@ namespace PresentationLayer
 
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
-
+            AddLeagueWindow ALW = new AddLeagueWindow();
+            ALW.Show();
+            this.Hide();
         }
     }
 }
