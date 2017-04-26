@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="AddLeagueWindow" Height="341.4" Width="538.2">
+        Title="AddLeagueWindow" Height="341.4" Width="545">
     <Grid Name="addLeagueWindow">
         <Button x:Name="btn_Cancel" Content="Annuller" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_Cancel_Click"/>
         <Button x:Name="btn_ViewPlayers" Content="SpillerRegister" HorizontalAlignment="Left" Margin="437,10,0,0" VerticalAlignment="Top" Width="85"/>
@@ -17,7 +17,7 @@
         <RadioButton x:Name="rb_OneTeamMember" Content="1 Person" HorizontalAlignment="Left" Margin="110,125,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rb_TwoTeamMembers" Content="2 Person" HorizontalAlignment="Left" Margin="191,125,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_Rounds" Content="Antal Runder:" HorizontalAlignment="Left" Margin="29,150,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cb_Rounds" HorizontalAlignment="Left" Margin="110,153,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="39">
+        <ComboBox x:Name="cb_Rounds" HorizontalAlignment="Left" Margin="110,153,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="39" SelectionChanged="cb_Rounds_SelectionChanged">
             <ComboBoxItem IsSelected="True">1</ComboBoxItem>
             <ComboBoxItem>2</ComboBoxItem>
             <ComboBoxItem>3</ComboBoxItem>
@@ -32,7 +32,7 @@
         <Label x:Name="lbl_Round4" Content="Runde 4" HorizontalAlignment="Left" Margin="29,274,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_Round4Name" HorizontalAlignment="Left" Height="23" Margin="111,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
         <Label x:Name="lbl_GameType" Content="Spil Titel:" HorizontalAlignment="Left" Margin="275,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_GameType" HorizontalAlignment="Left" Height="23" Margin="380,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_GameName" HorizontalAlignment="Left" Height="23" Margin="380,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="275,88,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="380,92,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="120">
             <ComboBoxItem IsSelected="True">

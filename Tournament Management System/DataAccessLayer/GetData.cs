@@ -28,7 +28,7 @@ namespace DataAccessLayer
                 }
                 return LeagueList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
