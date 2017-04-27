@@ -57,18 +57,17 @@ namespace DataAccessLayer
                 using (var db = new DataContext())
                 {
                     var query = db.PLAYERs.OrderBy(x => x.PlayerID_PK);
-                    foreach (var League in query)
+                    foreach (var Player in query)
                     {
                         PLayerList.Add(Player);
                     }
                 }
                 return PLayerList;
             }
-            catch (Exception e)
+            catch (SqlException)
             {
                 throw;
             }
-
         }
 
         public ObservableCollection<IID> GetPlayerID()
@@ -93,14 +92,14 @@ namespace DataAccessLayer
                 using (var db = new DataContext())
                 {
                     var query = db.TEAMs.OrderBy(x => x.TeamID_PK);
-                    foreach (var League in query)
+                    foreach (var Team in query)
                     {
-                        TeamList.Add(team);
+                        TeamList.Add(Team);
                     }
                 }
                 return TeamList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -125,15 +124,15 @@ namespace DataAccessLayer
             {
                 using (var db = new DataContext())
                 {
-                    var query = db.MATCHs.OrderBy(x => matchID_PK);
-                    foreach (var League in query)
+                    var query = db.MATCHes.OrderBy(x => x.MatchID_PK);
+                    foreach (var Match in query)
                     {
-                        TeamList.Add(match);
+                        TeamList.Add(Match);
                     }
                 }
                 return TeamList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -143,7 +142,7 @@ namespace DataAccessLayer
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
             using (var db = new DataContext())
             {
-                var query = db.Matchs.OrderBy(x => x.MatchID_PK);
+                var query = db.MATCHes.OrderBy(x => x.MatchID_PK);
                 foreach (var item in query)
                 {
                     ItemList.Add(item);

@@ -45,14 +45,13 @@ namespace DataAccessLayer
             }
         }
 
-        internal void SaveLeague(LEAGUE newLeague)
+        internal int SaveLeague(LEAGUE newLeague)
         {
 
             GetData GD = new GetData();
             ObservableCollection<IID> LeagueList = new ObservableCollection<IID>();
             LeagueList = GD.GetLeagueID();
-            int LeagueID;
-            LeagueID = GetID(LeagueList);
+            newLeague.LeagueID_PK = GetID(LeagueList);
 
 
               SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
@@ -63,7 +62,7 @@ namespace DataAccessLayer
                   SqlCommand cmd = new SqlCommand("InsertLeague", DBcon);
                   cmd.CommandType = CommandType.StoredProcedure;
   
-                  cmd.Parameters.AddWithValue("@LeagueID", LeagueID);
+                  cmd.Parameters.AddWithValue("@LeagueID", newLeague.LeagueID_PK);
                   cmd.Parameters.AddWithValue("@LeagueName", newLeague.LeagueName);
                   cmd.Parameters.AddWithValue("@Reward", newLeague.LeagueName);
                   cmd.Parameters.AddWithValue("@Rounds", newLeague.Rounds);
@@ -75,14 +74,14 @@ namespace DataAccessLayer
               catch (SqlException e)
               {
                   Console.WriteLine("ups " + e.Message);
-                  Console.ReadKey();
               }
               finally
               {
                   DBcon.Close();
                   DBcon.Dispose();
               }
-          }
+            return newLeague.LeagueID_PK;
+        }
   
           private void SavePlayer(PLAYER newPlayer)
           {
@@ -99,7 +98,7 @@ namespace DataAccessLayer
                   SqlCommand cmd = new SqlCommand("InsertPlayer", DBcon);
                   cmd.CommandType = CommandType.StoredProcedure;
   
-                  cmd.Parameters.AddWithValue("@PlayerID", newPlayer.);
+                  cmd.Parameters.AddWithValue("@PlayerID", newPlayer.PlayerID_PK);
                   cmd.Parameters.AddWithValue("@FirstName", newPlayer.FirstName);
                   cmd.Parameters.AddWithValue("@LastName", newPlayer.LastName);
                   cmd.Parameters.AddWithValue("@Email", newPlayer.Email);
@@ -164,9 +163,9 @@ namespace DataAccessLayer
                  SqlCommand cmd = new SqlCommand("InsertLeague", DBcon);
                  cmd.CommandType = CommandType.StoredProcedure;
  
-                 cmd.Parameters.AddWithValue("@MatchID", matchID);
-                 cmd.Parameters.AddWithValue("@RoundID", roundID);
-                 cmd.Parameters.AddWithValue("@Winner", winner);
+                 cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchID_PK);
+                 cmd.Parameters.AddWithValue("@RoundID", newMatch.RoundID_FK);
+                 cmd.Parameters.AddWithValue("@Winner", newMatch.Winner);
  
                  cmd.ExecuteNonQuery();
              }
