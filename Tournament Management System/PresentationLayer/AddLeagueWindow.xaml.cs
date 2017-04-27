@@ -64,7 +64,7 @@ namespace PresentationLayer
                     newLeague.LeagueName = $"{txt_LeagueName.Text} {item.Content.ToString()}";
                 }
             }
-            BusinessFacade.SaveLeague();
+            BusinessFacade.SaveLeague(newLeague);
         }
 
         private void cb_Rounds_SelectionChanged(object sender, SelectionChangedEventArgs e)

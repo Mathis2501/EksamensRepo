@@ -19,8 +19,8 @@ namespace DataAccessLayer
 
         public static void SaveLeague(LEAGUE newLeague)
         {
-            //SaveData SD = new SaveData();
-            //SD.SaveLeague(newLeague);
+            SaveData SD = new SaveData();
+            SD.SaveLeague(newLeague);
         }
     }
 }
