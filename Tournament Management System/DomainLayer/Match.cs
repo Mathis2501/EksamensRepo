@@ -21,6 +21,7 @@ namespace DomainLayer
 
         public virtual TEAM TEAM { get; set; }
 
+
         public int ID
         {
             get
