@@ -24,7 +24,6 @@ namespace DomainLayer
         [StringLength(30)]
         public string RoundName { get; set; }
 
-        [Required]
         [StringLength(30)]
         public string RoundType { get; set; }
 
