@@ -10,56 +10,50 @@ using System.Collections.ObjectModel;
 
 namespace DataAccessLayer
 {
-    
-        public class SaveData
-      {
+    public class SaveData
+    {
 
-
-
-          private void SaveTeam(TEAM newTeam)
-          {
-            GetData GD = new GetData();
-            ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
-            TeamList = GD.GetLeagueID();
-            int teamID;
-            teamID = GetID(TeamList);
+        private void SaveTeam(TEAM newTeam)
+        {
 
 
             SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
-  
-              try
-              {
-                  DBcon.Open();
-                  SqlCommand cmd = new SqlCommand("InsertTeam", DBcon);
-                  cmd.CommandType = CommandType.StoredProcedure;
-  
-                  cmd.Parameters.AddWithValue("@TeamID", teamID);
-                  cmd.Parameters.AddWithValue("@TeamName", newTeam.TeamName);
-                  cmd.Parameters.AddWithValue("@LeagueID", newTeam.LeagueID_FK);
-                  cmd.Parameters.AddWithValue("@LeaguePoint", newTeam.LeaguePoint);
-  
-                  cmd.ExecuteNonQuery();
-              }
-  
-              catch (SqlException e)
-              {
-                  Console.WriteLine("ups " +  e.Message);
-                  Console.ReadKey();
-              }
-              finally
-              {
-                  DBcon.Close();
-                  DBcon.Dispose();
-              }
-          }
-  
-          private void SaveLeague(LEAGUE newLeague)
-          {
+
+            try
+            {
+                DBcon.Open();
+                SqlCommand cmd = new SqlCommand("InsertTeam", DBcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@TeamID", newTeam.TeamID_PK);
+                cmd.Parameters.AddWithValue("@TeamName", newTeam.TeamName);
+                cmd.Parameters.AddWithValue("@LeagueID", newTeam.LeagueID_FK);
+                cmd.Parameters.AddWithValue("@LeaguePoint", newTeam.LeaguePoint);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+                Console.ReadKey();
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
+        }
+
+        internal void SaveLeague(LEAGUE newLeague)
+        {
+
             GetData GD = new GetData();
             ObservableCollection<IID> LeagueList = new ObservableCollection<IID>();
             LeagueList = GD.GetLeagueID();
             int LeagueID;
             LeagueID = GetID(LeagueList);
+
 
               SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
   
@@ -227,6 +221,6 @@ namespace DataAccessLayer
             }
             return ItemID;
         }
-     }
- }
+    }
+}
 
