@@ -16,9 +16,9 @@ namespace BusinessLayer
             return DataAccessFacade.GetLeagueData();
         }
 
-        public static void SaveLeague()
+        public static void SaveLeague(LEAGUE newLeague)
         {
-            DataAccessFacade.SaveLeague();
+            DataAccessFacade.SaveLeague(newLeague);
         }
     }
 }
