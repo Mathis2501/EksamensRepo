@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using BusinessLayer;
 using DomainLayer;
+// ReSharper disable PossibleInvalidOperationException
 
 namespace PresentationLayer
 {
@@ -28,13 +20,14 @@ namespace PresentationLayer
             txt_Round2Name.IsEnabled = false;
             txt_Round3Name.IsEnabled = false;
             txt_Round4Name.IsEnabled = false;
+            rb_OneTeamMember.IsChecked = true;
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow MW = new MainWindow();
             MW.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btn_Clear_Click(object sender, RoutedEventArgs e)
@@ -44,7 +37,7 @@ namespace PresentationLayer
             {
                 item.Text = "";
             }
-            rb_OneTeamMember.IsEnabled = true;
+            rb_OneTeamMember.IsChecked = true;
             cb_Rounds.SelectedIndex = 0;
             cb_Status.SelectedIndex = 0;
         }
@@ -54,17 +47,38 @@ namespace PresentationLayer
             LEAGUE newLeague = new LEAGUE();
             newLeague.GameName = txt_GameName.Text;
             newLeague.LeagueName = txt_LeagueName.Text;
-            newLeague.LeagueStatus = cb_Status.SelectedItem.ToString();
             newLeague.Reward = txt_Reward.Text;
-            IEnumerable<RadioButton> collection = addLeagueWindow.Children.OfType<RadioButton>();
-            foreach (var item in collection)
+
+            ComboBoxItem CBI = (ComboBoxItem) cb_Status.SelectedItem;
+            newLeague.LeagueStatus = CBI.ToString();
+            //removes unwanted words from ComboBoxItem uses space to go to ´the start of the word needed
+            newLeague.LeagueStatus = newLeague.LeagueStatus.Substring(newLeague.LeagueStatus.IndexOf(" ", StringComparison.Ordinal)+1);
+            
+            IEnumerable<RadioButton> rb_collection = addLeagueWindow.Children.OfType<RadioButton>();
+            foreach (var item in rb_collection)
             {
-                if (item.IsEnabled)
+                if (item.IsChecked.Value)
                 {
-                    newLeague.LeagueName = $"{txt_LeagueName.Text} {item.Content.ToString()}";
+                    newLeague.LeagueName = $"{txt_LeagueName.Text} {item.Content}";
                 }
             }
-            BusinessFacade.SaveLeague(newLeague);
+            
+            newLeague.LeagueID_PK = BusinessFacade.SaveLeague(newLeague);
+
+            IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
+            foreach (var item in tb_collection)
+            {
+                if (item.Name.Contains("Rounds"))
+                {
+                    if (item.IsEnabled)
+                    {
+                        ROUND newRound = new ROUND();
+                        newRound.RoundName = item.Text;
+                        newRound.LeagueID_FK = newLeague.LeagueID_PK;
+                        BusinessFacade.SaveRound(newRound);
+                    }
+                }
+            }
         }
 
         private void cb_Rounds_SelectionChanged(object sender, SelectionChangedEventArgs e)

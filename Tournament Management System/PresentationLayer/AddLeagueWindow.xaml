@@ -23,6 +23,7 @@
             <ComboBoxItem>3</ComboBoxItem>
             <ComboBoxItem>4</ComboBoxItem>
         </ComboBox>
+
         <Label x:Name="lbl_Round1" Content="Runde 1" HorizontalAlignment="Left" Margin="29,181,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_Round1Name" HorizontalAlignment="Left" Height="23" Margin="110,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
         <Label x:Name="lbl_Round2" Content="Runde 2" HorizontalAlignment="Left" Margin="29,212,0,0" VerticalAlignment="Top"/>
@@ -30,7 +31,7 @@
         <Label x:Name="lbl_Round3" Content="Runde 3" HorizontalAlignment="Left" Margin="29,243,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_Round3Name" HorizontalAlignment="Left" Height="23" Margin="110,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
         <Label x:Name="lbl_Round4" Content="Runde 4" HorizontalAlignment="Left" Margin="29,274,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_Round4Name" HorizontalAlignment="Left" Height="23" Margin="111,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <TextBox x:Name="txt_Round4Name" HorizontalAlignment="Left" Height="23" Margin="110,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
         <Label x:Name="lbl_GameType" Content="Spil Titel:" HorizontalAlignment="Left" Margin="275,57,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_GameName" HorizontalAlignment="Left" Height="23" Margin="380,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="275,88,0,0" VerticalAlignment="Top"/>
@@ -50,6 +51,7 @@
         </ComboBox>
         <Button x:Name="btn_Clear" Content="Ryd" HorizontalAlignment="Left" Margin="415,181,0,0" VerticalAlignment="Top" Width="85" Click="btn_Clear_Click"/>
         <Button x:Name="btn_SaveLeague" Content="Gem" HorizontalAlignment="Left" Margin="415,280,0,0" VerticalAlignment="Top" Width="85" Click="btn_SaveLeague_Click"/>
+        <StackPanel x:Name="sp_Rounds" HorizontalAlignment="Left" Height="116" Margin="110,181,0,0" VerticalAlignment="Top" Width="145"/>
 
 
 

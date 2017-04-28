@@ -10,6 +10,7 @@ namespace DataAccessLayer
 {
     public static class DataAccessFacade
     {
+        
         public static ObservableCollection<LEAGUE> GetLeagueData()
         {
             GetData GD = new GetData();
@@ -17,10 +18,16 @@ namespace DataAccessLayer
 
         }
 
-        public static void SaveLeague(LEAGUE newLeague)
+        public static int SaveLeague(LEAGUE newLeague)
         {
             SaveData SD = new SaveData();
-            SD.SaveLeague(newLeague);
+            return SD.SaveLeague(newLeague);
+        }
+
+        public static void SaveRound(ROUND newRound)
+        {
+            SaveData SD = new SaveData();
+            SD.SaveRound(newRound);
         }
     }
 }

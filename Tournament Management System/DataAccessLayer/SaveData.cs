@@ -24,6 +24,9 @@ namespace DataAccessLayer
             newTeam.TeamID_PK = GetID(TeamList);
 
 
+        internal int SaveLeague(LEAGUE newLeague)
+        {
+
             SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
   
               try
@@ -59,8 +62,9 @@ namespace DataAccessLayer
             LeagueList = GD.GetLeagueID();
             newLeague.LeagueID_PK = GetID(LeagueList);
 
+
               SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
-  //
+  
               try
               {
                   DBcon.Open();
@@ -80,14 +84,14 @@ namespace DataAccessLayer
               catch (SqlException e)
               {
                   Console.WriteLine("ups " + e.Message);
-                  Console.ReadKey();
               }
               finally
               {
                   DBcon.Close();
                   DBcon.Dispose();
               }
-          }
+            return newLeague.LeagueID_PK;
+        }
   
           private void SavePlayer(PLAYER newPlayer)
           {

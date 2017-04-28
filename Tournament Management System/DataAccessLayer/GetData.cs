@@ -61,18 +61,19 @@ namespace DataAccessLayer
                 using (var db = new DataContext())
                 {
                     var query = db.PLAYERs.OrderBy(x => x.PlayerID_PK);
+
                     foreach (var player in query)
+
                     {
                         PLayerList.Add(player);
                     }
                 }
                 return PLayerList;
             }
-            catch (Exception e)
+            catch (SqlException)
             {
                 throw;
             }
-
         }
 
         public ObservableCollection<IID> GetPlayerID()
@@ -97,14 +98,16 @@ namespace DataAccessLayer
                 using (var db = new DataContext())
                 {
                     var query = db.TEAMs.OrderBy(x => x.TeamID_PK);
-                    foreach (var team in query)
+
+                    foreach (var Team in query)
+
                     {
-                        TeamList.Add(team);
+                        TeamList.Add(Team);
                     }
                 }
                 return TeamList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -129,15 +132,16 @@ namespace DataAccessLayer
             {
                 using (var db = new DataContext())
                 {
-                    var query = db.MATCHes.OrderBy(x => matchID_PK);
-                    foreach (var match in query)
+
+                    var query = db.MATCHes.OrderBy(x => x.MatchID_PK);
+                    foreach (var Match in query)
                     {
-                        MatchList.Add(match);
+                        TeamList.Add(Match);
                     }
                 }
                 return MatchList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -148,6 +152,7 @@ namespace DataAccessLayer
             using (var db = new DataContext())
             {
                 var query = db.MATCHes.OrderBy(x => x.MatchID_PK);
+
                 foreach (var item in query)
                 {
                     ItemList.Add(item);
@@ -181,6 +186,7 @@ namespace DataAccessLayer
             using (var db = new DataContext())
             {
                 var query = db.ROUNDs.OrderBy(x => x.MatchID_PK);
+
                 foreach (var item in query)
                 {
                     ItemList.Add(item);
