@@ -60,7 +60,7 @@ namespace DataAccessLayer
             newLeague.LeagueID_PK = GetID(LeagueList);
 
               SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
-  
+  //
               try
               {
                   DBcon.Open();
