@@ -16,7 +16,12 @@ namespace DomainLayer
             TEAMs = new HashSet<TEAM>();
             
         }
-        
+
+        private void NextID()
+        {
+            
+        }
+
         TEAM t = new TEAM { };
 
         [Key]
@@ -46,7 +51,8 @@ namespace DomainLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEAM> TEAMs { get; set; }
 
-        [NotMapped]
+        public bool TeamStatus { get; set; }
+
         public int ID
         {
             get

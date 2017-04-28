@@ -9,6 +9,10 @@ using System.Data.Entity;
 using System.Diagnostics;
 using DomainLayer;
 
+
+// Vi har 2 metoder til samme af hver tubg fir at
+
+
 namespace DataAccessLayer
 {
     class GetData
@@ -57,9 +61,11 @@ namespace DataAccessLayer
                 using (var db = new DataContext())
                 {
                     var query = db.PLAYERs.OrderBy(x => x.PlayerID_PK);
-                    foreach (var Player in query)
+
+                    foreach (var player in query)
+
                     {
-                        PLayerList.Add(Player);
+                        PLayerList.Add(player);
                     }
                 }
                 return PLayerList;
@@ -92,7 +98,9 @@ namespace DataAccessLayer
                 using (var db = new DataContext())
                 {
                     var query = db.TEAMs.OrderBy(x => x.TeamID_PK);
+
                     foreach (var Team in query)
+
                     {
                         TeamList.Add(Team);
                     }
@@ -117,20 +125,21 @@ namespace DataAccessLayer
             }
             return ItemList;
         }
-        public ObservableCollection<MATCH> GetMatch()
+        public ObservableCollection<MATCH> GetMatches()
         {
-            ObservableCollection<MATCH> TeamList = new ObservableCollection<MATCH>();
+            ObservableCollection<MATCH> MatchList = new ObservableCollection<MATCH>();
             try
             {
                 using (var db = new DataContext())
                 {
+
                     var query = db.MATCHes.OrderBy(x => x.MatchID_PK);
                     foreach (var Match in query)
                     {
                         TeamList.Add(Match);
                     }
                 }
-                return TeamList;
+                return MatchList;
             }
             catch (Exception)
             {
@@ -143,6 +152,7 @@ namespace DataAccessLayer
             using (var db = new DataContext())
             {
                 var query = db.MATCHes.OrderBy(x => x.MatchID_PK);
+
                 foreach (var item in query)
                 {
                     ItemList.Add(item);
@@ -150,6 +160,39 @@ namespace DataAccessLayer
             }
             return ItemList;
         }
+        public ObservableCollection<ROUND> GetRound()
+        {
+            ObservableCollection<ROUND> roundList = new ObservableCollection<ROUND>();
+            try
+            {
+                using (var db = new DataContext())
+                {
+                    var query = db.ROUNDs.OrderBy(x => RoundID_PK);
+                    foreach (var round in query)
+                    {
+                        roundList.Add(round);
+                    }
+                }
+                return roundList;
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+        public ObservableCollection<IID> GetRoundID()
+        {
+            ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
+            using (var db = new DataContext())
+            {
+                var query = db.ROUNDs.OrderBy(x => x.MatchID_PK);
 
+                foreach (var item in query)
+                {
+                    ItemList.Add(item);
+                }
+            }
+            return ItemList;
+        }
     }
  }
