@@ -51,6 +51,8 @@ namespace DomainLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEAM> TEAMs { get; set; }
 
+        public bool TeamStatus { get; set; }
+
         public int ID
         {
             get
