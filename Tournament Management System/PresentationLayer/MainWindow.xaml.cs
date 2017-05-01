@@ -24,11 +24,11 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<LEAGUE> LeagueList;
+        private ObservableCollection<League> LeagueList;
         public MainWindow()
         {
             InitializeComponent();
-            LeagueList = new ObservableCollection<LEAGUE>();
+            LeagueList = new ObservableCollection<League>();
             LeagueList = BusinessFacade.GetLeagueData();
             LeagueDataGrid.ItemsSource = LeagueList;
        

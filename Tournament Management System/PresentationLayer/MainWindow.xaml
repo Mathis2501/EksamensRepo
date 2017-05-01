@@ -16,7 +16,7 @@
         <Button x:Name="btn_ViewPlayers" Content="Spiller Register" HorizontalAlignment="Left" Margin="427,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewPlayers_Click" />
         <DataGrid x:Name="LeagueDataGrid" ColumnWidth="*" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="14,34,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false"  >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding LeagueID_PK}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding LeagueId}"/>
                 <DataGridTextColumn Header="Liga Navn" Binding="{Binding LeagueName}"/>
                 <DataGridTextColumn Header="Runder" Binding="{Binding Rounds}"/>
                 <DataGridTextColumn Header="Spil Titel" Binding="{Binding GameName}"/>

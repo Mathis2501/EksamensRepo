@@ -44,41 +44,41 @@ namespace PresentationLayer
 
         private void btn_SaveLeague_Click(object sender, RoutedEventArgs e)
         {
-            LEAGUE newLeague = new LEAGUE();
+            League newLeague = new League();
             newLeague.GameName = txt_GameName.Text;
             newLeague.LeagueName = txt_LeagueName.Text;
             newLeague.Reward = txt_Reward.Text;
 
             ComboBoxItem CBI = (ComboBoxItem) cb_Status.SelectedItem;
             newLeague.LeagueStatus = CBI.ToString();
-            //removes unwanted words from ComboBoxItem uses space to go to ´the start of the word needed
+            //removes unwanted words from ComboBoxItem. uses space to go to the start of the word needed
             newLeague.LeagueStatus = newLeague.LeagueStatus.Substring(newLeague.LeagueStatus.IndexOf(" ", StringComparison.Ordinal)+1);
-            
+            newLeague.Rounds = cb_Rounds.SelectedIndex + 1;
             IEnumerable<RadioButton> rb_collection = addLeagueWindow.Children.OfType<RadioButton>();
             foreach (var item in rb_collection)
             {
                 if (item.IsChecked.Value)
                 {
-                    newLeague.LeagueName = $"{txt_LeagueName.Text} {item.Content}";
+                    newLeague.TeamStatus = int.Parse(item.Content.ToString().Substring(0,1));
                 }
             }
             
-            newLeague.LeagueID_PK = BusinessFacade.SaveLeague(newLeague);
+            newLeague.LeagueId = BusinessFacade.SaveLeague(newLeague);
 
-            IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
-            foreach (var item in tb_collection)
-            {
-                if (item.Name.Contains("Rounds"))
-                {
-                    if (item.IsEnabled)
-                    {
-                        ROUND newRound = new ROUND();
-                        newRound.RoundName = item.Text;
-                        newRound.LeagueID_FK = newLeague.LeagueID_PK;
-                        BusinessFacade.SaveRound(newRound);
-                    }
-                }
-            }
+            //IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
+            //foreach (var item in tb_collection)
+            //{
+            //    if (item.Name.Contains("Rounds"))
+            //    {
+            //        if (item.IsEnabled)
+            //        {
+            //            Round newRound = new Round();
+            //            newRound.RoundName = item.Text;
+            //            newRound. = newLeague.LeagueID_PK;
+            //            BusinessFacade.SaveRound(newRound);
+            //        }
+            //    }
+            //}
         }
 
         private void cb_Rounds_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using DataAccessLayer;
 using DomainLayer;
 
@@ -11,17 +6,17 @@ namespace BusinessLayer
 {
     public static class BusinessFacade
     {
-        public static ObservableCollection<LEAGUE> GetLeagueData()
+        public static ObservableCollection<League> GetLeagueData()
         {
             return DataAccessFacade.GetLeagueData();
         }
 
-        public static int SaveLeague(LEAGUE newLeague)
+        public static int SaveLeague(League newLeague)
         {
             return DataAccessFacade.SaveLeague(newLeague);
         }
 
-        public static void SaveRound(ROUND newRound)
+        public static void SaveRound(Round newRound)
         {
             DataAccessFacade.SaveRound(newRound);
         }
