@@ -44,6 +44,7 @@ namespace PresentationLayer
         {
             AddPlayerWindow APW = new AddPlayerWindow();
             APW.ShowDialog();
+            this.Close();
         }
 
         private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
@@ -55,7 +56,7 @@ namespace PresentationLayer
         {
             AddLeagueWindow ALW = new AddLeagueWindow();
             ALW.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

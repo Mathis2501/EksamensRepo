@@ -23,14 +23,17 @@ namespace DataAccessLayer
 
         public ObservableCollection<League> GetLeagues()
         {
+            GetData GD = new GetData();
             ObservableCollection<League> LeagueList = new ObservableCollection<League>();
-            try
+            using (var DBcon = new SqlConnection(ConnectionsString))
             {
-                using (var DBcon = new SqlConnection(ConnectionsString))
+                try
                 {
+
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
                     string cmdString = "Select * from League";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
-                    
+
                     DBcon.Open();
                     using (SqlDataReader Reader = Cmd.ExecuteReader())
                     {
@@ -43,18 +46,23 @@ namespace DataAccessLayer
                             newLeague.GameName = Reader["GameName"].ToString();
                             newLeague.LeagueStatus = Reader["LeagueStatus"].ToString();
                             newLeague.TeamStatus = int.Parse(Reader["TeamStatus"].ToString());
+                            //Get All Teams in League
+                            newLeague.TeamsInLeague = GD.GetTeamsFromLeagueID(newLeague.LeagueId);
                             LeagueList.Add(newLeague);
                         }
                     }
-                    
+                    return LeagueList;
                 }
-                return LeagueList;
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    DBcon.Close();
+                    DBcon.Dispose();
+                }
             }
-            catch (Exception)
-            {
-                throw;
-            }
-
         }
 
         public ObservableCollection<IID> GetLeagueID()
@@ -62,6 +70,7 @@ namespace DataAccessLayer
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
+                //her refererer vi direkte til det row vi gerne vil have så vi kun får den data
                 string cmdString = "Select LeagueID_PK from League";
                 SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -86,6 +95,7 @@ namespace DataAccessLayer
             {
                 using (var DBcon = new SqlConnection(ConnectionsString))
                 {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
                     string cmdString = "Select * from Player";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -112,12 +122,50 @@ namespace DataAccessLayer
                 throw;
             }
         }
+        private ICollection<Player> GetPlayersFromTeamID(int TeamId)
+        {
+            ICollection<Player> TeamsInLeague = new List<Player>();
+            try
+            {
+                //using (var DBcon = new SqlConnection(ConnectionsString))
+                //{
+                //    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
+                //    string cmdString = $"Select * from TEAM where {TeamId}";
+                //    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
+
+                //    DBcon.Open();
+                //    using (SqlDataReader Reader = Cmd.ExecuteReader())
+                //    {
+                //        while (Reader.Read())
+                //        {
+                //            Team newTeam = new Team();
+                //            newTeam.TeamId = int.Parse(Reader["TeamId_PK"].ToString());
+                //            newTeam.TeamName = Reader["TeamName"].ToString();
+                //            newTeam.LeaguePoints = int.Parse(Reader["LeaguePoint"].ToString());
+                //            newTeam.PlayersInTeam = GetPlayersFromTeamID(newTeam.TeamId);
+                //            TeamsInLeague.Add(newTeam);
+                //        }
+                //    }
+                    return TeamsInLeague;
+                //}
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                
+            }
+        }
 
         public ObservableCollection<IID> GetPlayerID()
         {
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
+                //her refererer vi direkte til det row vi gerne vil have så vi kun får den data
                 string cmdString = "Select PlayerID_PK from Player";
                 SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -142,6 +190,7 @@ namespace DataAccessLayer
             {
                 using (var DBcon = new SqlConnection(ConnectionsString))
                 {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
                     string cmdString = "Select * from TEAM";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -166,11 +215,49 @@ namespace DataAccessLayer
                 throw;
             }
         }
+
+        public ICollection<Team> GetTeamsFromLeagueID(int LeagueID)
+        {
+            ICollection<Team> TeamsInLeague = new List<Team>();
+            try
+            {
+                using (var DBcon = new SqlConnection(ConnectionsString))
+                {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have alle data column ned i programmet når vi kalder denne metode
+                    string cmdString = $"Select * from TEAM where LeagueID_FK={LeagueID}";
+                    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
+
+                    DBcon.Open();
+                    using (SqlDataReader Reader = Cmd.ExecuteReader())
+                    {
+                        while (Reader.Read())
+                        {
+                            Team newTeam = new Team();
+                            newTeam.TeamId = int.Parse(Reader["TeamId_PK"].ToString());
+                            newTeam.TeamName = Reader["TeamName"].ToString();
+                            newTeam.LeaguePoints = int.Parse(Reader["LeaguePoint"].ToString());
+                            newTeam.PlayersInTeam = GetPlayersFromTeamID(newTeam.TeamId);
+                            TeamsInLeague.Add(newTeam);
+                        }
+                    }
+                    return TeamsInLeague;
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        
+
         public ObservableCollection<IID> GetTeamID()
         {
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
+                //her refererer vi direkte til det row vi gerne vil have så vi kun får den data
                 string cmdString = "Select TeamID_PK from TEAM";
                 SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -194,6 +281,7 @@ namespace DataAccessLayer
             {
                 using (var DBcon = new SqlConnection(ConnectionsString))
                 {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
                     string cmdString = "Select * from MATCH";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -220,6 +308,7 @@ namespace DataAccessLayer
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
+                //her refererer vi direkte til det row vi gerne vil have så vi kun får den data
                 string cmdString = "Select MatchID_PK from MATCH";
                 SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -243,6 +332,7 @@ namespace DataAccessLayer
             {
                 using (var DBcon = new SqlConnection(ConnectionsString))
                 {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
                     string cmdString = "Select * from ROUND";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
@@ -271,6 +361,7 @@ namespace DataAccessLayer
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
+                //her refererer vi direkte til det row vi gerne vil have så vi kun får den data
                 string cmdString = "Select RoundID_PK from Round";
                 SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
