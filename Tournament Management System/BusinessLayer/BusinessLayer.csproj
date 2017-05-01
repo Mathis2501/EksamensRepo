@@ -48,8 +48,8 @@
       <Project>{91476b8d-0eeb-4ade-8111-94ce4c40f3b8}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">
-      <Project>{231357ed-a200-42f6-afef-4ee02fda4219}</Project>
+    <ProjectReference Include="..\EFDomainLayer\DomainLayer.csproj">
+      <Project>{EE9E1269-527B-4C5D-A0C3-522A324BCFB4}</Project>
       <Name>DomainLayer</Name>
     </ProjectReference>
   </ItemGroup>
