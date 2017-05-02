@@ -23,15 +23,12 @@ namespace DataAccessLayer
 
         public ObservableCollection<League> GetLeagues()
         {
-            GetData GD = new GetData();
             ObservableCollection<League> LeagueList = new ObservableCollection<League>();
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
                 try
                 {
-
-                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
-                    string cmdString = "Select * from League";
+                    string cmdString = "Select LeagueID_PK, LeagueName, Reward, GameName, LeagueStatus, TeamStatus from League";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
                     DBcon.Open();
@@ -47,7 +44,9 @@ namespace DataAccessLayer
                             newLeague.LeagueStatus = Reader["LeagueStatus"].ToString();
                             newLeague.TeamStatus = int.Parse(Reader["TeamStatus"].ToString());
                             //Get All Teams in League
-                            newLeague.TeamsInLeague = GD.GetTeamsFromLeagueID(newLeague.LeagueId);
+                            newLeague.TeamsInLeague = GetTeamsFromLeagueID(newLeague.LeagueId);
+                            //Get all Rounds in League
+                            newLeague.RoundsInLeague = GetRoundsFromLeagueID(newLeague.LeagueId, newLeague.TeamsInLeague);
                             LeagueList.Add(newLeague);
                         }
                     }
@@ -122,32 +121,33 @@ namespace DataAccessLayer
                 throw;
             }
         }
-        private ICollection<Player> GetPlayersFromTeamID(int TeamId)
+        private ObservableCollection<Player> GetPlayersFromTeamID(int TeamId)
         {
-            ICollection<Player> TeamsInLeague = new List<Player>();
+            ObservableCollection<Player> PlayersInTeam = new ObservableCollection<Player>();
             try
             {
-                //using (var DBcon = new SqlConnection(ConnectionsString))
-                //{
-                //    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
-                //    string cmdString = $"Select * from TEAM where {TeamId}";
-                //    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
+                using (var DBcon = new SqlConnection(ConnectionsString))
+                {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
+                    string cmdString = $"Select * from TEAM where {TeamId}";
+                    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
-                //    DBcon.Open();
-                //    using (SqlDataReader Reader = Cmd.ExecuteReader())
-                //    {
-                //        while (Reader.Read())
-                //        {
-                //            Team newTeam = new Team();
-                //            newTeam.TeamId = int.Parse(Reader["TeamId_PK"].ToString());
-                //            newTeam.TeamName = Reader["TeamName"].ToString();
-                //            newTeam.LeaguePoints = int.Parse(Reader["LeaguePoint"].ToString());
-                //            newTeam.PlayersInTeam = GetPlayersFromTeamID(newTeam.TeamId);
-                //            TeamsInLeague.Add(newTeam);
-                //        }
-                //    }
-                    return TeamsInLeague;
-                //}
+                    DBcon.Open();
+                    using (SqlDataReader Reader = Cmd.ExecuteReader())
+                    {
+                        while (Reader.Read())
+                        {
+                            Player newPlayer = new Player();
+                            newPlayer.PlayerId = int.Parse(Reader["PlayerID_PK"].ToString());
+                            newPlayer.FirstName = Reader["FirstName"].ToString();
+                            newPlayer.LastName = Reader["LastName"].ToString();
+                            newPlayer.Email = Reader["Email"].ToString();
+                            newPlayer.PhoneNr = Reader["PhoneNr"].ToString();
+                            PlayersInTeam.Add(newPlayer);
+                        }
+                    }
+                    return PlayersInTeam;
+                }
             }
             catch (Exception)
             {
@@ -216,9 +216,9 @@ namespace DataAccessLayer
             }
         }
 
-        public ICollection<Team> GetTeamsFromLeagueID(int LeagueID)
+        public ObservableCollection<Team> GetTeamsFromLeagueID(int LeagueID)
         {
-            ICollection<Team> TeamsInLeague = new List<Team>();
+            ObservableCollection<Team> TeamsInLeague = new ObservableCollection<Team>();
             try
             {
                 using (var DBcon = new SqlConnection(ConnectionsString))
@@ -250,7 +250,10 @@ namespace DataAccessLayer
             }
         }
 
-        
+        public ObservableCollection<Team> GetTeamsFromRoundID(int RoundId)
+        {
+            throw new NotImplementedException();
+        }
 
         public ObservableCollection<IID> GetTeamID()
         {
@@ -303,6 +306,37 @@ namespace DataAccessLayer
                 throw;
             }
         }
+
+        private ObservableCollection<Match> GetMatchesFromRoundID(int roundId)
+        {
+            ObservableCollection<Match> MatchList = new ObservableCollection<Match>();
+            try
+            {
+                using (var DBcon = new SqlConnection(ConnectionsString))
+                {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
+                    string cmdString = $"Select * from MATCH where RoundID_FK={roundId}";
+                    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
+
+                    DBcon.Open();
+                    using (SqlDataReader Reader = Cmd.ExecuteReader())
+                    {
+                        while (Reader.Read())
+                        {
+                            Match newMatch = new Match();
+                            newMatch.MatchId = int.Parse(Reader["MatchID_PK"].ToString());
+                            MatchList.Add(newMatch);
+                        }
+                    }
+                }
+                return MatchList;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public ObservableCollection<IID> GetMatchID()
         {
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();
@@ -344,6 +378,8 @@ namespace DataAccessLayer
                             Round newRound = new Round();
                             newRound.RoundId = int.Parse(Reader["RoundID_PK"].ToString());
                             newRound.RoundName = Reader["RoundName"].ToString();
+                            newRound.MatchesInRound = GetMatchesFromRoundID(newRound.RoundId);
+                            newRound.TeamsInRound = GetTeamsFromRoundID(newRound.RoundId);
                             RoundList.Add(newRound);
                         }
                     }
@@ -356,6 +392,40 @@ namespace DataAccessLayer
                 throw;
             }
         }
+
+        public ObservableCollection<Round> GetRoundsFromLeagueID(int LeagueID, ObservableCollection<Team> TeamsInLeague)
+        {
+            ObservableCollection<Round> RoundsInLeague = new ObservableCollection<Round>();
+            try
+            {
+                using (var DBcon = new SqlConnection(ConnectionsString))
+                {
+                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have alle data column ned i programmet når vi kalder denne metode
+                    string cmdString = $"Select * from ROUND where LeagueID_FK={LeagueID}";
+                    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
+
+                    DBcon.Open();
+                    using (SqlDataReader Reader = Cmd.ExecuteReader())
+                    {
+                        while (Reader.Read())
+                        {
+                            Round newRound = new Round();
+                            newRound.RoundId = int.Parse(Reader["RoundID_PK"].ToString());
+                            newRound.RoundName = Reader["RoundName"].ToString();
+                            newRound.TeamsInRound = TeamsInLeague;
+                            newRound.MatchesInRound = GetMatchesFromRoundID(newRound.RoundId);
+                            RoundsInLeague.Add(newRound);
+                        }
+                    }
+                    return RoundsInLeague;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public ObservableCollection<IID> GetRoundID()
         {
             ObservableCollection<IID> ItemList = new ObservableCollection<IID>();

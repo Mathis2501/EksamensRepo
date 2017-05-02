@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace DomainLayer
     {
         public int RoundId { get; set; }
         public string RoundName { get; set; }
-        public ICollection<Team> TeamsInRound { get; set; }
-        public ICollection<Match> MatchesInRound { get; set; }
+        public ObservableCollection<Team> TeamsInRound { get; set; }
+        public ObservableCollection<Match> MatchesInRound { get; set; }
         public int ID
         {
             get { return RoundId; }
