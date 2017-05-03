@@ -26,9 +26,6 @@ namespace PresentationLayer
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow MW = new MainWindow();
-            MW.Show();
-
             this.Close();
         }
 
@@ -81,8 +78,6 @@ namespace PresentationLayer
                     }
                 }
             }
-            MainWindow MW = new MainWindow();
-            MW.Show();
             this.Close();
         }
 

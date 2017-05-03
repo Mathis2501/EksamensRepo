@@ -35,5 +35,11 @@ namespace DataAccessLayer
             SaveData SD = new SaveData();
             SD.SaveRound(newRound, leagueId);
         }
+
+        public static void SavePlayer(Player newPlayer)
+        {
+            SaveData SD = new SaveData();
+            SD.SavePlayer(newPlayer);
+        }
     }
 }

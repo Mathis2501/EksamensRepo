@@ -33,12 +33,17 @@ namespace PresentationLayer
 
         private void btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AddPlayerWindow APW = new AddPlayerWindow();
+            APW.ShowDialog();
+            PlayerDataGrid.Items.Refresh();
         }
         
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MainWindow MW = new MainWindow();
+            MW.Show();
+            this.Close();
         }
+        
     }
 }

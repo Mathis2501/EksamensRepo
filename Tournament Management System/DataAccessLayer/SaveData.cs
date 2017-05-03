@@ -62,7 +62,7 @@ namespace DataAccessLayer
             return newLeague.LeagueId;
         }
 
-        private void SavePlayer(Player newPlayer)
+            public void SavePlayer(Player newPlayer)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> PlayerList = new ObservableCollection<IID>();

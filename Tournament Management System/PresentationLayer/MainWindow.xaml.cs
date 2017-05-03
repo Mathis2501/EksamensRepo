@@ -49,11 +49,14 @@ namespace PresentationLayer
 
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
-
             AddLeagueWindow ALW = new AddLeagueWindow();
-            ALW.Show();
+            ALW.ShowDialog();
+            LeagueDataGrid.Items.Refresh();
+        }
 
-            this.Close();
+        private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

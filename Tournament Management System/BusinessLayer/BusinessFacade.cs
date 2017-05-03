@@ -26,6 +26,10 @@ namespace BusinessLayer
             DataAccessFacade.SaveRound(newRound, leagueId);
         }
 
-        
+
+        public static void SavePlayer(Player newPlayer)
+        {
+            DataAccessFacade.SavePlayer(newPlayer);
+        }
     }
 }
