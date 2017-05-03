@@ -42,7 +42,9 @@ namespace PresentationLayer
 
         private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
         {
-
+            PlayerView PV = new PlayerView();
+            PV.Show();
+            this.Close();
         }
 
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)

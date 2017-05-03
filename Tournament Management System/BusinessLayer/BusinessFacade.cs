@@ -11,6 +11,11 @@ namespace BusinessLayer
             return DataAccessFacade.GetLeagueData();
         }
 
+        public static ObservableCollection<Player> GetPlayerData()
+        {
+            return DataAccessFacade.GetPlayerData();
+        }
+
         public static int SaveLeague(League newLeague)
         {
             return DataAccessFacade.SaveLeague(newLeague);
@@ -20,5 +25,7 @@ namespace BusinessLayer
         {
             DataAccessFacade.SaveRound(newRound, leagueId);
         }
+
+        
     }
 }
