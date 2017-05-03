@@ -24,6 +24,9 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        ViewModel.MainWindowViewModel mainWindowViewModel = new ViewModel.MainWindowViewModel();
+
         private ObservableCollection<League> LeagueList;
         public MainWindow()
         {
@@ -53,8 +56,9 @@ namespace PresentationLayer
 
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
-            AddLeagueWindow ALW = new AddLeagueWindow();
-            ALW.Show();
+
+            mainWindowViewModel.ShowAddLeagueWindow();
+
             this.Hide();
         }
     }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "Presen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "EFDomainLayer\DomainLayer.csproj", "{EE9E1269-527B-4C5D-A0C3-522A324BCFB4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{393D0D6C-1F43-4712-8410-7A83D4CA871C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39950074-5E2F-42D2-BAD9-6C862CF9C8C5} = {393D0D6C-1F43-4712-8410-7A83D4CA871C}
+		{91476B8D-0EEB-4ADE-8111-94CE4C40F3B8} = {393D0D6C-1F43-4712-8410-7A83D4CA871C}
+		{EE9E1269-527B-4C5D-A0C3-522A324BCFB4} = {393D0D6C-1F43-4712-8410-7A83D4CA871C}
 	EndGlobalSection
 EndGlobal
