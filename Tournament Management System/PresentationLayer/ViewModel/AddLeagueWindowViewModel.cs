@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PresentationLayer.ViewModel
 {
     public class AddLeagueWindowViewModel
-    { this.Close();
+    { 
         internal void CancelWindow()
         {
             MainWindow MW = new MainWindow();
