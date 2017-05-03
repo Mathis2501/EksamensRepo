@@ -46,7 +46,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@Rounds", newLeague.Rounds);
                     cmd.Parameters.AddWithValue("@GameName", newLeague.GameName);
                     cmd.Parameters.AddWithValue("@LeagueStatus", newLeague.LeagueStatus);
-                    cmd.Parameters.AddWithValue("@TeamStatus", newLeague.TeamStatus);
+                    cmd.Parameters.AddWithValue("@TeamStatus", newLeague.NumberOfTeamMembers);
   
                     cmd.ExecuteNonQuery();
                 }
@@ -98,7 +98,7 @@ namespace DataAccessLayer
             }
         }
 
-        public void SaveRound(Round newRound)
+        public void SaveRound(Round newRound, int leagueId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> roundList = new ObservableCollection<IID>();
@@ -110,13 +110,13 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("InsertPlayer", DBcon);
+                SqlCommand cmd = new SqlCommand("InsertRound", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@RoundID", newRound.RoundId);
                 cmd.Parameters.AddWithValue("@RoundName", newRound.RoundName);
                 cmd.Parameters.AddWithValue("@RoundType", newRound.RoundName);
-                cmd.Parameters.AddWithValue("@LeagueID", 1);
+                cmd.Parameters.AddWithValue("@LeagueID", leagueId);
 
                 cmd.ExecuteNonQuery();
 
@@ -134,7 +134,7 @@ namespace DataAccessLayer
 
         }
 
-        private void SaveMatch(Match newMatch)
+        private void SaveMatch(Match newMatch, int roundId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> MatchList = new ObservableCollection<IID>();
@@ -150,7 +150,7 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchId);
-                cmd.Parameters.AddWithValue("@RoundID", newMatch.RoundId);
+                cmd.Parameters.AddWithValue("@RoundID", roundId);
                 cmd.Parameters.AddWithValue("@Winner", 3);
 
                 cmd.ExecuteNonQuery();
@@ -180,7 +180,7 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
  
                 cmd.Parameters.AddWithValue("@PlayerID", player.PlayerId);
-                cmd.Parameters.AddWithValue("@TeamID", team.ID);
+                cmd.Parameters.AddWithValue("@TeamID", team.TeamId);
  
                 cmd.ExecuteNonQuery();
  
