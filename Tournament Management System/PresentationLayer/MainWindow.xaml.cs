@@ -32,14 +32,7 @@ namespace PresentationLayer
             LeagueList = new ObservableCollection<League>();
             LeagueList = BusinessFacade.GetLeagueData();
             LeagueDataGrid.ItemsSource = LeagueList;
-       
-
-
-
         }
-
-        
-
 
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
