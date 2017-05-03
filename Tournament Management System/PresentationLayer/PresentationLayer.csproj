@@ -64,40 +64,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\AddLeagueWindowViewModel.cs" />
-    <Compile Include="ViewModel\AddPlayerWindow.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\ViewLeagueSingle.cs" />
-    <Compile Include="View\ViewLeagueSingle.xaml.cs">
+    <Compile Include="ViewLeagueSingle.xaml.cs">
       <DependentUpon>ViewLeagueSingle.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\AddLeagueWindow.xaml">
+    <Page Include="AddLeagueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddPlayerWindow.xaml">
+    <Page Include="AddPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="View\AddLeagueWindow.xaml.cs">
+    <Compile Include="AddLeagueWindow.xaml.cs">
       <DependentUpon>AddLeagueWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AddPlayerWindow.xaml.cs">
+    <Compile Include="AddPlayerWindow.xaml.cs">
       <DependentUpon>AddPlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ViewLeagueSingle.xaml">
+    <Page Include="ViewLeagueSingle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

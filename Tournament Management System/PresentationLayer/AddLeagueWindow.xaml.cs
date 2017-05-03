@@ -15,8 +15,6 @@ namespace PresentationLayer
     public partial class AddLeagueWindow : Window
     {
 
-        ViewModel.AddLeagueWindowViewModel addLeagueWindowViewModel = new ViewModel.AddLeagueWindowViewModel();
-
         public AddLeagueWindow()
         {
             InitializeComponent();
@@ -28,7 +26,9 @@ namespace PresentationLayer
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            addLeagueWindowViewModel.CancelWindow();
+            MainWindow MW = new MainWindow();
+            MW.Show();
+
             this.Close();
         }
 
