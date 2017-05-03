@@ -24,10 +24,10 @@ namespace DataAccessLayer
             return SD.SaveLeague(newLeague);
         }
 
-        public static void SaveRound(Round newRound)
+        public static void SaveRound(Round newRound, int leagueId)
         {
-            //SaveData SD = new SaveData();
-            //SD.SaveRound(newRound);
+            SaveData SD = new SaveData();
+            SD.SaveRound(newRound, leagueId);
         }
     }
 }

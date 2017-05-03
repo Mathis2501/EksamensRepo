@@ -180,7 +180,7 @@ namespace DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
  
                 cmd.Parameters.AddWithValue("@PlayerID", player.PlayerId);
-                cmd.Parameters.AddWithValue("@TeamID", team.ID);
+                cmd.Parameters.AddWithValue("@TeamID", team.TeamId);
  
                 cmd.ExecuteNonQuery();
  
