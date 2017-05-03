@@ -59,7 +59,8 @@ namespace PresentationLayer
             {
                 if (item.IsChecked.Value)
                 {
-                    newLeague.TeamStatus = int.Parse(item.Content.ToString().Substring(0,1));
+
+                    newLeague.NumberOfTeamMembers = int.Parse(item.Content.ToString().Substring(0,1));
                 }
             }
             
@@ -68,7 +69,7 @@ namespace PresentationLayer
             IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
             foreach (var item in tb_collection)
             {
-                if (item.Name.Contains("Rounds"))
+                if (item.Name.Contains("Round"))
                 {
                     if (item.IsEnabled)
                     {
@@ -78,6 +79,9 @@ namespace PresentationLayer
                     }
                 }
             }
+            MainWindow MW = new MainWindow();
+            MW.Show();
+            this.Close();
         }
 
         private void cb_Rounds_SelectionChanged(object sender, SelectionChangedEventArgs e)

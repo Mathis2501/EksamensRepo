@@ -42,7 +42,7 @@ namespace DataAccessLayer
                             newLeague.Reward = Reader["Reward"].ToString();
                             newLeague.GameName = Reader["GameName"].ToString();
                             newLeague.LeagueStatus = Reader["LeagueStatus"].ToString();
-                            newLeague.TeamStatus = int.Parse(Reader["TeamStatus"].ToString());
+                            newLeague.NumberOfTeamMembers = int.Parse(Reader["TeamStatus"].ToString());
                             //Get All Teams in League
                             newLeague.TeamsInLeague = GetTeamsFromLeagueID(newLeague.LeagueId);
                             //Get all Rounds in League

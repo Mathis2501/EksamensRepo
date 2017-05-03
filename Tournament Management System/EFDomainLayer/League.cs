@@ -18,7 +18,7 @@ namespace DomainLayer
         public string Reward { get; set; }
         public int Rounds { get; set; }
         public string LeagueStatus { get; set; }
-        public int TeamStatus { get; set; }
+        public int NumberOfTeamMembers { get; set; }
         public ObservableCollection<Team> TeamsInLeague { get; set; }
         public ObservableCollection<Round> RoundsInLeague { get; set; }
         public int ID

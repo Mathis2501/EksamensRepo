@@ -46,7 +46,7 @@ namespace DataAccessLayer
                     cmd.Parameters.AddWithValue("@Rounds", newLeague.Rounds);
                     cmd.Parameters.AddWithValue("@GameName", newLeague.GameName);
                     cmd.Parameters.AddWithValue("@LeagueStatus", newLeague.LeagueStatus);
-                    cmd.Parameters.AddWithValue("@TeamStatus", newLeague.TeamStatus);
+                    cmd.Parameters.AddWithValue("@TeamStatus", newLeague.NumberOfTeamMembers);
   
                     cmd.ExecuteNonQuery();
                 }
@@ -110,7 +110,7 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("InsertPlayer", DBcon);
+                SqlCommand cmd = new SqlCommand("InsertRound", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@RoundID", newRound.RoundId);
