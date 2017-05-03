@@ -14,15 +14,15 @@ namespace DataAccessLayer
         public class SaveData
         {
 
+        
 
-
-            //private void SaveTeam(Team newTeam)
-            //{
-            //    GetData GD = new GetData();
-            //    ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
-            //    TeamList = GD.GetTeamID();
-            //    newTeam.TeamID_PK = GetID(TeamList);
-            //}
+        private void SaveTeam(Team newTeam)
+        {
+            GetData GD = new GetData();
+            ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
+            TeamList = GD.GetTeamID();
+            newTeam.TeamId = GetID(TeamList);
+            }
 
             internal int SaveLeague(League newLeague)
             {
