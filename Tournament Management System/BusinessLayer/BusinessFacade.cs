@@ -16,9 +16,9 @@ namespace BusinessLayer
             return DataAccessFacade.SaveLeague(newLeague);
         }
 
-        public static void SaveRound(Round newRound)
+        public static void SaveRound(Round newRound, int leagueId)
         {
-            DataAccessFacade.SaveRound(newRound);
+            DataAccessFacade.SaveRound(newRound, leagueId);
         }
     }
 }

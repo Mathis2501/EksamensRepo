@@ -55,7 +55,7 @@ namespace PresentationLayer
         {
             AddLeagueWindow ALW = new AddLeagueWindow();
             ALW.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

@@ -11,8 +11,6 @@ namespace DomainLayer
     public class Match : IID
     {
         public int MatchId { get; set; }
-        [ForeignKey("RoundId")]
-        public int RoundId { get; set; }
         public int ID
         {
             get { return MatchId; }
