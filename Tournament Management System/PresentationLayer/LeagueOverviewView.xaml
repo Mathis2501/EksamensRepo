@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="LeagueOverviewView" Height="350" Width="533.2">
     <Grid>
@@ -19,16 +20,24 @@
         <Label x:Name="lbl_CurrentNumberOfTeamMembers" Content="" HorizontalAlignment="Left" Margin="125,112,0,0" VerticalAlignment="Top" Width="160"/>
         <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="125,143,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="160" Height="25">
             <ComboBoxItem>
-                <TextBlock >Afventende</TextBlock>
+                <TextBlock>
+                    Afventende
+                    </TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
-                <TextBlock>Igangværende</TextBlock>
+                <TextBlock>
+                    Igangværende
+                    </TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
-                <TextBlock>Afsluttet</TextBlock>
+                <TextBlock>
+                    Afsluttet
+                    </TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
-                <TextBlock>Annulleret</TextBlock>
+                <TextBlock>
+                    Annulleret
+                </TextBlock>
             </ComboBoxItem>
         </ComboBox>
         <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="34,142,0,0" VerticalAlignment="Top"/>

@@ -10,6 +10,7 @@ using DomainLayer;
 
 namespace DomainLayer
 {
+    
     public class League : IID
     {
         public int LeagueId { get; set; }
@@ -17,8 +18,8 @@ namespace DomainLayer
         public string GameName { get; set; }
         public string Reward { get; set; }
         public int Rounds { get; set; }
-        public string LeagueStatus { get; set; }
         public int NumberOfTeamMembers { get; set; }
+        public string LeagueStatus { get; set; }
         public ObservableCollection<Team> TeamsInLeague { get; set; }
         public ObservableCollection<Round> RoundsInLeague { get; set; }
         public int ID

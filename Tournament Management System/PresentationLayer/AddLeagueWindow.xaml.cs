@@ -58,7 +58,6 @@ namespace PresentationLayer
             {
                 if (item.IsChecked.Value)
                 {
-
                     newLeague.NumberOfTeamMembers = int.Parse(item.Content.ToString().Substring(0,1));
                 }
             }

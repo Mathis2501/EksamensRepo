@@ -20,14 +20,17 @@ namespace PresentationLayer
     /// </summary>
     public partial class LeagueOverviewView : Window
     {
+        public string[] LeagueStatusIndex;
         public LeagueOverviewView(League chosenLeague)
         {
             InitializeComponent();
+            LeagueStatusIndex = new string[4] { "Afventende", "Igangværende", "Afsluttet", "Annulleret" };
             lbl_LeagueName.Content = chosenLeague.LeagueName;
             lbl_CurrentGameName.Content = chosenLeague.GameName;
             lbl_CurrentReward.Content = chosenLeague.Reward;
             lbl_CurrentNumberOfTeamMembers.Content = chosenLeague.NumberOfTeamMembers;
-            cb_Status.SelectedIndex = cb_Status(chosenLeague.LeagueStatus);
+            lbl_CurrentNumberOfTeamMembers.Content += " Person(er)";
+            cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
         }
 
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
