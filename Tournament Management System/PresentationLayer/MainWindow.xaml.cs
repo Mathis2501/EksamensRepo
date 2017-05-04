@@ -29,15 +29,14 @@ namespace PresentationLayer
         public MainWindow()
         {
             InitializeComponent();
-            LeagueList = new ObservableCollection<League>();
-            LeagueList = BusinessFacade.GetLeagueData();
-            LeagueDataGrid.ItemsSource = LeagueList;
+            RefreshGrid();
         }
 
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
             AddPlayerWindow APW = new AddPlayerWindow();
             APW.ShowDialog();
+            RefreshGrid();
         }
 
         private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
@@ -56,7 +55,16 @@ namespace PresentationLayer
 
         private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            LeagueOverviewView LOV = new LeagueOverviewView((League)LeagueDataGrid.CurrentItem);
+            LOV.ShowDialog();
+            RefreshGrid();
+        }
+
+        private void RefreshGrid()
+        {
+            LeagueList = BusinessFacade.GetLeagueData();
+            LeagueDataGrid.ItemsSource = null;
+            LeagueDataGrid.ItemsSource = LeagueList;
         }
     }
 }

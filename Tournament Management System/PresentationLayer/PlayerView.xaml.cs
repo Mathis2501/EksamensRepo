@@ -35,7 +35,9 @@ namespace PresentationLayer
         {
             AddPlayerWindow APW = new AddPlayerWindow();
             APW.ShowDialog();
-            PlayerDataGrid.Items.Refresh();
+            PlayerList = BusinessFacade.GetPlayerData();
+            PlayerDataGrid.ItemsSource = null;
+            PlayerDataGrid.ItemsSource = PlayerList;
         }
         
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
