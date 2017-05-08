@@ -35,7 +35,9 @@ namespace PresentationLayer
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
             AddPlayerWindow APW = new AddPlayerWindow();
+            this.Hide();
             APW.ShowDialog();
+            this.Show();
             RefreshGrid();
         }
 
@@ -49,14 +51,18 @@ namespace PresentationLayer
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
             AddLeagueWindow ALW = new AddLeagueWindow();
+            this.Hide();
             ALW.ShowDialog();
-            LeagueDataGrid.Items.Refresh();
+            this.Show();
+            RefreshGrid();
         }
 
         private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             LeagueOverviewView LOV = new LeagueOverviewView((League)LeagueDataGrid.CurrentItem);
+            this.Hide();
             LOV.ShowDialog();
+            this.Show();
             RefreshGrid();
         }
 
