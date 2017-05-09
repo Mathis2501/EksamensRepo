@@ -18,6 +18,12 @@ namespace DataAccessLayer
 
         }
 
+        public static ObservableCollection<Player> GetPlayerData()
+        {
+            GetData GD = new GetData();
+            return GD.GetPlayers();
+        }
+
         public static int SaveLeague(League newLeague)
         {
             SaveData SD = new SaveData();
@@ -28,6 +34,12 @@ namespace DataAccessLayer
         {
             SaveData SD = new SaveData();
             SD.SaveRound(newRound, leagueId);
+        }
+
+        public static void SavePlayer(Player newPlayer)
+        {
+            SaveData SD = new SaveData();
+            SD.SavePlayer(newPlayer);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace DataAccessLayer
             {
                 try
                 {
-                    string cmdString = "Select LeagueID_PK, LeagueName, Reward, GameName, LeagueStatus, TeamStatus from League";
+                    string cmdString = "Select LeagueID_PK, LeagueName, Reward, GameName, LeagueStatus from LEAGUE";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
                     DBcon.Open();
@@ -41,7 +41,6 @@ namespace DataAccessLayer
                             newLeague.Reward = Reader["Reward"].ToString();
                             newLeague.GameName = Reader["GameName"].ToString();
                             newLeague.LeagueStatus = Reader["LeagueStatus"].ToString();
-                            newLeague.NumberOfTeamMembers = int.Parse(Reader["TeamStatus"].ToString());
                             //Get All Teams in League
                             newLeague.TeamsInLeague = GetTeamsFromLeagueID(newLeague.LeagueId);
                             //Get all Rounds in League
@@ -201,7 +200,6 @@ namespace DataAccessLayer
                             Team newTeam = new Team();
                             newTeam.TeamId = int.Parse(Reader["TeamId_PK"].ToString());
                             newTeam.TeamName = Reader["TeamName"].ToString();
-                            newTeam.LeaguePoints = int.Parse(Reader["LeaguePoint"].ToString());
                             TeamList.Add(newTeam);
                         }
                     }
@@ -234,7 +232,6 @@ namespace DataAccessLayer
                             Team newTeam = new Team();
                             newTeam.TeamId = int.Parse(Reader["TeamId_PK"].ToString());
                             newTeam.TeamName = Reader["TeamName"].ToString();
-                            newTeam.LeaguePoints = int.Parse(Reader["LeaguePoint"].ToString());
                             newTeam.PlayersInTeam = GetPlayersFromTeamID(newTeam.TeamId);
                             TeamsInLeague.Add(newTeam);
                         }

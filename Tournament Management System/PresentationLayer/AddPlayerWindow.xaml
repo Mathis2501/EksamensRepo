@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="AddPlayerWindow" Height="300" Width="300">
-    <Grid>
-        <Label x:Name="lbl_FirstName" Content="Første Navn" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_LastName" Content="Efter Navn" HorizontalAlignment="Left" Margin="42,41,0,0" VerticalAlignment="Top"/>
+        Title="AddPlayerWindow" Height="186.4" Width="300">
+    <Grid Name="addPlayerWindow">
+        <Label x:Name="lbl_FirstName" Content="Fornavn" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_LastName" Content="Efternavn" HorizontalAlignment="Left" Margin="48,41,0,0" VerticalAlignment="Top"/>
         <Label x:Name="PhoneNr" Content="Telefon Nummer" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Email" Content="Email" HorizontalAlignment="Left" Margin="69,98,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_FirstName" HorizontalAlignment="Left" Height="23" Margin="112,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="172" TextChanged="Txt_FirstName_OnTextChanged"/>

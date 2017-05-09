@@ -26,9 +26,6 @@ namespace PresentationLayer
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow MW = new MainWindow();
-            MW.Show();
-
             this.Close();
         }
 
@@ -61,7 +58,6 @@ namespace PresentationLayer
             {
                 if (item.IsChecked.Value)
                 {
-
                     newLeague.NumberOfTeamMembers = int.Parse(item.Content.ToString().Substring(0,1));
                 }
             }
@@ -81,8 +77,6 @@ namespace PresentationLayer
                     }
                 }
             }
-            MainWindow MW = new MainWindow();
-            MW.Show();
             this.Close();
         }
 

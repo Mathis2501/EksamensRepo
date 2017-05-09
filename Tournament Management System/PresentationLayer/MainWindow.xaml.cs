@@ -29,31 +29,47 @@ namespace PresentationLayer
         public MainWindow()
         {
             InitializeComponent();
-            LeagueList = new ObservableCollection<League>();
-            LeagueList = BusinessFacade.GetLeagueData();
-            LeagueDataGrid.ItemsSource = LeagueList;
+            RefreshGrid();
         }
-
-        
-
 
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
             AddPlayerWindow APW = new AddPlayerWindow();
+            this.Hide();
             APW.ShowDialog();
-        }
-
-        private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
-        {
-
+            this.Show();
+            RefreshGrid();
         }
 
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
-
             AddLeagueWindow ALW = new AddLeagueWindow();
-            ALW.Show();
+            this.Hide();
+            ALW.ShowDialog();
+            this.Show();
+            RefreshGrid();
+        }
 
+        private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            LeagueOverviewView LOV = new LeagueOverviewView((League)LeagueDataGrid.CurrentItem);
+            this.Hide();
+            LOV.ShowDialog();
+            this.Show();
+            RefreshGrid();
+        }
+
+        private void RefreshGrid()
+        {
+            LeagueList = BusinessFacade.GetLeagueData();
+            LeagueDataGrid.ItemsSource = null;
+            LeagueDataGrid.ItemsSource = LeagueList;
+        }
+
+        private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
+        {
+            PlayerView PV = new PlayerView();
+            PV.Show();
             this.Close();
         }
     }
