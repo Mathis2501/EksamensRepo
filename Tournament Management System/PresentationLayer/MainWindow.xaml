@@ -11,16 +11,20 @@
         <CollectionViewSource x:Key="lEAGUEViewSource" Source="{Binding LEAGUE, Source={StaticResource eksamensDataBase}}"/>-->
     </Window.Resources>
     <Grid>
-        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top" Width="85" Click="Btn_AddPlayer_Click"/>
-        <Button x:Name="btn_AddLeague" Content="Opret Ny Liga" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddLeague_Click"/>
-        <Button x:Name="btn_ViewPlayers" Content="Spiller Register" HorizontalAlignment="Left" Margin="427,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewPlayers_Click" />
-        <DataGrid x:Name="LeagueDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="14,34,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false"  >
+        <Button x:Name="btn_AddLeague" Content="Opret Ny Liga" HorizontalAlignment="Left" Margin="427,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddLeague_Click"/>
+        <Button x:Name="btn_ViewPlayers" Content="Spiller Register" Margin="0,10,427.4,0" VerticalAlignment="Top" Click="btn_ViewPlayers_Click" HorizontalAlignment="Right" Width="85" />
+        <DataGrid x:Name="LeagueDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalContentAlignment="Stretch" Margin="14,34,14.4,9.8" AutoGenerateColumns="false"  >
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="grid_Row_DoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding LeagueId}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding LeagueId}" Width="35"/>
                 <DataGridTextColumn Header="Liga Navn" Binding="{Binding LeagueName}"/>
-                <DataGridTextColumn Header="Runder" Binding="{Binding Rounds}"/>
+                <DataGridTextColumn Header="Runder" Binding="{Binding Rounds}" Width="50"/>
                 <DataGridTextColumn Header="Spil Titel" Binding="{Binding GameName}"/>
-                <DataGridTextColumn Header="Liga Status" Binding="{Binding LeagueStatus}"/>
+                <DataGridTextColumn Header="Liga Status" Binding="{Binding LeagueStatus}" Width="125"/>
 
             </DataGrid.Columns>
         </DataGrid>

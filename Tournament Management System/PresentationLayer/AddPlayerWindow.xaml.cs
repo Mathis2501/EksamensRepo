@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using BusinessLayer;
+using DomainLayer;
 
 namespace PresentationLayer
 {
@@ -16,8 +20,13 @@ namespace PresentationLayer
 
         private void btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            
-            //PLAYER NewPlayer = new PLAYER(txt_FirstName.Text, txt_LastName.Text, int.Parse(txt_PhoneNr.Text), txt_Email.Text);
+            Player newPlayer = new Player();
+            newPlayer.FirstName = txt_FirstName.Text;
+            newPlayer.LastName = txt_LastName.Text;
+            newPlayer.Email = txt_Email.Text;
+            newPlayer.PhoneNr = txt_PhoneNr.Text;
+            BusinessFacade.SavePlayer(newPlayer);
+            this.Close();
         }
 
         private void Txt_FirstName_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -33,15 +42,16 @@ namespace PresentationLayer
         private void Txt_PhoneNr_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             int i;
-            //ensures that only numbers are entered
+            
             if (txt_PhoneNr.Text != "")
             {
+                //ensures that only numbers are entered
                 if (!int.TryParse(txt_PhoneNr.Text, out i))
                 {
                     //Removes the last letter
                     txt_PhoneNr.Text = txt_PhoneNr.Text.Remove(txt_PhoneNr.Text.Length - 1);
+                    MessageBox.Show("Indtast kun tal");
                 }
-                MessageBox.Show("Indtast kun tal");
             }
             DoEveryTextboxContainText();
         }
