@@ -31,11 +31,24 @@ namespace PresentationLayer
             lbl_CurrentNumberOfTeamMembers.Content = chosenLeague.NumberOfTeamMembers;
             lbl_CurrentNumberOfTeamMembers.Content += " Person(er)";
             cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
+            lbl_CurrentNumberOfPlayers.Content = chosenLeague.TeamsInLeague.Count;
+            RoundDataGrid.ItemsSource = chosenLeague.RoundsInLeague;
+            
         }
 
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dg_Rounds_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+        }
+
+        private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            RoundOverviewView ROV = new RoundOverviewView((Round)RoundDataGrid.CurrentItem);
         }
     }
 }

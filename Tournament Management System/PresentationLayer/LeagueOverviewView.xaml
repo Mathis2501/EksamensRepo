@@ -6,33 +6,33 @@
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="LeagueOverviewView" Height="350" Width="533.2">
+        Title="LeagueOverviewView" Height="400" Width="599.2">
     <Grid>
-        <Button x:Name="btn_ViewLeagues" Content="Liga Register" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewLeagues_Click"/>
-        <Button x:Name="btn_ViewMatches" Content="Se Kampe" Margin="427,10,14.4,0" VerticalAlignment="Top" />
+        <Button x:Name="btn_ViewLeagues" Content="Liga Register" HorizontalAlignment="Left" Margin="16,8,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewLeagues_Click"/>
+        <Button x:Name="btn_ViewMatches" Content="Se Kampe" Margin="0,8,12,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85" />
         <Label x:Name="lbl_LeagueName" Content="" HorizontalContentAlignment="Center" Margin="125,8,125,0" VerticalAlignment="Top"/>
         <Rectangle Fill="#FFF4F4F5" Margin="16,34,12.4,9.8" Stroke="Black"/>
         <Label x:Name="lbl_GameName" Content="Spil titel:" HorizontalAlignment="Left" Margin="34,50,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_Reward" Content="Præmie:" HorizontalAlignment="Left" Margin="34,81,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_NumberOfTeamMembers" Content="Hold størrelse:" HorizontalAlignment="Left" Margin="34,112,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_CurrentGameName" Content="" HorizontalAlignment="Left" Margin="125,50,0,0" VerticalAlignment="Top" Width="160"/>
-        <Label x:Name="lbl_CurrentReward" Content="" HorizontalAlignment="Left" Margin="125,81,0,0" VerticalAlignment="Top" Width="160"/>
-        <Label x:Name="lbl_CurrentNumberOfTeamMembers" Content="" HorizontalAlignment="Left" Margin="125,112,0,0" VerticalAlignment="Top" Width="160"/>
-        <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="125,143,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="160" Height="25">
+        <Label x:Name="lbl_CurrentGameName" Content="" HorizontalAlignment="Left" Margin="162,50,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="lbl_CurrentReward" Content="" HorizontalAlignment="Left" Margin="162,81,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="lbl_CurrentNumberOfTeamMembers" Content="" HorizontalAlignment="Left" Margin="162,112,0,0" VerticalAlignment="Top" Width="160"/>
+        <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="162,143,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="160" Height="25">
             <ComboBoxItem>
                 <TextBlock>
                     Afventende
-                    </TextBlock>
+                </TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
                 <TextBlock>
                     Igangværende
-                    </TextBlock>
+                </TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
                 <TextBlock>
                     Afsluttet
-                    </TextBlock>
+                </TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
                 <TextBlock>
@@ -41,6 +41,20 @@
             </ComboBoxItem>
         </ComboBox>
         <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="34,142,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_NumberOfPlayers" Content="Tilmeldte Deltagere:" HorizontalAlignment="Left" Margin="34,173,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_CurrentNumberOfPlayers" Content="" HorizontalAlignment="Left" Margin="162,173,0,0" VerticalAlignment="Top" Width="160"/>
+
+        <DataGrid x:Name="PlayerDataGrid" Margin="34,204,34,26"/>
+        <DataGrid x:Name="RoundDataGrid" Margin="327,50,34,0" Height="149" VerticalAlignment="Top" AutoGenerateColumns="False" LoadingRow="dg_Rounds_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="grid_Row_DoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Runde Navn" Binding="{Binding RoundName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
