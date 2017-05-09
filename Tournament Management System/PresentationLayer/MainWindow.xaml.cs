@@ -32,10 +32,6 @@ namespace PresentationLayer
             LeagueList = new ObservableCollection<League>();
             LeagueList = BusinessFacade.GetLeagueData();
             LeagueDataGrid.ItemsSource = LeagueList;
-       
-
-
-
         }
 
         
