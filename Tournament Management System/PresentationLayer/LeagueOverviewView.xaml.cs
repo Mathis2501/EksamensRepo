@@ -35,7 +35,7 @@ namespace PresentationLayer
 
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            this.Close();
         }
     }
 }
