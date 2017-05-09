@@ -10,19 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DomainLayer;
 
 namespace PresentationLayer
 {
     /// <summary>
-    /// Interaction logic for ViewLeagueSingle.xaml
+    /// Interaction logic for AddPlayerToLeagueView.xaml
     /// </summary>
-    public partial class ViewLeagueSingle : Page
+    public partial class AddPlayerToLeagueView : Window
     {
-        public ViewLeagueSingle()
+        private League chosenLeague;
+
+        public AddPlayerToLeagueView(League chosenLeague)
         {
             InitializeComponent();
+        }
+
+        private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

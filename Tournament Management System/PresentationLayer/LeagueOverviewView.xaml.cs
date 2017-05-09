@@ -20,10 +20,12 @@ namespace PresentationLayer
     /// </summary>
     public partial class LeagueOverviewView : Window
     {
-        public string[] LeagueStatusIndex;
+        string[] LeagueStatusIndex;
+        private League ChosenLeague;
         public LeagueOverviewView(League chosenLeague)
         {
             InitializeComponent();
+            ChosenLeague = chosenLeague;
             LeagueStatusIndex = new string[4] { "Afventende", "Igangværende", "Afsluttet", "Annulleret" };
             lbl_LeagueName.Content = chosenLeague.LeagueName;
             lbl_CurrentGameName.Content = chosenLeague.GameName;
@@ -33,7 +35,8 @@ namespace PresentationLayer
             cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
             lbl_CurrentNumberOfPlayers.Content = chosenLeague.TeamsInLeague.Count;
             RoundDataGrid.ItemsSource = chosenLeague.RoundsInLeague;
-            
+            PlayerDataGrid.ItemsSource = chosenLeague.TeamsInLeague;
+
         }
 
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
@@ -48,7 +51,14 @@ namespace PresentationLayer
 
         private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            RoundOverviewView ROV = new RoundOverviewView((Round)RoundDataGrid.CurrentItem);
+            RoundOverviewView ROV = new RoundOverviewView((Round)RoundDataGrid.CurrentItem, ChosenLeague.LeagueName, ChosenLeague.GameName);
+            ROV.Show();
+        }
+
+        private void btn_AddTeam_Click(object sender, RoutedEventArgs e)
+        {
+            AddPlayerToLeagueView APTLV = new AddPlayerToLeagueView(ChosenLeague);
+            APTLV.Show();
         }
     }
 }

@@ -20,9 +20,12 @@ namespace PresentationLayer
     /// </summary>
     public partial class RoundOverviewView : Window
     {
-        public RoundOverviewView(Round chosenRound)
+        public RoundOverviewView(Round chosenRound, string LeagueName, string GameName)
         {
             InitializeComponent();
+            lbl_LeagueName.Content = LeagueName;
+            lbl_GameName.Content = GameName;
+            lbl_RoundName.Content = chosenRound.RoundName;
         }
     }
 }

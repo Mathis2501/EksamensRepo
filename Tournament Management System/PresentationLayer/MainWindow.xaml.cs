@@ -41,13 +41,6 @@ namespace PresentationLayer
             RefreshGrid();
         }
 
-        private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
-        {
-            PlayerView PV = new PlayerView();
-            PV.Show();
-            this.Close();
-        }
-
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
             AddLeagueWindow ALW = new AddLeagueWindow();
@@ -71,6 +64,13 @@ namespace PresentationLayer
             LeagueList = BusinessFacade.GetLeagueData();
             LeagueDataGrid.ItemsSource = null;
             LeagueDataGrid.ItemsSource = LeagueList;
+        }
+
+        private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
+        {
+            PlayerView PV = new PlayerView();
+            PV.Show();
+            this.Close();
         }
     }
 }

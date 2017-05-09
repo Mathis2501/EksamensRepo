@@ -13,12 +13,12 @@
         <Label x:Name="lbl_LeagueName" Content="" HorizontalContentAlignment="Center" Margin="125,8,125,0" VerticalAlignment="Top"/>
         <Rectangle Fill="#FFF4F4F5" Margin="16,34,12.4,9.8" Stroke="Black"/>
         <Label x:Name="lbl_GameName" Content="Spil titel:" HorizontalAlignment="Left" Margin="34,50,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_Reward" Content="Præmie:" HorizontalAlignment="Left" Margin="34,81,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_NumberOfTeamMembers" Content="Hold størrelse:" HorizontalAlignment="Left" Margin="34,112,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_Reward" Content="Præmie:" HorizontalAlignment="Left" Margin="34,76,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_NumberOfTeamMembers" Content="Hold størrelse:" HorizontalAlignment="Left" Margin="34,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.479,0.508"/>
         <Label x:Name="lbl_CurrentGameName" Content="" HorizontalAlignment="Left" Margin="162,50,0,0" VerticalAlignment="Top" Width="160"/>
-        <Label x:Name="lbl_CurrentReward" Content="" HorizontalAlignment="Left" Margin="162,81,0,0" VerticalAlignment="Top" Width="160"/>
-        <Label x:Name="lbl_CurrentNumberOfTeamMembers" Content="" HorizontalAlignment="Left" Margin="162,112,0,0" VerticalAlignment="Top" Width="160"/>
-        <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="162,143,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="160" Height="25">
+        <Label x:Name="lbl_CurrentReward" Content="" HorizontalAlignment="Left" Margin="162,76,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="lbl_CurrentNumberOfTeamMembers" Content="" HorizontalAlignment="Left" Margin="162,102,0,0" VerticalAlignment="Top" Width="160"/>
+        <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="162,128,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="160" Height="25">
             <ComboBoxItem>
                 <TextBlock>
                     Afventende
@@ -40,11 +40,11 @@
                 </TextBlock>
             </ComboBoxItem>
         </ComboBox>
-        <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="34,142,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_NumberOfPlayers" Content="Tilmeldte Deltagere:" HorizontalAlignment="Left" Margin="34,173,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_CurrentNumberOfPlayers" Content="" HorizontalAlignment="Left" Margin="162,173,0,0" VerticalAlignment="Top" Width="160"/>
+        <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="34,128,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_NumberOfPlayers" Content="Tilmeldte Deltagere:" HorizontalAlignment="Left" Margin="34,154,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_CurrentNumberOfPlayers" Content="" HorizontalAlignment="Left" Margin="162,153,0,0" VerticalAlignment="Top" Width="160"/>
 
-        <DataGrid x:Name="PlayerDataGrid" Margin="34,204,34,26"/>
+        <DataGrid x:Name="PlayerDataGrid" Margin="34,204,33.8,26.4"/>
         <DataGrid x:Name="RoundDataGrid" Margin="327,50,34,0" Height="149" VerticalAlignment="Top" AutoGenerateColumns="False" LoadingRow="dg_Rounds_LoadingRow" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True">
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
@@ -55,6 +55,7 @@
                 <DataGridTextColumn Header="Runde Navn" Binding="{Binding RoundName}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btn_AddTeam" Content="Tilføj Deltagere" HorizontalAlignment="Left" Margin="34,180,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddTeam_Click"/>
 
     </Grid>
 </Window>

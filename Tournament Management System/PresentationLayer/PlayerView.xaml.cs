@@ -39,13 +39,12 @@ namespace PresentationLayer
             PlayerDataGrid.ItemsSource = null;
             PlayerDataGrid.ItemsSource = PlayerList;
         }
-        
+
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
         {
             MainWindow MW = new MainWindow();
             MW.Show();
             this.Close();
         }
-        
     }
 }

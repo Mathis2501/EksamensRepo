@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddPlayerToLeagueView.xaml.cs">
+      <DependentUpon>AddPlayerToLeagueView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LeagueOverviewView.xaml.cs">
       <DependentUpon>LeagueOverviewView.xaml</DependentUpon>
     </Compile>
@@ -65,10 +68,11 @@
     <Compile Include="RoundOverviewView.xaml.cs">
       <DependentUpon>RoundOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewLeagueSingle.xaml.cs">
-      <DependentUpon>ViewLeagueSingle.xaml</DependentUpon>
-    </Compile>
     <Page Include="AddLeagueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPlayerToLeagueView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,10 +107,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RoundOverviewView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViewLeagueSingle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
