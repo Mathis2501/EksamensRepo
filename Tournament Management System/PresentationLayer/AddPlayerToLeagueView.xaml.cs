@@ -39,9 +39,13 @@ namespace PresentationLayer
 
         private void btn_AddToLeague_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var VARIABLE in PlayerDataGrid.Is)
+            foreach (var Item in PlayerDataGrid.SelectedItems)
             {
-                
+                Team newTeam = new Team();
+                newTeam.PlayersInTeam.Add((Player)Item);
+                newTeam.TeamName = $"{newTeam.PlayersInTeam[0].FirstName} {newTeam.PlayersInTeam[0].LastName}";
+
+                chosenLeague.TeamsInLeague.Add(newTeam);
             }
         }
     }

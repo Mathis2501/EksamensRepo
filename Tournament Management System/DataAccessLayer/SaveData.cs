@@ -22,10 +22,10 @@ namespace DataAccessLayer
             ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
             TeamList = GD.GetTeamID();
             newTeam.TeamId = GetID(TeamList);
-            }
+        }
 
-            internal int SaveLeague(League newLeague)
-            {
+        internal int SaveLeague(League newLeague)
+        {
             GetData GD = new GetData();
             ObservableCollection<IID> LeagueList = new ObservableCollection<IID>();
             LeagueList = GD.GetLeagueID();
