@@ -30,8 +30,7 @@ namespace PresentationLayer
             lbl_LeagueName.Content = chosenLeague.LeagueName;
             lbl_CurrentGameName.Content = chosenLeague.GameName;
             lbl_CurrentReward.Content = chosenLeague.Reward;
-            lbl_CurrentNumberOfTeamMembers.Content = chosenLeague.NumberOfTeamMembers;
-            lbl_CurrentNumberOfTeamMembers.Content += " Person(er)";
+            lbl_CurrentNumberOfTeamMembers.Content = "1 Person(er)";
             cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
             lbl_CurrentNumberOfPlayers.Content = chosenLeague.TeamsInLeague.Count;
             RoundDataGrid.ItemsSource = chosenLeague.RoundsInLeague;
@@ -58,7 +57,11 @@ namespace PresentationLayer
         private void btn_AddTeam_Click(object sender, RoutedEventArgs e)
         {
             AddPlayerToLeagueView APTLV = new AddPlayerToLeagueView(ChosenLeague);
-            APTLV.Show();
+            this.Hide();
+            APTLV.ShowDialog();
+            this.Show();
+            PlayerDataGrid.ItemsSource = null;
+            PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
     }
 }

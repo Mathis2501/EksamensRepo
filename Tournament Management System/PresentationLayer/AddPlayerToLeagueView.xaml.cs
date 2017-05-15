@@ -22,7 +22,7 @@ namespace PresentationLayer
     /// </summary>
     public partial class AddPlayerToLeagueView : Window
     {
-        private League chosenLeague;
+        private League ChosenLeague;
         private ObservableCollection<Player> PlayerList;
         public AddPlayerToLeagueView(League chosenLeague)
         {
@@ -30,23 +30,34 @@ namespace PresentationLayer
             PlayerList = new ObservableCollection<Player>();
             PlayerList = BusinessFacade.GetPlayerData();
             PlayerDataGrid.ItemsSource = PlayerList;
+            ChosenLeague = chosenLeague;
         }
 
         private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             PlayerOverviewView POV = new PlayerOverviewView((Player)PlayerDataGrid.CurrentItem);
+            this.Hide();
+            POV.ShowDialog();
+            this.Show();
         }
 
         private void btn_AddToLeague_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var Item in PlayerDataGrid.SelectedItems)
+            foreach (Player Item in PlayerDataGrid.SelectedItems)
             {
                 Team newTeam = new Team();
-                newTeam.PlayersInTeam.Add((Player)Item);
+                newTeam.PlayersInTeam.Add(Item);
                 newTeam.TeamName = $"{newTeam.PlayersInTeam[0].FirstName} {newTeam.PlayersInTeam[0].LastName}";
-
-                chosenLeague.TeamsInLeague.Add(newTeam);
+                newTeam.Bye = false;
+                BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
+                ChosenLeague.TeamsInLeague.Add(newTeam);
             }
+            this.Close();
+        }
+
+        private void btn_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
