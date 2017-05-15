@@ -25,7 +25,6 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="Vælg"/>
                 <DataGridTextColumn Header="Fornavn" Binding="{Binding FirstName}" Width="*"/>
                 <DataGridTextColumn Header="Efternavn" Binding="{Binding LastName}" Width="*"/>
                 <DataGridTextColumn Header="E-Mail" Binding="{Binding Email}" Width="*"/>

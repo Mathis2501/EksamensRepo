@@ -34,12 +34,15 @@ namespace PresentationLayer
 
         private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            PlayerOverviewView POV = new PlayerOverviewView((Player)PlayerDataGrid.CurrentItem);
         }
 
         private void btn_AddToLeague_Click(object sender, RoutedEventArgs e)
         {
-            
+            foreach (var VARIABLE in PlayerDataGrid.Is)
+            {
+                
+            }
         }
     }
 }
