@@ -42,11 +42,9 @@ namespace DataAccessLayer
   
                     cmd.Parameters.AddWithValue("@LeagueID", newLeague.LeagueId);
                     cmd.Parameters.AddWithValue("@LeagueName", newLeague.LeagueName);
-                    cmd.Parameters.AddWithValue("@Reward", newLeague.LeagueName);
-                    cmd.Parameters.AddWithValue("@Rounds", newLeague.Rounds);
+                    cmd.Parameters.AddWithValue("@Reward", newLeague.Reward);
                     cmd.Parameters.AddWithValue("@GameName", newLeague.GameName);
                     cmd.Parameters.AddWithValue("@LeagueStatus", newLeague.LeagueStatus);
-                    cmd.Parameters.AddWithValue("@TeamStatus", newLeague.NumberOfTeamMembers);
   
                     cmd.ExecuteNonQuery();
                 }
@@ -115,7 +113,6 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@RoundID", newRound.RoundId);
                 cmd.Parameters.AddWithValue("@RoundName", newRound.RoundName);
-                cmd.Parameters.AddWithValue("@RoundType", newRound.RoundName);
                 cmd.Parameters.AddWithValue("@LeagueID", leagueId);
 
                 cmd.ExecuteNonQuery();

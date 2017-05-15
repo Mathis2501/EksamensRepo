@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessLayer;
 using DomainLayer;
 
 namespace PresentationLayer
@@ -21,15 +23,26 @@ namespace PresentationLayer
     public partial class AddPlayerToLeagueView : Window
     {
         private League chosenLeague;
-
+        private ObservableCollection<Player> PlayerList;
         public AddPlayerToLeagueView(League chosenLeague)
         {
             InitializeComponent();
+            PlayerList = new ObservableCollection<Player>();
+            PlayerList = BusinessFacade.GetPlayerData();
+            PlayerDataGrid.ItemsSource = PlayerList;
         }
 
         private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            PlayerOverviewView POV = new PlayerOverviewView((Player)PlayerDataGrid.CurrentItem);
+        }
+
+        private void btn_AddToLeague_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var VARIABLE in PlayerDataGrid.Is)
+            {
+                
+            }
         }
     }
 }
