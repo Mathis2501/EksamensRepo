@@ -16,16 +16,40 @@ namespace DataAccessLayer
 
         
 
-        private void SaveTeam(Team newTeam)
+        private void SaveTeam(Team newTeam , int LeagueId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
             TeamList = GD.GetTeamID();
             newTeam.TeamId = GetID(TeamList);
+
+            SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
+            try
+            {
+                DBcon.Open();
+                SqlCommand cmd = new SqlCommand("InsertTeam", DBcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@TeamID", newTeam.TeamId);
+                cmd.Parameters.AddWithValue("@TeamName", newTeam.TeamName);
+                cmd.Parameters.AddWithValue("@LeagueID", LeagueId);
+                cmd.Parameters.AddWithValue("@Bye", newTeam.Bye);
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
+
         }
 
-        internal int SaveLeague(League newLeague)
-        {
+            internal int SaveLeague(League newLeague)
+            {
             GetData GD = new GetData();
             ObservableCollection<IID> LeagueList = new ObservableCollection<IID>();
             LeagueList = GD.GetLeagueID();
@@ -42,7 +66,7 @@ namespace DataAccessLayer
   
                     cmd.Parameters.AddWithValue("@LeagueID", newLeague.LeagueId);
                     cmd.Parameters.AddWithValue("@LeagueName", newLeague.LeagueName);
-                    cmd.Parameters.AddWithValue("@Reward", newLeague.Reward);
+                    cmd.Parameters.AddWithValue("@Reward", newLeague.LeagueName);
                     cmd.Parameters.AddWithValue("@GameName", newLeague.GameName);
                     cmd.Parameters.AddWithValue("@LeagueStatus", newLeague.LeagueStatus);
   
@@ -148,7 +172,6 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchId);
                 cmd.Parameters.AddWithValue("@RoundID", roundId);
-                cmd.Parameters.AddWithValue("@Winner", 3);
 
                 cmd.ExecuteNonQuery();
             }
@@ -173,7 +196,7 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("InsertPlayer", DBcon);
+                SqlCommand cmd = new SqlCommand("InsertPlayersInTeam", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
  
                 cmd.Parameters.AddWithValue("@PlayerID", player.PlayerId);
@@ -181,6 +204,37 @@ namespace DataAccessLayer
  
                 cmd.ExecuteNonQuery();
  
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+                Console.ReadKey();
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
+        }
+        private void InsertPointsInTeam(Team team , Match match , int objectivePoints , int winnerPoints)
+        {
+
+
+            SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
+
+            try
+            {
+                DBcon.Open();
+                SqlCommand cmd = new SqlCommand("InsertPlayersInTeam", DBcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@TeamID", team.TeamId);
+                cmd.Parameters.AddWithValue("@MatchID", match.MatchId);
+                cmd.Parameters.AddWithValue("@ObjectivePoints", objectivePoints);
+                cmd.Parameters.AddWithValue("@WinnerPoints", winnerPoints);
+
+                cmd.ExecuteNonQuery();
+
             }
             catch (SqlException e)
             {
