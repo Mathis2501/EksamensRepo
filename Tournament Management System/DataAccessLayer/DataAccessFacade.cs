@@ -11,10 +11,10 @@ namespace DataAccessLayer
     public static class DataAccessFacade
     {
 
-        public static ObservableCollection<League> UpdateLeagueStatus()
+        public static void UpdateLeagueStatus(int LeagueId, string LeagueStatus)
         {
-            UpdateData RD = new UpdateData();
-            return RD.
+            UpdateData UD = new UpdateData();
+            UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
         }
         
         public static ObservableCollection<League> GetLeagueData()

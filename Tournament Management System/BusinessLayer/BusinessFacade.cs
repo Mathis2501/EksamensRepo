@@ -6,9 +6,9 @@ namespace BusinessLayer
 {
     public static class BusinessFacade
     {
-        public static ObservableCollection<League> UpdateLeagueStatus()
+        public static void UpdateLeagueStatus(int LeagueId, string LeagueStatus)
         {
-            return DataAccessFacade
+            DataAccessFacade.UpdateLeagueStatus(LeagueId, LeagueStatus);
         }
 
         public static ObservableCollection<League> GetLeagueData()
@@ -40,6 +40,12 @@ namespace BusinessLayer
         public static void SaveTeam(Team newTeam, int leagueId)
         {
             DataAccessFacade.SaveTeam(newTeam, leagueId);
+        }
+
+        public static ObservableCollection<Match> CreateMatches(ObservableCollection<Team> TeamsInLeague, Round RoundsInLeague)
+        {
+            MatchMaker MM = new MatchMaker();
+            return MM.CreateMatches(TeamsInLeague, RoundsInLeague);
         }
     }
 }

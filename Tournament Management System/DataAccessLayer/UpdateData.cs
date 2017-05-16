@@ -10,6 +10,9 @@ namespace DataAccessLayer
 {
     public class UpdateData
     {
-
+        public void UpdateLeagueStatus(int leagueId, string leagueStatus)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
