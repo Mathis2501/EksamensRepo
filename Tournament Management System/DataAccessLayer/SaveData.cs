@@ -36,7 +36,8 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@Bye", newTeam.Bye);
 
                 SavePlayersInTeams(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
-                
+
+                cmd.ExecuteNonQuery();
 
             }
             catch (SqlException e)

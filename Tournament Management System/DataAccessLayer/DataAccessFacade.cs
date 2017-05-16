@@ -13,8 +13,8 @@ namespace DataAccessLayer
 
         public static ObservableCollection<League> UpdateLeagueStatus()
         {
-            UpdateData RD = new UpdateData();
-            return RD.
+            UpdateData UD = new UpdateData();
+            return UD.
         }
         
         public static ObservableCollection<League> GetLeagueData()
