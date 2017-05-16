@@ -30,8 +30,7 @@ namespace PresentationLayer
             lbl_LeagueName.Content = chosenLeague.LeagueName;
             lbl_CurrentGameName.Content = chosenLeague.GameName;
             lbl_CurrentReward.Content = chosenLeague.Reward;
-            lbl_CurrentNumberOfTeamMembers.Content = chosenLeague.NumberOfTeamMembers;
-            lbl_CurrentNumberOfTeamMembers.Content += " Person(er)";
+            lbl_CurrentNumberOfTeamMembers.Content = "1 Person(er)";
             cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
             lbl_CurrentNumberOfPlayers.Content = chosenLeague.TeamsInLeague.Count;
             RoundDataGrid.ItemsSource = chosenLeague.RoundsInLeague;
@@ -49,7 +48,7 @@ namespace PresentationLayer
             e.Row.Header = e.Row.GetIndex() + 1;
         }
 
-        private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        private void RoundDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             RoundOverviewView ROV = new RoundOverviewView((Round)RoundDataGrid.CurrentItem, ChosenLeague.LeagueName, ChosenLeague.GameName);
             ROV.Show();
@@ -58,17 +57,36 @@ namespace PresentationLayer
         private void btn_AddTeam_Click(object sender, RoutedEventArgs e)
         {
             AddPlayerToLeagueView APTLV = new AddPlayerToLeagueView(ChosenLeague);
-            APTLV.Show();
+            this.Hide();
+            APTLV.ShowDialog();
+            this.Show();
+            PlayerDataGrid.ItemsSource = null;
+            PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
 
-        private void PlayerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PlayerDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void cb_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (cb_Status.SelectedIndex == 0)
+            {
+                
+            }
+            else if (cb_Status.SelectedIndex == 1)
+            {
+                
+            }
+            else if (cb_Status.SelectedIndex == 2)
+            {
+                
+            }
+            else if (cb_Status.SelectedIndex == 3)
+            {
+                
+            }
         }
     }
 }

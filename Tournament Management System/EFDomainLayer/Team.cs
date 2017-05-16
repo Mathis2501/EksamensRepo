@@ -9,13 +9,17 @@ namespace DomainLayer
     {
         public int TeamId { get; set; }
         public string TeamName { get; set; }
-        public string TeamStatus { get; set; }
         public bool Bye { get; set; }
         public ObservableCollection<Player> PlayersInTeam { get; set; }
         public int ID
         {
             get { return TeamId; }
             set { TeamId = value; }
+        }
+
+        public Team()
+        {
+            PlayersInTeam = new ObservableCollection<Player>();
         }
     }
 }
