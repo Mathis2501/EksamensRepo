@@ -36,5 +36,10 @@ namespace BusinessLayer
         {
             DataAccessFacade.SavePlayer(newPlayer);
         }
+
+        public static void SaveTeam(Team newTeam, int leagueId)
+        {
+            DataAccessFacade.SaveTeam(newTeam, leagueId);
+        }
     }
 }

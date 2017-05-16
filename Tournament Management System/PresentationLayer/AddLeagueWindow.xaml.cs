@@ -54,16 +54,7 @@ namespace PresentationLayer
             newLeague.LeagueStatus = newLeague.LeagueStatus.Substring(newLeague.LeagueStatus.IndexOf(" ", StringComparison.Ordinal)+1);
             newLeague.Rounds = cb_Rounds.SelectedIndex + 1;
             IEnumerable<RadioButton> rb_collection = addLeagueWindow.Children.OfType<RadioButton>();
-            foreach (var item in rb_collection)
-            {
-                if (item.IsChecked.Value)
-                {
-                    newLeague.NumberOfTeamMembers = int.Parse(item.Content.ToString().Substring(0,1));
-                }
-            }
-            
             newLeague.LeagueId = BusinessFacade.SaveLeague(newLeague);
-
             IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
             foreach (var item in tb_collection)
             {

@@ -10,13 +10,9 @@ using System.Collections.ObjectModel;
 
 namespace DataAccessLayer
 {
-    
-        public class SaveData
-        {
-
-        
-
-        private void SaveTeam(Team newTeam , int LeagueId)
+    public class SaveData
+    {
+        public void SaveTeam(Team newTeam , int LeagueId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
@@ -33,7 +29,7 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@TeamID", newTeam.TeamId);
                 cmd.Parameters.AddWithValue("@TeamName", newTeam.TeamName);
                 cmd.Parameters.AddWithValue("@LeagueID", LeagueId);
-                cmd.Parameters.AddWithValue("@Bye", newTeam.Bye);
+                cmd.Parameters.AddWithValue("@Bye", Convert.ToInt16(newTeam.Bye));
 
                 SavePlayersInTeams(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
 
