@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using DataAccessLayer;
 using DomainLayer;
 
@@ -6,10 +7,6 @@ namespace BusinessLayer
 {
     public static class BusinessFacade
     {
-        public static ObservableCollection<League> UpdateLeagueStatus()
-        {
-            return DataAccessFacade
-        }
 
         public static ObservableCollection<League> GetLeagueData()
         {
@@ -40,6 +37,21 @@ namespace BusinessLayer
         public static void SaveTeam(Team newTeam, int leagueId)
         {
             DataAccessFacade.SaveTeam(newTeam, leagueId);
+        }
+
+        public static void UpdatePlayer(Player ChosenPlayer)
+        {
+            DataAccessFacade.UpdatePlayer(ChosenPlayer);
+        }
+
+        public static void DeletePlayer(Player ChosenPlayer)
+        {
+            DataAccessFacade.DeletePlayer(ChosenPlayer);
+        }
+
+        public static void DeleteLeague(League chosenLeague)
+        {
+            DataAccessFacade.DeleteLeague(chosenLeague);
         }
     }
 }

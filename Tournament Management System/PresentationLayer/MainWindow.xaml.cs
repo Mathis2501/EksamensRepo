@@ -68,7 +68,7 @@ namespace PresentationLayer
 
         private void btn_ViewPlayers_Click(object sender, RoutedEventArgs e)
         {
-            PlayerView PV = new PlayerView();
+            PlayerRegisterView PV = new PlayerRegisterView();
             PV.Show();
             this.Close();
         }

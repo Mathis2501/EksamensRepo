@@ -88,5 +88,10 @@ namespace PresentationLayer
                 
             }
         }
+
+        private void btn_DeleteLeague(object sender, RoutedEventArgs e)
+        {
+            BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+        }
     }
 }

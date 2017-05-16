@@ -20,10 +20,10 @@ namespace PresentationLayer
     /// <summary>
     /// Interaction logic for PlayerView.xaml
     /// </summary>
-    public partial class PlayerView : Window
+    public partial class PlayerRegisterView : Window
     {
         private ObservableCollection<Player> PlayerList;
-        public PlayerView()
+        public PlayerRegisterView()
         {
             InitializeComponent();
             PlayerList = new ObservableCollection<Player>();

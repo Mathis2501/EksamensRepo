@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DomainLayer;
+using BusinessLayer;
 
 namespace PresentationLayer
 {
@@ -20,9 +21,12 @@ namespace PresentationLayer
     /// </summary>
     public partial class PlayerOverviewView : Window
     {
+
+        Player ChosenPlayer;
         public PlayerOverviewView(Player chosenPlayer)
         {
             InitializeComponent();
+            ChosenPlayer = chosenPlayer;
             lbl_CurrentPlayerId.Content = chosenPlayer.PlayerId;
             txt_FirstName.Text = chosenPlayer.FirstName;
             txt_LastName.Text = chosenPlayer.LastName;
@@ -37,7 +41,18 @@ namespace PresentationLayer
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
+            ChosenPlayer.FirstName = txt_FirstName.Text;
+            ChosenPlayer.LastName = txt_LastName.Text;
+            ChosenPlayer.Email = txt_Email.Text;
+            ChosenPlayer.PhoneNr = txt_PhoneNr.Text;
 
+            BusinessFacade.UpdatePlayer(ChosenPlayer);
+
+        }
+
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            BusinessFacade.DeletePlayer(ChosenPlayer);
         }
     }
 }

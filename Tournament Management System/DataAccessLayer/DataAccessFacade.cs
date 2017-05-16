@@ -11,10 +11,10 @@ namespace DataAccessLayer
     public static class DataAccessFacade
     {
 
-        public static ObservableCollection<League> UpdateLeagueStatus()
+        public static void UpdateLeagueStatus()
         {
             UpdateData UD = new UpdateData();
-            return UD.
+           
         }
         
         public static ObservableCollection<League> GetLeagueData()
@@ -46,6 +46,24 @@ namespace DataAccessLayer
         {
             SaveData SD = new SaveData();
             SD.SavePlayer(newPlayer);
+        }
+
+        public static void UpdatePlayer(Player ChosenPlayer)
+        {
+            UpdateData UD = new UpdateData();
+            UD.UpdatePlayer(ChosenPlayer);
+        }
+
+        public static void DeleteLeague(League chosenLeague)
+        {
+            DeleteData DL = new DeleteData();
+            DL.DeleteLeague(chosenLeague);
+        }
+
+        public static void DeletePlayer(Player ChosenPlayer)
+        {
+            DeleteData DL = new DeleteData();
+            DL.DeletePlayer(ChosenPlayer);
         }
 
         public static void SaveTeam(Team newTeam, int leagueId)
