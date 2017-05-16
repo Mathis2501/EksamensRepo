@@ -60,5 +60,15 @@ namespace PresentationLayer
             AddPlayerToLeagueView APTLV = new AddPlayerToLeagueView(ChosenLeague);
             APTLV.Show();
         }
+
+        private void PlayerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cb_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

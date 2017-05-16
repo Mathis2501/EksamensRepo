@@ -72,5 +72,10 @@ namespace PresentationLayer
             PV.Show();
             this.Close();
         }
+
+        private void LeagueDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -35,6 +35,9 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@LeagueID", LeagueId);
                 cmd.Parameters.AddWithValue("@Bye", newTeam.Bye);
 
+                SavePlayersInTeams(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
+                
+
             }
             catch (SqlException e)
             {
@@ -66,7 +69,7 @@ namespace DataAccessLayer
   
                     cmd.Parameters.AddWithValue("@LeagueID", newLeague.LeagueId);
                     cmd.Parameters.AddWithValue("@LeagueName", newLeague.LeagueName);
-                    cmd.Parameters.AddWithValue("@Reward", newLeague.LeagueName);
+                    cmd.Parameters.AddWithValue("@Reward", newLeague.Reward);
                     cmd.Parameters.AddWithValue("@GameName", newLeague.GameName);
                     cmd.Parameters.AddWithValue("@LeagueStatus", newLeague.LeagueStatus);
   
@@ -187,7 +190,7 @@ namespace DataAccessLayer
             }
         }
 
-        private void SavePlayersInTeams(Player player , Team team)
+        private void SavePlayersInTeams(int playerId , int teamId)
         {
              
  
@@ -199,8 +202,8 @@ namespace DataAccessLayer
                 SqlCommand cmd = new SqlCommand("InsertPlayersInTeam", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
  
-                cmd.Parameters.AddWithValue("@PlayerID", player.PlayerId);
-                cmd.Parameters.AddWithValue("@TeamID", team.TeamId);
+                cmd.Parameters.AddWithValue("@PlayerID", playerId);
+                cmd.Parameters.AddWithValue("@TeamID", teamId);
  
                 cmd.ExecuteNonQuery();
  
