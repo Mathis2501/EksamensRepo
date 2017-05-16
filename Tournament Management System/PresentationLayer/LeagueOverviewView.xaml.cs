@@ -48,7 +48,7 @@ namespace PresentationLayer
             e.Row.Header = e.Row.GetIndex() + 1;
         }
 
-        private void grid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        private void RoundDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             RoundOverviewView ROV = new RoundOverviewView((Round)RoundDataGrid.CurrentItem, ChosenLeague.LeagueName, ChosenLeague.GameName);
             ROV.Show();
@@ -62,6 +62,31 @@ namespace PresentationLayer
             this.Show();
             PlayerDataGrid.ItemsSource = null;
             PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
+        }
+
+        private void PlayerDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void cb_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cb_Status.SelectedIndex == 0)
+            {
+                
+            }
+            else if (cb_Status.SelectedIndex == 1)
+            {
+                
+            }
+            else if (cb_Status.SelectedIndex == 2)
+            {
+                
+            }
+            else if (cb_Status.SelectedIndex == 3)
+            {
+                
+            }
         }
     }
 }

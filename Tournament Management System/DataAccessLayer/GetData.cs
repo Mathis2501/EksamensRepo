@@ -119,6 +119,7 @@ namespace DataAccessLayer
                 throw;
             }
         }
+
         private ObservableCollection<Player> GetPlayersFromTeamID(int TeamId)
         {
             ObservableCollection<Player> PlayersInTeam = new ObservableCollection<Player>();
@@ -126,8 +127,7 @@ namespace DataAccessLayer
             {
                 using (var DBcon = new SqlConnection(ConnectionsString))
                 {
-                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
-                    string cmdString = $"Select * from TEAM where {TeamId}";
+                    string cmdString = $"Select PlayerID_FK from PLAYERS_IN_TEAM where TeamID_FK={TeamId}";
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
                     DBcon.Open();
@@ -136,14 +136,27 @@ namespace DataAccessLayer
                         while (Reader.Read())
                         {
                             Player newPlayer = new Player();
-                            newPlayer.PlayerId = int.Parse(Reader["PlayerID_PK"].ToString());
-                            newPlayer.FirstName = Reader["FirstName"].ToString();
-                            newPlayer.LastName = Reader["LastName"].ToString();
-                            newPlayer.Email = Reader["Email"].ToString();
-                            newPlayer.PhoneNr = Reader["PhoneNr"].ToString();
-                            PlayersInTeam.Add(newPlayer);
+                            newPlayer.PlayerId = int.Parse(Reader["PlayerID_FK"].ToString());
+                            
+                            string cmdString2 = $"Select FirstName, LastName, Email, PhoneNr from PLAYER where PlayerID_PK={newPlayer.PlayerId}";
+                            SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
+
+                            using (SqlDataReader PlayerReader = Cmd2.ExecuteReader())
+                            {
+                                while (PlayerReader.Read())
+                                {
+                                    newPlayer.FirstName = PlayerReader["FirstName"].ToString();
+                                    newPlayer.LastName = PlayerReader["LastName"].ToString();
+                                    newPlayer.Email = PlayerReader["Email"].ToString();
+                                    newPlayer.PhoneNr = PlayerReader["PhoneNr"].ToString();
+                                    PlayersInTeam.Add(newPlayer);
+                                }
+                            }
+                           
                         }
                     }
+                    DBcon.Close();
+                    DBcon.Dispose();
                     return PlayersInTeam;
                 }
             }
