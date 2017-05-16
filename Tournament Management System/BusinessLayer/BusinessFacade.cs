@@ -6,6 +6,11 @@ namespace BusinessLayer
 {
     public static class BusinessFacade
     {
+        public static ObservableCollection<League> UpdateLeagueStatus()
+        {
+            return DataAccessFacade
+        }
+
         public static ObservableCollection<League> GetLeagueData()
         {
             return DataAccessFacade.GetLeagueData();

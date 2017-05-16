@@ -10,6 +10,12 @@ namespace DataAccessLayer
 {
     public static class DataAccessFacade
     {
+
+        public static ObservableCollection<League> UpdateLeagueStatus()
+        {
+            UpdateData RD = new UpdateData();
+            return RD.
+        }
         
         public static ObservableCollection<League> GetLeagueData()
         {
