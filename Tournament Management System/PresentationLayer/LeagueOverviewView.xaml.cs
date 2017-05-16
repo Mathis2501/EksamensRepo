@@ -63,5 +63,15 @@ namespace PresentationLayer
             PlayerDataGrid.ItemsSource = null;
             PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
+
+        private void PlayerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cb_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
