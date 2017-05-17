@@ -82,11 +82,8 @@ namespace PresentationLayer
             {
                 BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
                 btn_AddTeam.IsEnabled = false;
-                foreach (var item in ChosenLeague.RoundsInLeague)
-                {
-                    item.MatchesInRound = BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague,
-                        ChosenLeague.RoundsInLeague);
-                }
+                BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                
             }
             else if (cb_Status.SelectedIndex == 2)
             {

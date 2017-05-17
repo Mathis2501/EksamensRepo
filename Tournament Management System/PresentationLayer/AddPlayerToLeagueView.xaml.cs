@@ -49,7 +49,7 @@ namespace PresentationLayer
                 newTeam.PlayersInTeam.Add(Item);
                 newTeam.TeamName = $"{newTeam.PlayersInTeam[0].FirstName} {newTeam.PlayersInTeam[0].LastName}";
                 newTeam.Bye = false;
-                if (ChosenLeague.TeamsInLeague.Contains(newTeam))
+                if (!ChosenLeague.TeamsInLeague.Contains(newTeam))
                 {
                     BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
                     ChosenLeague.TeamsInLeague.Add(newTeam);

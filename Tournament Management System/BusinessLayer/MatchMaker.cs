@@ -34,19 +34,29 @@ namespace BusinessLayer
             {
                 TeamsInLeague = ShuffleTeams(TeamsInLeague);
 
-                for (int i = 0; i < TeamsInLeague.Count - 1; i++)
+                for (int i = 0; i < TeamsInLeague.Count - 1; i += 2)
                 {
-                    if (i%2 == 0)
+                    Match newMatch = new Match();
+                    newMatch.TeamsInMatch.Add(TeamsInLeague[i]);
+                    newMatch.TeamsInMatch.Add(TeamsInLeague[i + 1]);
+                    //Should ensure that only one of each match combination exists
+                    for (int k = 0; k < j; k++)
                     {
-                        Match newMatch = new Match();
-                        newMatch.TeamsInMatch.Add(TeamsInLeague[i]);
-                        newMatch.TeamsInMatch.Add(TeamsInLeague[i + 1]);
-                        newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[j].RoundId);
-                        RoundsInLeague[j].MatchesInRound.Add(newMatch);
+                        foreach (var match in RoundsInLeague[k].MatchesInRound)
+                        {
+                            if (!newMatch.Equals(match))
+                            {
+                                newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[j].RoundId);
+                                RoundsInLeague[j].MatchesInRound.Add(newMatch);
+                            }
+                            else
+                            {
+                                j--;
+                            }
+                        }
                     }
                 }
             }
-
             return MatchesInRound;
         }
     }
