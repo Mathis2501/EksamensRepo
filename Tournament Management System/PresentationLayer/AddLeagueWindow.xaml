@@ -5,53 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="AddLeagueWindow" Height="341.4" Width="545">
+        Title="AddLeagueWindow" Height="406.4" Width="545">
     <Grid Name="addLeagueWindow">
         <Button x:Name="btn_Cancel" Content="Annuller" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_Cancel_Click"/>
         <Button x:Name="btn_ViewPlayers" Content="SpillerRegister" HorizontalAlignment="Left" Margin="437,10,0,0" VerticalAlignment="Top" Width="85"/>
-        <Label x:Name="lbl_LeagueName" Content="Liga Navn:" HorizontalAlignment="Left" Margin="29,57,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_LeagueName" Content="Liga Navn:" HorizontalAlignment="Left" Margin="13,57,0,0" VerticalAlignment="Top" Width="82"/>
         <TextBox x:Name="txt_LeagueName" HorizontalAlignment="Left" Height="23" Margin="110,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="lbl_Reward" Content="Præmie:" HorizontalAlignment="Left" Margin="29,88,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_Reward" Content="Præmie:" HorizontalAlignment="Left" Margin="13,88,0,0" VerticalAlignment="Top" Width="69"/>
         <TextBox x:Name="txt_Reward" HorizontalAlignment="Left" Height="23" Margin="110,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="lbl_TeamType" Content="Hold Type:" HorizontalAlignment="Left" Margin="29,119,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_TeamType" Content="Hold Type:" HorizontalAlignment="Left" Margin="13,119,0,0" VerticalAlignment="Top" Width="82"/>
         <RadioButton x:Name="rb_OneTeamMember" Content="1 Person" HorizontalAlignment="Left" Margin="110,125,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rb_TwoTeamMembers" Content="2 Person" HorizontalAlignment="Left" Margin="191,125,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_Rounds" Content="Antal Runder:" HorizontalAlignment="Left" Margin="29,150,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cb_Rounds" HorizontalAlignment="Left" Margin="110,153,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="39" SelectionChanged="cb_Rounds_SelectionChanged">
+        <Label x:Name="lbl_Rounds" Content="Antal Runder:" HorizontalAlignment="Left" Margin="13,212,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_Rounds" HorizontalAlignment="Left" Margin="110,212,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="39" SelectionChanged="cb_Rounds_SelectionChanged">
             <ComboBoxItem IsSelected="True">1</ComboBoxItem>
             <ComboBoxItem>2</ComboBoxItem>
             <ComboBoxItem>3</ComboBoxItem>
             <ComboBoxItem>4</ComboBoxItem>
+            <ComboBoxItem>5</ComboBoxItem>
+            <ComboBoxItem>6</ComboBoxItem>
+            <ComboBoxItem>7</ComboBoxItem>
+            <ComboBoxItem>8</ComboBoxItem>
         </ComboBox>
 
-        <Label x:Name="lbl_Round1" Content="Runde 1" HorizontalAlignment="Left" Margin="29,181,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_Round1Name" HorizontalAlignment="Left" Height="23" Margin="110,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="lbl_Round2" Content="Runde 2" HorizontalAlignment="Left" Margin="29,212,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_Round2Name" HorizontalAlignment="Left" Height="23" Margin="110,212,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-        <Label x:Name="lbl_Round3" Content="Runde 3" HorizontalAlignment="Left" Margin="29,243,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_Round3Name" HorizontalAlignment="Left" Height="23" Margin="110,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="lbl_Round4" Content="Runde 4" HorizontalAlignment="Left" Margin="29,274,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_Round4Name" HorizontalAlignment="Left" Height="23" Margin="110,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
-        <Label x:Name="lbl_GameType" Content="Spil Titel:" HorizontalAlignment="Left" Margin="275,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_GameName" HorizontalAlignment="Left" Height="23" Margin="380,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="275,88,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cb_Status" HorizontalAlignment="Left" Margin="380,92,0,0" SelectedValuePath="Content" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem IsSelected="True">
-                <TextBlock >Afventende</TextBlock>
-            </ComboBoxItem>
-            <ComboBoxItem>
-                <TextBlock>Igangværende</TextBlock>
-            </ComboBoxItem>
-            <ComboBoxItem>
-                <TextBlock>Afsluttet</TextBlock>
-            </ComboBoxItem>
-            <ComboBoxItem>
-                <TextBlock>Annulleret</TextBlock>
-            </ComboBoxItem>
-        </ComboBox>
-        <Button x:Name="btn_Clear" Content="Ryd" HorizontalAlignment="Left" Margin="415,181,0,0" VerticalAlignment="Top" Width="85" Click="btn_Clear_Click"/>
-        <Button x:Name="btn_SaveLeague" Content="Gem" HorizontalAlignment="Left" Margin="415,280,0,0" VerticalAlignment="Top" Width="85" Click="btn_SaveLeague_Click"/>
-        <StackPanel x:Name="sp_Rounds" HorizontalAlignment="Left" Height="116" Margin="110,181,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_Round1" Content="Runde 1" HorizontalAlignment="Left" Margin="279,57,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round1Name" HorizontalAlignment="Left" Height="23" Margin="360,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_Round2" Content="Runde 2" HorizontalAlignment="Left" Margin="279,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round2Name" HorizontalAlignment="Left" Height="23" Margin="360,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <Label x:Name="lbl_Round3" Content="Runde 3" HorizontalAlignment="Left" Margin="279,119,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round3Name" HorizontalAlignment="Left" Height="23" Margin="360,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_Round4" Content="Runde 4" HorizontalAlignment="Left" Margin="279,150,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round4Name" HorizontalAlignment="Left" Height="23" Margin="360,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_GameType" Content="Spil Titel:" HorizontalAlignment="Left" Margin="13,181,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox x:Name="txt_GameName" HorizontalAlignment="Left" Height="23" Margin="110,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_LeagueStatus" Content="Status:" HorizontalAlignment="Left" Margin="13,150,0,0" VerticalAlignment="Top" Width="61"/>
+        <Button x:Name="btn_Clear" Content="Ryd" HorizontalAlignment="Left" Margin="13,330,0,0" VerticalAlignment="Top" Width="85" Click="btn_Clear_Click"/>
+        <Button x:Name="btn_SaveLeague" Content="Gem" HorizontalAlignment="Left" Margin="421,303,0,0" VerticalAlignment="Top" Width="85" Click="btn_SaveLeague_Click"/>
+        <Label x:Name="lbl_Round5" Content="Runde 5" HorizontalAlignment="Left" Margin="279,181,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round5" HorizontalAlignment="Left" Height="23" Margin="360,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_Round6" Content="Runde 6" HorizontalAlignment="Left" Margin="279,212,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round6" HorizontalAlignment="Left" Height="23" Margin="360,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+        <Label x:Name="lbl_Round7" Content="Runde 7" HorizontalAlignment="Left" Margin="279,243,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round7" HorizontalAlignment="Left" Height="23" Margin="360,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_Round8" Content="Runde 8" HorizontalAlignment="Left" Margin="279,274,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Round8" HorizontalAlignment="Left" Height="23" Margin="360,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+        <Label x:Name="lbl_Waiting" Content="Afventende" HorizontalAlignment="Left" Margin="110,150,0,0" VerticalAlignment="Top"/>
 
 
 
