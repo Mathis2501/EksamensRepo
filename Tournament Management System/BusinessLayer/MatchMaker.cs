@@ -40,19 +40,17 @@ namespace BusinessLayer
                     newMatch.TeamsInMatch.Add(TeamsInLeague[i]);
                     newMatch.TeamsInMatch.Add(TeamsInLeague[i + 1]);
                     //Should ensure that only one of each match combination exists
-                    for (int k = 0; k < j; k++)
+                    for (int k = 0; k < j+1; k++)
                     {
-                        foreach (var match in RoundsInLeague[k].MatchesInRound)
+                        //Needs Logic To skip when that Match already exists in another round
+                        if (true)
                         {
-                            if (!newMatch.Equals(match))
-                            {
-                                newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[j].RoundId);
-                                RoundsInLeague[j].MatchesInRound.Add(newMatch);
-                            }
-                            else
-                            {
-                                j--;
-                            }
+                            newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[j].RoundId);
+                            RoundsInLeague[j].MatchesInRound.Add(newMatch);
+                        }
+                        else
+                        {
+                            j--;
                         }
                     }
                 }

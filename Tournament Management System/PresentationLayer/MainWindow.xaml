@@ -22,7 +22,7 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding LeagueId}" Width="35"/>
                 <DataGridTextColumn Header="Liga Navn" Binding="{Binding LeagueName}"/>
                 <!-- Mode=OneWay is essential else the program either throws an error instantly or when clicking on the Runder Column -->
-                <DataGridTextColumn Header="Runder" Binding="{Binding RoundsInLeague.Count, Mode=OneTime}" Width="50"/>
+                <DataGridTextColumn Header="Runder" Binding="{Binding RoundsInLeague.Count, Mode=OneWay}" Width="50"/>
                 <DataGridTextColumn Header="Spil Titel" Binding="{Binding GameName}"/>
                 <DataGridTextColumn Header="Liga Status" Binding="{Binding LeagueStatus}" Width="125"/>
 

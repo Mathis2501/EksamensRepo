@@ -170,7 +170,7 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("InsertLeague", DBcon);
+                SqlCommand cmd = new SqlCommand("InsertMatch", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchId);
