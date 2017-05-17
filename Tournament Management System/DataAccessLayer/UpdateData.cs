@@ -42,5 +42,31 @@ namespace DataAccessLayer
                 DBcon.Dispose();
             }
         }
+
+        internal void UpdateLeagueStatus(int leagueId, string leagueStatus)
+        {
+            SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
+            try
+            {
+                DBcon.Open();
+                SqlCommand cmd = new SqlCommand("UpdateLeague", DBcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@LeagueID", leagueId);
+                cmd.Parameters.AddWithValue("@LeagueStatus", leagueStatus);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
+        }
     }
 }
