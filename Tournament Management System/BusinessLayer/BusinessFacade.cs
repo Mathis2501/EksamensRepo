@@ -8,6 +8,12 @@ namespace BusinessLayer
     public static class BusinessFacade
     {
 
+        public static void UpdateLeagueStatus(int LeagueId, string LeagueStatus)
+        {
+            DataAccessFacade.UpdateLeagueStatus(LeagueId, LeagueStatus);
+        }
+
+
         public static ObservableCollection<League> GetLeagueData()
         {
             return DataAccessFacade.GetLeagueData();
@@ -39,6 +45,7 @@ namespace BusinessLayer
             DataAccessFacade.SaveTeam(newTeam, leagueId);
         }
 
+
         public static void UpdatePlayer(Player ChosenPlayer)
         {
             DataAccessFacade.UpdatePlayer(ChosenPlayer);
@@ -52,6 +59,12 @@ namespace BusinessLayer
         public static void DeleteLeague(League chosenLeague)
         {
             DataAccessFacade.DeleteLeague(chosenLeague);
+
+        public static ObservableCollection<Match> CreateMatches(ObservableCollection<Team> TeamsInLeague, Round RoundsInLeague)
+        {
+            MatchMaker MM = new MatchMaker();
+            return MM.CreateMatches(TeamsInLeague, RoundsInLeague);
+
         }
     }
 }

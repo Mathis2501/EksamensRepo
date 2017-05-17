@@ -12,6 +12,7 @@ namespace DataAccessLayer
 {
     public class UpdateData
     {
+
         internal void UpdatePlayer(Player ChosenPlayer)
         {
 

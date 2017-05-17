@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessLayer;
 using DomainLayer;
 
 namespace PresentationLayer
@@ -71,21 +72,31 @@ namespace PresentationLayer
 
         private void cb_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             if (cb_Status.SelectedIndex == 0)
             {
-                
+                BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Afventende");
+                btn_AddTeam.IsEnabled = true;
             }
             else if (cb_Status.SelectedIndex == 1)
             {
-                
+                BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
+                btn_AddTeam.IsEnabled = false;
+                foreach (var item in ChosenLeague.RoundsInLeague)
+                {
+                    item.MatchesInRound = BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague,
+                        item);
+                }
             }
             else if (cb_Status.SelectedIndex == 2)
             {
-                
+                BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Afsluttet");
+                btn_AddTeam.IsEnabled = false;
             }
             else if (cb_Status.SelectedIndex == 3)
             {
-                
+                BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Annulleret");
+                btn_AddTeam.IsEnabled = false;
             }
         }
 
