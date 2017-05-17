@@ -26,20 +26,24 @@ namespace BusinessLayer
             return TeamList;
         }
 
-        public ObservableCollection<Match> CreateMatches(ObservableCollection<Team> teamsInLeague, Round RoundsInLeague)
+        public ObservableCollection<Match> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
         {
             ObservableCollection<Match> MatchesInRound = new ObservableCollection<Match>();
 
-            teamsInLeague = ShuffleTeams(teamsInLeague);
-
-            for (int i = 0; i < teamsInLeague.Count-1; i++)
+            for (int j = 0; j < RoundsInLeague.Count-1; j++)
             {
-                if (i % 2 == 0)
+                TeamsInLeague = ShuffleTeams(TeamsInLeague);
+
+                for (int i = 0; i < TeamsInLeague.Count - 1; i++)
                 {
-                    Match newMatch = new Match();
-                    newMatch.TeamsInMatch.Add(teamsInLeague[i]);
-                    newMatch.TeamsInMatch.Add(teamsInLeague[i+1]);
-                    newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, );
+                    if (i%2 == 0)
+                    {
+                        Match newMatch = new Match();
+                        newMatch.TeamsInMatch.Add(TeamsInLeague[i]);
+                        newMatch.TeamsInMatch.Add(TeamsInLeague[i + 1]);
+                        newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[j].RoundId);
+                        RoundsInLeague[j].MatchesInRound.Add(newMatch);
+                    }
                 }
             }
 

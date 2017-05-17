@@ -85,7 +85,7 @@ namespace PresentationLayer
                 foreach (var item in ChosenLeague.RoundsInLeague)
                 {
                     item.MatchesInRound = BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague,
-                        item);
+                        ChosenLeague.RoundsInLeague);
                 }
             }
             else if (cb_Status.SelectedIndex == 2)

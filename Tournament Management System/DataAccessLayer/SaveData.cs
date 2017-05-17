@@ -156,7 +156,7 @@ namespace DataAccessLayer
 
         }
 
-        private void SaveMatch(Match newMatch, int roundId)
+        public int SaveMatch(Match newMatch, int roundId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> MatchList = new ObservableCollection<IID>();
@@ -186,6 +186,7 @@ namespace DataAccessLayer
                 DBcon.Close();
                 DBcon.Dispose();
             }
+            return newMatch.MatchId;
         }
 
         private void SavePlayersInTeams(int playerId , int teamId)
