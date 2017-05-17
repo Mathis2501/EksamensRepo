@@ -18,14 +18,14 @@ namespace PresentationLayer
         public AddLeagueWindow()
         {
             InitializeComponent();
-            txt_Round2Name.IsEnabled = false;
-            txt_Round3Name.IsEnabled = false;
-            txt_Round4Name.IsEnabled = false;
+            cb_Rounds.SelectedIndex = 0;
+            DisableUnusedTextboxes();
             rb_OneTeamMember.IsChecked = true;
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
+            this.Owner.Show();
             this.Close();
         }
 
@@ -66,6 +66,7 @@ namespace PresentationLayer
                     }
                 }
             }
+            this.Owner.Show();
             this.Close();
         }
 

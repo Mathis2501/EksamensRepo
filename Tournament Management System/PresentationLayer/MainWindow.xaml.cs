@@ -45,8 +45,8 @@ namespace PresentationLayer
         {
             AddLeagueWindow ALW = new AddLeagueWindow();
             this.Hide();
+            ALW.Owner = this;
             ALW.ShowDialog();
-            this.Show();
             RefreshGrid();
         }
 
@@ -54,8 +54,8 @@ namespace PresentationLayer
         {
             LeagueOverviewView LOV = new LeagueOverviewView((League)LeagueDataGrid.CurrentItem);
             this.Hide();
+            LOV.Owner = this;
             LOV.ShowDialog();
-            this.Show();
             RefreshGrid();
         }
 

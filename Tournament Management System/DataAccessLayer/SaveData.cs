@@ -31,9 +31,11 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@LeagueID", LeagueId);
                 cmd.Parameters.AddWithValue("@Bye", Convert.ToInt16(newTeam.Bye));
 
+                cmd.ExecuteNonQuery();
+
                 SavePlayersInTeams(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
 
-                cmd.ExecuteNonQuery();
+                
 
 
             }

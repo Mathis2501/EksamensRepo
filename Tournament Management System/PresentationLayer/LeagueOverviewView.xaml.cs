@@ -41,6 +41,7 @@ namespace PresentationLayer
 
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
         {
+            this.Owner.Show();
             this.Close();
         }
 
@@ -59,8 +60,8 @@ namespace PresentationLayer
         {
             AddPlayerToLeagueView APTLV = new AddPlayerToLeagueView(ChosenLeague);
             this.Hide();
+            APTLV.Owner = this;
             APTLV.ShowDialog();
-            this.Show();
             PlayerDataGrid.ItemsSource = null;
             PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
