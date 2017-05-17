@@ -15,6 +15,7 @@ namespace DataAccessLayer
         {
             UpdateData UD = new UpdateData();
             UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
+
         }
         
         public static ObservableCollection<League> GetLeagueData()
@@ -46,6 +47,24 @@ namespace DataAccessLayer
         {
             SaveData SD = new SaveData();
             SD.SavePlayer(newPlayer);
+        }
+
+        public static void UpdatePlayer(Player ChosenPlayer)
+        {
+            UpdateData UD = new UpdateData();
+            UD.UpdatePlayer(ChosenPlayer);
+        }
+
+        public static void DeleteLeague(League chosenLeague)
+        {
+            DeleteData DL = new DeleteData();
+            DL.DeleteLeague(chosenLeague);
+        }
+
+        public static void DeletePlayer(Player ChosenPlayer)
+        {
+            DeleteData DL = new DeleteData();
+            DL.DeletePlayer(ChosenPlayer);
         }
 
         public static void SaveTeam(Team newTeam, int leagueId)

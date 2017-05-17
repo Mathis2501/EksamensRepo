@@ -65,8 +65,8 @@
     <Compile Include="PlayerOverviewView.xaml.cs">
       <DependentUpon>PlayerOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlayerView.xaml.cs">
-      <DependentUpon>PlayerView.xaml</DependentUpon>
+    <Compile Include="PlayerRegisterView.xaml.cs">
+      <DependentUpon>PlayerRegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="RoundOverviewView.xaml.cs">
       <DependentUpon>RoundOverviewView.xaml</DependentUpon>
@@ -109,7 +109,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PlayerView.xaml">
+    <Page Include="PlayerRegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

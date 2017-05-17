@@ -99,5 +99,10 @@ namespace PresentationLayer
                 btn_AddTeam.IsEnabled = false;
             }
         }
+
+        private void btn_DeleteLeague(object sender, RoutedEventArgs e)
+        {
+            BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+        }
     }
 }
