@@ -188,7 +188,7 @@ namespace DataAccessLayer
             }
         }
 
-        private void SavePlayersInTeams(int playerId , int teamId)
+        public void SavePlayersInTeams(int playerId , int teamId)
         {
              
  
@@ -217,7 +217,7 @@ namespace DataAccessLayer
                 DBcon.Dispose();
             }
         }
-        private void InsertPointsInTeam(Team team , Match match , int objectivePoints , int winnerPoints)
+        public void InsertPointsInTeam(Team team , Match match , int objectivePoints , int winnerPoints)
         {
 
 
@@ -249,7 +249,7 @@ namespace DataAccessLayer
             }
         }
 
-        private int GetID(ObservableCollection<IID> ItemList)
+        public int GetID(ObservableCollection<IID> ItemList)
         {
             int ItemID = 1;
             if (ItemList.Count != 0)
