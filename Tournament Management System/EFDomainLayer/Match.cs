@@ -13,6 +13,7 @@ namespace DomainLayer
     {
         public int MatchId { get; set; }
         public ObservableCollection<Team> TeamsInMatch;
+        public string VsString;
         public int ID
         {
             get { return MatchId; }
@@ -23,6 +24,7 @@ namespace DomainLayer
         public Match()
         {
             TeamsInMatch = new ObservableCollection<Team>();
+            VsString = "VS";
         }
     }
 }

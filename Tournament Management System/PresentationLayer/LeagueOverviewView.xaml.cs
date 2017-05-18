@@ -41,6 +41,7 @@ namespace PresentationLayer
 
         private void btn_ViewLeagues_Click(object sender, RoutedEventArgs e)
         {
+            this.Owner.Show();
             this.Close();
         }
 
@@ -59,8 +60,8 @@ namespace PresentationLayer
         {
             AddPlayerToLeagueView APTLV = new AddPlayerToLeagueView(ChosenLeague);
             this.Hide();
+            APTLV.Owner = this;
             APTLV.ShowDialog();
-            this.Show();
             PlayerDataGrid.ItemsSource = null;
             PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
@@ -85,11 +86,8 @@ namespace PresentationLayer
             {
                 BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
                 btn_AddTeam.IsEnabled = false;
-                foreach (var item in ChosenLeague.RoundsInLeague)
-                {
-                    item.MatchesInRound = BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague,
-                        item);
-                }
+                BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                
             }
             else if (cb_Status.SelectedIndex == 2)
             {
@@ -105,7 +103,15 @@ namespace PresentationLayer
 
         private void btn_DeleteLeague(object sender, RoutedEventArgs e)
         {
-            BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+            MessageBoxResult result = MessageBox.Show("Vil du slette denne liga?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+                this.Owner.Show();
+                this.Close();
+            }
+            
+            
         }
 
         private void PlayerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

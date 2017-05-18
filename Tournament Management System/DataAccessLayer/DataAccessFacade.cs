@@ -13,9 +13,8 @@ namespace DataAccessLayer
 
         public static void UpdateLeagueStatus(int LeagueId, string LeagueStatus)
         {
-            UpdateData UD = new UpdateData();
-            UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
-
+            //UpdateData UD = new UpdateData();
+            //UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
         }
         
         public static ObservableCollection<League> GetLeagueData()
@@ -71,6 +70,12 @@ namespace DataAccessLayer
         {
             SaveData SD = new SaveData();
             SD.SaveTeam(newTeam, leagueId);
+        }
+
+        public static int SaveMatch(Match newMatch, int roundId)
+        {
+            SaveData SD = new SaveData();
+            return SD.SaveMatch(newMatch, roundId);
         }
     }
 }

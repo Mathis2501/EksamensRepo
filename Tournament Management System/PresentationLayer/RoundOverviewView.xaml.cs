@@ -26,6 +26,7 @@ namespace PresentationLayer
             lbl_LeagueName.Content = LeagueName;
             lbl_GameName.Content = GameName;
             lbl_RoundName.Content = chosenRound.RoundName;
+            MatchDataGrid.ItemsSource = chosenRound.MatchesInRound;
         }
     }
 }

@@ -131,30 +131,30 @@ namespace DataAccessLayer
                     SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
                     DBcon.Open();
+                    Player newPlayer = new Player();
                     using (SqlDataReader Reader = Cmd.ExecuteReader())
                     {
                         while (Reader.Read())
                         {
-                            Player newPlayer = new Player();
                             newPlayer.PlayerId = int.Parse(Reader["PlayerID_FK"].ToString());
-                            
-                            string cmdString2 = $"Select FirstName, LastName, Email, PhoneNr from PLAYER where PlayerID_PK={newPlayer.PlayerId}";
-                            SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
-
-                            using (SqlDataReader PlayerReader = Cmd2.ExecuteReader())
-                            {
-                                while (PlayerReader.Read())
-                                {
-                                    newPlayer.FirstName = PlayerReader["FirstName"].ToString();
-                                    newPlayer.LastName = PlayerReader["LastName"].ToString();
-                                    newPlayer.Email = PlayerReader["Email"].ToString();
-                                    newPlayer.PhoneNr = PlayerReader["PhoneNr"].ToString();
-                                    PlayersInTeam.Add(newPlayer);
-                                }
-                            }
-                           
                         }
                     }
+
+                    string cmdString2 = $"Select FirstName, LastName, Email, PhoneNr from PLAYER where PlayerID_PK={newPlayer.PlayerId}";
+                    SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
+
+                    using (SqlDataReader PlayerReader = Cmd2.ExecuteReader())
+                    {
+                        while (PlayerReader.Read())
+                        {
+                            newPlayer.FirstName = PlayerReader["FirstName"].ToString();
+                            newPlayer.LastName = PlayerReader["LastName"].ToString();
+                            newPlayer.Email = PlayerReader["Email"].ToString();
+                            newPlayer.PhoneNr = PlayerReader["PhoneNr"].ToString();
+                            PlayersInTeam.Add(newPlayer);
+                        }
+                    }
+
                     DBcon.Close();
                     DBcon.Dispose();
                     return PlayersInTeam;
@@ -334,6 +334,7 @@ namespace DataAccessLayer
                         {
                             Match newMatch = new Match();
                             newMatch.MatchId = int.Parse(Reader["MatchID_PK"].ToString());
+                            newMatch.TeamsInMatch = GetTeamsFromMatchID(newMatch.MatchId);
                             MatchList.Add(newMatch);
                         }
                     }
@@ -343,6 +344,44 @@ namespace DataAccessLayer
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private ObservableCollection<Team> GetTeamsFromMatchID(int MatchId)
+        {
+            using (var DBcon = new SqlConnection(ConnectionsString))
+            {
+                string cmdString = $"Select TeamID_FK from PLAYERS_IN_TEAM where MatchID_FK={MatchId}";
+                SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
+
+                ObservableCollection<Team> TeamList = new ObservableCollection<Team>();
+
+                DBcon.Open();
+                Team newTeam = new Team();
+                using (SqlDataReader Reader = Cmd.ExecuteReader())
+                {
+                    while (Reader.Read())
+                    {
+                        newTeam.TeamId = int.Parse(Reader["TeamID_FK"].ToString());
+                    }
+                }
+
+                string cmdString2 = $"Select TeamName, Bye from TEAM where TeamID_PK={newTeam.TeamId}";
+                SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
+
+                using (SqlDataReader PlayerReader = Cmd2.ExecuteReader())
+                {
+                    while (PlayerReader.Read())
+                    {
+                        newTeam.TeamName = PlayerReader["TeamName"].ToString();
+                        newTeam.Bye = bool.Parse(PlayerReader["Bye"].ToString());
+                        TeamList.Add(newTeam);
+                    }
+                }
+
+                DBcon.Close();
+                DBcon.Dispose();
+                return TeamList;
             }
         }
 

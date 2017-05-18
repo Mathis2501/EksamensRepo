@@ -37,8 +37,8 @@ namespace PresentationLayer
         {
             PlayerOverviewView POV = new PlayerOverviewView((Player)PlayerDataGrid.CurrentItem);
             this.Hide();
+            POV.Owner = this;
             POV.ShowDialog();
-            this.Show();
         }
 
         private void btn_AddToLeague_Click(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace PresentationLayer
                 newTeam.PlayersInTeam.Add(Item);
                 newTeam.TeamName = $"{newTeam.PlayersInTeam[0].FirstName} {newTeam.PlayersInTeam[0].LastName}";
                 newTeam.Bye = false;
-                if (ChosenLeague.TeamsInLeague.Contains(newTeam))
+                if (!ChosenLeague.TeamsInLeague.Any(x => x.TeamName.Equals(newTeam.TeamName) && x.Bye.Equals(newTeam.Bye)))
                 {
                     BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
                     ChosenLeague.TeamsInLeague.Add(newTeam);
@@ -61,11 +61,13 @@ namespace PresentationLayer
                 
                 
             }
+            this.Owner.Show();
             this.Close();
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
+            this.Owner.Show();
             this.Close();
         }
     }
