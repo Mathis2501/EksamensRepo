@@ -365,7 +365,7 @@ namespace DataAccessLayer
                         newTeam.TeamId = int.Parse(Reader["TeamID_FK"].ToString());
                     }
                 }
-
+                //
                 string cmdString2 = $"Select TeamName, Bye from TEAM where TeamID_PK={newTeam.TeamId}";
                 SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
 
