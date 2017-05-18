@@ -50,9 +50,9 @@ namespace DataAccessLayer
                     }
                     return LeagueList;
                 }
-                catch (Exception)
+                catch (SqlException )
                 {
-                    throw;
+                    return null;
                 }
                 finally
                 {
