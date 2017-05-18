@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="RoundOverviewView" Height="400" Width="600">
     <Grid>
-        <DataGrid x:Name="MatchDataGrid" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Height="248" Width="572"/>
+        <DataGrid x:Name="MatchDataGrid" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Height="248" Width="572" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding TeamsInMatch[0].TeamName}" Width="*"/>
+                <DataGridTextColumn  Width="40" Binding="{Binding VsString}"/>
+                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding TeamsInMatch[1].TeamName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Label x:Name="lbl_LeagueName" Content="test" HorizontalAlignment="Left" Margin="150,10,150,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center" FontSize="16"/>
         <Label x:Name="lbl_RoundName" Content="test" HorizontalAlignment="Left" Margin="150,46,0,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center" FontSize="14"/>
         <Label x:Name="lbl_GameName" Content="test" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center"/>

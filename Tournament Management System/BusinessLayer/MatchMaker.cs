@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace BusinessLayer
         {
             ObservableCollection<Match> MatchesInRound = new ObservableCollection<Match>();
 
-            for (int j = 0; j < RoundsInLeague.Count-1; j++)
+            foreach (Round item in RoundsInLeague)
             {
                 TeamsInLeague = ShuffleTeams(TeamsInLeague);
 
@@ -40,17 +41,18 @@ namespace BusinessLayer
                     newMatch.TeamsInMatch.Add(TeamsInLeague[i]);
                     newMatch.TeamsInMatch.Add(TeamsInLeague[i + 1]);
                     //Should ensure that only one of each match combination exists
-                    for (int k = 0; k < j+1; k++)
+                    for (int k = 0; k < RoundsInLeague.IndexOf(item); k++)
                     {
                         //Needs Logic To skip when that Match already exists in another round
-                        if (true)
+                        if (!RoundsInLeague.Any(x => x.MatchesInRound.Any(y => y.TeamsInMatch.Any( z => z.TeamName == newMatch.TeamsInMatch[0].TeamName && z.Bye == newMatch.TeamsInMatch[0].Bye && z.TeamName == newMatch.TeamsInMatch[1].TeamName && z.Bye == newMatch.TeamsInMatch[1].Bye))))
                         {
-                            newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[j].RoundId);
-                            RoundsInLeague[j].MatchesInRound.Add(newMatch);
+                            newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[RoundsInLeague.IndexOf(item)].RoundId);
+                            RoundsInLeague[RoundsInLeague.IndexOf(item)].MatchesInRound.Add(newMatch);
+                            Debug.Print("Goes False");
                         }
                         else
                         {
-                            j--;
+                            Debug.Print("Goes True");
                         }
                     }
                 }

@@ -177,6 +177,8 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@RoundID", roundId);
 
                 cmd.ExecuteNonQuery();
+
+                SaveTeamsInMatch(newMatch);
             }
             catch (SqlException e)
             {
@@ -189,6 +191,36 @@ namespace DataAccessLayer
                 DBcon.Dispose();
             }
             return newMatch.MatchId;
+        }
+
+        private void SaveTeamsInMatch(Match newMatch)
+        {
+            SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
+
+            try
+            {
+                DBcon.Open();
+                foreach (Team item in newMatch.TeamsInMatch)
+                {
+                    SqlCommand cmd = new SqlCommand("InsertTeamInMatch", DBcon);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                
+                    cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchId);
+                    cmd.Parameters.AddWithValue("@TeamID", item.TeamId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+                Console.ReadKey();
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
         }
 
         public void SavePlayersInTeams(int playerId , int teamId)

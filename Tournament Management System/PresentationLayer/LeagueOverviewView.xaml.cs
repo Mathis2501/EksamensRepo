@@ -100,7 +100,15 @@ namespace PresentationLayer
 
         private void btn_DeleteLeague(object sender, RoutedEventArgs e)
         {
-            BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+            MessageBoxResult result = MessageBox.Show("Vil du slette denne liga?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+                this.Owner.Show();
+                this.Close();
+            }
+            
+            
         }
     }
 }
