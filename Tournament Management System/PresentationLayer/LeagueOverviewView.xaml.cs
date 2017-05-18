@@ -67,7 +67,10 @@ namespace PresentationLayer
 
         private void PlayerDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            TeamOverviewView TOV = new TeamOverviewView();
+            this.Hide();
+            TOV.ShowDialog();
+            this.Show();
         }
 
         private void cb_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -103,6 +106,11 @@ namespace PresentationLayer
         private void btn_DeleteLeague(object sender, RoutedEventArgs e)
         {
             BusinessLayer.BusinessFacade.DeleteLeague(ChosenLeague);
+        }
+
+        private void PlayerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
