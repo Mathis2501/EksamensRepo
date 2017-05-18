@@ -68,5 +68,30 @@ namespace DataAccessLayer
                 DBcon.Dispose();
             }
         }
+
+        internal void UpdateTeam(Team ChosenTeam, bool byeStatus)
+        {
+            SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
+            try
+            {
+                DBcon.Open();
+                SqlCommand cmd = new SqlCommand("UpdateTeam", DBcon);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@TeamID", ChosenTeam.TeamId);
+                cmd.Parameters.AddWithValue("@ByeStatus", ChosenTeam.Bye);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
+        }
     }
 }

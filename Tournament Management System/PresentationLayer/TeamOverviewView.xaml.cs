@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DomainLayer;
 
 namespace PresentationLayer
 {
@@ -19,13 +20,32 @@ namespace PresentationLayer
     /// </summary>
     public partial class TeamOverviewView : Window
     {
-        public TeamOverviewView()
+        bool byeStatus;
+        Team ChosenTeam;
+        public TeamOverviewView(Team chosenTeam)
         {
             InitializeComponent();
+            lbl_CurrentTeamTeamID.Content = chosenTeam.TeamId;
+            lbl_CurrentTeamTeamName.Content = chosenTeam.TeamName;
+            ChosenTeam = chosenTeam;
+
         }
 
-        private void byeStatus_Click(object sender, RoutedEventArgs e)
+        private void button_Save_Click(object sender, RoutedEventArgs e)
         {
+           BusinessLayer.BusinessFacade.UpdateTeam(ChosenTeam , byeStatus);
+        }
+
+        private void checkBox_Bye_Click(object sender, RoutedEventArgs e)
+        {
+            if (byeStatus == true)
+            {
+                byeStatus = false;
+            }
+            else
+            {
+                byeStatus = true;
+            }
 
         }
     }
