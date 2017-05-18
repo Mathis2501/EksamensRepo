@@ -36,6 +36,7 @@ namespace PresentationLayer
 
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
+            this.Owner.Show();
             this.Close();
         }
 

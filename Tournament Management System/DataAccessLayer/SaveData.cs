@@ -31,9 +31,11 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@LeagueID", LeagueId);
                 cmd.Parameters.AddWithValue("@Bye", Convert.ToInt16(newTeam.Bye));
 
+                cmd.ExecuteNonQuery();
+
                 SavePlayersInTeams(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
 
-                cmd.ExecuteNonQuery();
+                
 
 
             }
@@ -156,7 +158,7 @@ namespace DataAccessLayer
 
         }
 
-        private void SaveMatch(Match newMatch, int roundId)
+        public int SaveMatch(Match newMatch, int roundId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> MatchList = new ObservableCollection<IID>();
@@ -168,13 +170,46 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("InsertLeague", DBcon);
+                SqlCommand cmd = new SqlCommand("InsertMatch", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchId);
                 cmd.Parameters.AddWithValue("@RoundID", roundId);
 
                 cmd.ExecuteNonQuery();
+
+                SaveTeamsInMatch(newMatch);
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("ups " + e.Message);
+                Console.ReadKey();
+            }
+            finally
+            {
+                DBcon.Close();
+                DBcon.Dispose();
+            }
+            return newMatch.MatchId;
+        }
+
+        private void SaveTeamsInMatch(Match newMatch)
+        {
+            SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
+
+            try
+            {
+                DBcon.Open();
+                foreach (Team item in newMatch.TeamsInMatch)
+                {
+                    SqlCommand cmd = new SqlCommand("InsertTeamInMatch", DBcon);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                
+                    cmd.Parameters.AddWithValue("@MatchID", newMatch.MatchId);
+                    cmd.Parameters.AddWithValue("@TeamID", item.TeamId);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
             catch (SqlException e)
             {

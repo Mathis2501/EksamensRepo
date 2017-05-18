@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using BusinessLayer;
 using DomainLayer;
+
 // ReSharper disable PossibleInvalidOperationException
 
 namespace PresentationLayer
@@ -14,18 +15,17 @@ namespace PresentationLayer
     /// </summary>
     public partial class AddLeagueWindow : Window
     {
-
         public AddLeagueWindow()
         {
             InitializeComponent();
-            txt_Round2Name.IsEnabled = false;
-            txt_Round3Name.IsEnabled = false;
-            txt_Round4Name.IsEnabled = false;
+            cb_Rounds.SelectedIndex = 0;
+            DisableUnusedTextboxes();
             rb_OneTeamMember.IsChecked = true;
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
+            this.Owner.Show();
             this.Close();
         }
 
@@ -38,7 +38,6 @@ namespace PresentationLayer
             }
             rb_OneTeamMember.IsChecked = true;
             cb_Rounds.SelectedIndex = 0;
-            cb_Status.SelectedIndex = 0;
         }
 
         private void btn_SaveLeague_Click(object sender, RoutedEventArgs e)
@@ -47,11 +46,10 @@ namespace PresentationLayer
             newLeague.GameName = txt_GameName.Text;
             newLeague.LeagueName = txt_LeagueName.Text;
             newLeague.Reward = txt_Reward.Text;
-
-            ComboBoxItem CBI = (ComboBoxItem) cb_Status.SelectedItem;
-            newLeague.LeagueStatus = CBI.ToString();
+            newLeague.LeagueStatus = "Afventende";
             //removes unwanted words from ComboBoxItem. uses space to go to the start of the word needed
-            newLeague.LeagueStatus = newLeague.LeagueStatus.Substring(newLeague.LeagueStatus.IndexOf(" ", StringComparison.Ordinal)+1);
+            newLeague.LeagueStatus =
+                newLeague.LeagueStatus.Substring(newLeague.LeagueStatus.IndexOf(" ", StringComparison.Ordinal) + 1);
             newLeague.Rounds = cb_Rounds.SelectedIndex + 1;
             IEnumerable<RadioButton> rb_collection = addLeagueWindow.Children.OfType<RadioButton>();
             newLeague.LeagueId = BusinessFacade.SaveLeague(newLeague);
@@ -68,43 +66,37 @@ namespace PresentationLayer
                     }
                 }
             }
+            this.Owner.Show();
             this.Close();
         }
 
         private void cb_Rounds_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DisableUnusedTextboxes();
+        }
 
-            if (txt_Round1Name != null)
+        private void DisableUnusedTextboxes()
+        {
+            IEnumerable<TextBox> tb_collection = addLeagueWindow.Children.OfType<TextBox>();
+            foreach (var item in tb_collection)
             {
-                if (cb_Rounds.SelectedIndex == 0)
+                if (item.Name.Contains("Round"))
                 {
-                    txt_Round2Name.IsEnabled = false;
-                    txt_Round3Name.IsEnabled = false;
-                    txt_Round4Name.IsEnabled = false;
-                    txt_Round2Name.Text = "";
-                    txt_Round3Name.Text = "";
-                    txt_Round4Name.Text = "";
+                    item.IsEnabled = false;
                 }
-                else if (cb_Rounds.SelectedIndex == 1)
+            }
+            for (int i = 0; i < cb_Rounds.SelectedIndex + 1; i++)
+            {
+                foreach (var item in tb_collection)
                 {
-                    txt_Round2Name.IsEnabled = true;
-                    txt_Round3Name.IsEnabled = false;
-                    txt_Round4Name.IsEnabled = false;
-                    txt_Round3Name.Text = "";
-                    txt_Round4Name.Text = "";
-                }
-                else if (cb_Rounds.SelectedIndex == 2)
-                {
-                    txt_Round2Name.IsEnabled = true;
-                    txt_Round3Name.IsEnabled = true;
-                    txt_Round4Name.IsEnabled = false;
-                    txt_Round4Name.Text = "";
-                }
-                else if (cb_Rounds.SelectedIndex == 3)
-                {
-                    txt_Round2Name.IsEnabled = true;
-                    txt_Round3Name.IsEnabled = true;
-                    txt_Round4Name.IsEnabled = true;
+                    if (item.Name.Contains($"Round{i + 1}"))
+                    {
+                        item.IsEnabled = true;
+                    }
+                    else if (item.Name.Contains("Round"))
+                    {
+                        item.Text = "";
+                    }
                 }
             }
         }
