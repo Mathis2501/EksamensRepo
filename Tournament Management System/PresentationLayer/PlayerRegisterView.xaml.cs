@@ -2,6 +2,7 @@
 using System.Windows;
 using BusinessLayer;
 using DomainLayer;
+using System.Windows.Input;
 
 namespace PresentationLayer
 {
@@ -33,6 +34,13 @@ namespace PresentationLayer
             MainWindow MW = new MainWindow();
             MW.Show();
             this.Close();
+        }
+        private void PlayerDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            PlayerOverviewView POV = new PlayerOverviewView((Player)PlayerDataGrid.CurrentItem);
+            this.Hide();
+            POV.ShowDialog();
+            this.Show();
         }
     }
 }
