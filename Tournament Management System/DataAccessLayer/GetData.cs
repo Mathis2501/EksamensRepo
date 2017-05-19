@@ -351,7 +351,7 @@ namespace DataAccessLayer
         {
             using (var DBcon = new SqlConnection(ConnectionsString))
             {
-                string cmdString = $"Select TeamID_FK from PLAYERS_IN_TEAM where MatchID_FK={MatchId}";
+                string cmdString = $"Select TeamID_FK from TEAMS_IN_MATCH where MatchID_FK={MatchId}";
                 SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
 
                 ObservableCollection<Team> TeamList = new ObservableCollection<Team>();
