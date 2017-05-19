@@ -23,6 +23,7 @@ namespace PresentationLayer
     {
         string[] LeagueStatusIndex;
         private League ChosenLeague;
+        private Team ChosenTeam;
         public LeagueOverviewView(League chosenLeague)
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace PresentationLayer
             cb_Status.SelectedIndex = Array.IndexOf(LeagueStatusIndex, chosenLeague.LeagueStatus);
             lbl_CurrentNumberOfPlayers.Content = chosenLeague.TeamsInLeague.Count;
             RoundDataGrid.ItemsSource = chosenLeague.RoundsInLeague;
-            PlayerDataGrid.ItemsSource = chosenLeague.TeamsInLeague;
+            TeamDataGrid.ItemsSource = chosenLeague.TeamsInLeague;
 
         }
 
@@ -62,13 +63,13 @@ namespace PresentationLayer
             this.Hide();
             APTLV.Owner = this;
             APTLV.ShowDialog();
-            PlayerDataGrid.ItemsSource = null;
-            PlayerDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
+            TeamDataGrid.ItemsSource = null;
+            TeamDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
 
         private void PlayerDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TeamOverviewView TOV = new TeamOverviewView();
+            TeamOverviewView TOV = new TeamOverviewView((Team)TeamDataGrid.CurrentItem);
             this.Hide();
             TOV.ShowDialog();
             this.Show();

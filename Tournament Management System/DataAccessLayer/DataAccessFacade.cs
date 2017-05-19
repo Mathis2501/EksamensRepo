@@ -48,6 +48,12 @@ namespace DataAccessLayer
             SD.SavePlayer(newPlayer);
         }
 
+        public static void UpdateTeam(Team ChosenTeam, bool byeStatus)
+        {
+            UpdateData UD = new UpdateData();
+            UD.UpdateTeam(ChosenTeam, byeStatus);
+        }
+
         public static void UpdatePlayer(Player ChosenPlayer)
         {
             UpdateData UD = new UpdateData();

@@ -44,7 +44,7 @@
         <Label x:Name="lbl_NumberOfPlayers" Content="Tilmeldte Deltagere:" HorizontalAlignment="Left" Margin="34,154,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_CurrentNumberOfPlayers" Content="" HorizontalAlignment="Left" Margin="162,153,0,0" VerticalAlignment="Top" Width="160"/>
 
-        <DataGrid x:Name="PlayerDataGrid" Margin="34,204,33.8,31.4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" SelectionChanged="PlayerDataGrid_SelectionChanged">
+        <DataGrid x:Name="TeamDataGrid" Margin="34,204,33.8,31.4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" SelectionChanged="PlayerDataGrid_SelectionChanged">
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
                     <EventSetter Event="MouseDoubleClick" Handler="PlayerDataGrid_Row_DoubleClick"/>
