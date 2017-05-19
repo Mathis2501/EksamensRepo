@@ -67,7 +67,7 @@ namespace PresentationLayer
             TeamDataGrid.ItemsSource = ChosenLeague.TeamsInLeague;
         }
 
-        private void PlayerDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        private void TeamDataGrid_Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             TeamOverviewView TOV = new TeamOverviewView((Team)TeamDataGrid.CurrentItem);
             this.Hide();
@@ -113,11 +113,6 @@ namespace PresentationLayer
             }
             
             
-        }
-
-        private void PlayerDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
