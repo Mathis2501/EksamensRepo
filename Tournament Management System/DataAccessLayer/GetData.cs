@@ -50,7 +50,7 @@ namespace DataAccessLayer
                     }
                     return LeagueList;
                 }
-                catch (SqlException e)
+                catch (SqlException)
                 {
                     throw;
                 }
@@ -335,6 +335,8 @@ namespace DataAccessLayer
                             Match newMatch = new Match();
                             newMatch.MatchId = int.Parse(Reader["MatchID_PK"].ToString());
                             newMatch.TeamsInMatch = GetTeamsFromMatchID(newMatch.MatchId);
+                            newMatch.Team1 = newMatch.TeamsInMatch[0];
+                            newMatch.Team2 = newMatch.TeamsInMatch[1];
                             MatchList.Add(newMatch);
                         }
                     }
@@ -357,25 +359,29 @@ namespace DataAccessLayer
                 ObservableCollection<Team> TeamList = new ObservableCollection<Team>();
 
                 DBcon.Open();
-                Team newTeam = new Team();
+                
                 using (SqlDataReader Reader = Cmd.ExecuteReader())
                 {
                     while (Reader.Read())
                     {
+                        Team newTeam = new Team();
                         newTeam.TeamId = int.Parse(Reader["TeamID_FK"].ToString());
+                        TeamList.Add(newTeam);
                     }
                 }
                 //
-                string cmdString2 = $"Select TeamName, Bye from TEAM where TeamID_PK={newTeam.TeamId}";
-                SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
-
-                using (SqlDataReader PlayerReader = Cmd2.ExecuteReader())
+                for (int i = 0; i < TeamList.Count; i++)
                 {
-                    while (PlayerReader.Read())
+                    string cmdString2 = $"Select TeamName, Bye from TEAM where TeamID_PK={TeamList[i].TeamId}";
+                    SqlCommand Cmd2 = new SqlCommand(cmdString2, DBcon);
+
+                    using (SqlDataReader PlayerReader = Cmd2.ExecuteReader())
                     {
-                        newTeam.TeamName = PlayerReader["TeamName"].ToString();
-                        newTeam.Bye = bool.Parse(PlayerReader["Bye"].ToString());
-                        TeamList.Add(newTeam);
+                        while (PlayerReader.Read())
+                        {
+                            TeamList[i].TeamName = PlayerReader["TeamName"].ToString();
+                            TeamList[i].Bye = bool.Parse(PlayerReader["Bye"].ToString());
+                        }
                     }
                 }
 
