@@ -75,7 +75,7 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("UpdateTeam", DBcon);
+                SqlCommand cmd = new SqlCommand("UpdateTeamByeStatus", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@TeamID", ChosenTeam.TeamId);
