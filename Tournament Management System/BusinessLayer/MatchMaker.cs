@@ -27,37 +27,49 @@ namespace BusinessLayer
             return TeamList;
         }
 
-        public ObservableCollection<Match> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        public ObservableCollection<Round> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
         {
-            ObservableCollection<Match> MatchesInRound = new ObservableCollection<Match>();
+            ObservableCollection<Round> result = new ObservableCollection<Round>();
 
-            foreach (Round item in RoundsInLeague)
+            TeamsInLeague = ShuffleTeams(TeamsInLeague);
+
+            int numberOfMatchesInARound = TeamsInLeague.Count / 2;
+
+            List<Team> teams = new List<Team>();
+
+            teams.AddRange(TeamsInLeague.Skip(numberOfMatchesInARound).Take(numberOfMatchesInARound));
+            teams.AddRange(TeamsInLeague.Skip(1).Take(numberOfMatchesInARound - 1).ToArray().Reverse());
+            
+            var numberOfTeams = teams.Count;
+
+            for (var roundNumber = 0; roundNumber < RoundsInLeague.Count; roundNumber++)
             {
-                TeamsInLeague = ShuffleTeams(TeamsInLeague);
+                var teamIdx = roundNumber % numberOfTeams;
+                Match newMatch = new Match();
+                newMatch.TeamsInMatch.Add(teams[teamIdx]);
+                newMatch.TeamsInMatch.Add(TeamsInLeague[0]);
 
-                for (int i = 0; i < TeamsInLeague.Count - 1; i += 2)
+                //Save Match
+                DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[roundNumber].RoundId);
+                RoundsInLeague[roundNumber].MatchesInRound.Add(newMatch);
+
+                for (var idx = 1; idx < numberOfMatchesInARound; idx++)
                 {
-                    Match newMatch = new Match();
-                    newMatch.TeamsInMatch.Add(TeamsInLeague[i]);
-                    newMatch.TeamsInMatch.Add(TeamsInLeague[i + 1]);
-                    //Should ensure that only one of each match combination exists
-                    for (int k = 0; k < RoundsInLeague.IndexOf(item); k++)
-                    {
-                        //Needs Logic To skip when that Match already exists in another round
-                        if (!RoundsInLeague.Any(x => x.MatchesInRound.Any(y => y.TeamsInMatch.Any( z => z.TeamName == newMatch.TeamsInMatch[0].TeamName && z.Bye == newMatch.TeamsInMatch[0].Bye && z.TeamName == newMatch.TeamsInMatch[1].TeamName && z.Bye == newMatch.TeamsInMatch[1].Bye))))
-                        {
-                            newMatch.MatchId = DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[RoundsInLeague.IndexOf(item)].RoundId);
-                            RoundsInLeague[RoundsInLeague.IndexOf(item)].MatchesInRound.Add(newMatch);
-                            Debug.Print("Goes False");
-                        }
-                        else
-                        {
-                            Debug.Print("Goes True");
-                        }
-                    }
+                    var firstTeamIndex = (roundNumber + idx) % numberOfTeams;
+                    var secondTeamIndex = (roundNumber + numberOfTeams - idx) % numberOfTeams;
+                    Match newMatch2 = new Match();
+                    newMatch2.TeamsInMatch.Add(teams[firstTeamIndex]);
+                    newMatch2.TeamsInMatch.Add(teams[secondTeamIndex]);
+
+                    //Save Match
+                    DataAccessFacade.SaveMatch(newMatch2, RoundsInLeague[roundNumber].RoundId);
+                    RoundsInLeague[roundNumber].MatchesInRound.Add(newMatch2);
                 }
+
+                result.Add(RoundsInLeague[roundNumber]);
             }
-            return MatchesInRound;
+
+            return result;
         }
     }
 }
