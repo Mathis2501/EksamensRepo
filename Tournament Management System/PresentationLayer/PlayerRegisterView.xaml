@@ -9,7 +9,12 @@
     <Grid>
         <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="427,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddPlayer_Click"/>
         <Button x:Name="btn_ViewLeagues" Content="Liga Register" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewLeagues_Click"/>
-        <DataGrid x:Name="PlayerDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="14,34,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false">
+        <DataGrid x:Name="PlayerDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="14,36,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="PlayerDataGrid_Row_DoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding PlayerId}" Width="35"/>
                 <DataGridTextColumn Header="Fornavn" Binding="{Binding FirstName}"/>
