@@ -66,7 +66,7 @@ namespace BusinessLayer
             DataAccessFacade.DeleteLeague(chosenLeague);
         }
 
-        public static ObservableCollection<Match> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        public static ObservableCollection<Round> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
         {
             MatchMaker MM = new MatchMaker();
             return MM.CreateMatches(TeamsInLeague, RoundsInLeague);

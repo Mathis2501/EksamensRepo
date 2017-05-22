@@ -4,14 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="RoundOverviewView" Height="400" Width="600">
     <Grid>
-        <DataGrid x:Name="MatchDataGrid" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Height="248" Width="572" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*">
+        <DataGrid x:Name="MatchDataGrid" HorizontalAlignment="Left" Margin="10,111,0,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="248" Width="572" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding TeamsInMatch[0].TeamName}" Width="*"/>
-                <DataGridTextColumn  Width="40" Binding="{Binding VsString}"/>
-                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding TeamsInMatch[1].TeamName}" Width="*"/>
+                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team1.TeamName}" Width="*"/>
+                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team2.TeamName}" Width="*"/>
+                
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="lbl_LeagueName" Content="test" HorizontalAlignment="Left" Margin="150,10,150,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center" FontSize="16"/>

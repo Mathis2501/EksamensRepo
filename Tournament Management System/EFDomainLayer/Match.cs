@@ -12,8 +12,11 @@ namespace DomainLayer
     public class Match : IID
     {
         public int MatchId { get; set; }
+        public Team Team1 { get; set; }
+        public Team Team2 { get; set; }
         public ObservableCollection<Team> TeamsInMatch;
         public string VsString;
+
         public int ID
         {
             get { return MatchId; }
@@ -24,6 +27,8 @@ namespace DomainLayer
         public Match()
         {
             TeamsInMatch = new ObservableCollection<Team>();
+            TeamsInMatch.Add(Team1);
+            TeamsInMatch.Add(Team2);
             VsString = "VS";
         }
     }
