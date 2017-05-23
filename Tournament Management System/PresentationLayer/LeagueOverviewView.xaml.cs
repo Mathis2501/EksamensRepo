@@ -85,8 +85,14 @@ namespace PresentationLayer
             }
             else if (cb_Status.SelectedIndex == 1)
             {
+                //updatere League på databasen til at have statussen "Igangværende"
                 BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
+                
+                //fjerner muligheden for at tilføje teams
                 btn_AddTeam.IsEnabled = false;
+
+                //parametre er en liste af de hold der deltager i en league
+                //samt listen af runder i en league
                 BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
                 
             }
