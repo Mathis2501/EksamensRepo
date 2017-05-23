@@ -20,7 +20,6 @@ namespace PresentationLayer
     /// </summary>
     public partial class TeamOverviewView : Window
     {
-        bool byeStatus;
         Team ChosenTeam;
         public TeamOverviewView(Team chosenTeam)
         {
@@ -33,20 +32,12 @@ namespace PresentationLayer
 
         private void button_Save_Click(object sender, RoutedEventArgs e)
         {
-           BusinessLayer.BusinessFacade.UpdateTeam(ChosenTeam , byeStatus);
+           BusinessLayer.BusinessFacade.UpdateTeam(ChosenTeam);
         }
 
         private void checkBox_Bye_Click(object sender, RoutedEventArgs e)
         {
-            if (byeStatus == true)
-            {
-                byeStatus = false;
-            }
-            else
-            {
-                byeStatus = true;
-            }
-
+            if (checkBox_Bye.IsChecked != null) ChosenTeam.Bye = (bool)checkBox_Bye.IsChecked;
         }
     }
 }

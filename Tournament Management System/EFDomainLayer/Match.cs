@@ -15,7 +15,7 @@ namespace DomainLayer
         public Team Team1 { get; set; }
         public Team Team2 { get; set; }
         public ObservableCollection<Team> TeamsInMatch;
-        public string VsString;
+        public string VsString { get; set; }
 
         public int ID
         {

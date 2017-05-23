@@ -49,7 +49,7 @@ namespace DataAccessLayer
             try
             {
                 DBcon.Open();
-                SqlCommand cmd = new SqlCommand("UpdateLeague", DBcon);
+                SqlCommand cmd = new SqlCommand("UpdateLeagueStatus", DBcon);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@LeagueID", leagueId);
@@ -69,7 +69,7 @@ namespace DataAccessLayer
             }
         }
 
-        internal void UpdateTeam(Team ChosenTeam, bool byeStatus)
+        internal void UpdateTeam(Team ChosenTeam)
         {
             SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
             try

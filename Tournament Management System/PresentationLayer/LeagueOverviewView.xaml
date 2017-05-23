@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="LeagueOverviewView" Height="400" Width="599.2">
-    <Grid>
+        Title="LeagueOverviewView" Height="401.4" Width="599.2">
+     <Grid>
         <Button x:Name="btn_ViewLeagues" Content="Liga Register" HorizontalAlignment="Left" Margin="16,8,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewLeagues_Click"/>
         <Button x:Name="btn_ViewMatches" Content="Se Kampe" Margin="0,8,12,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85" />
         <Label x:Name="lbl_LeagueName" Content="" HorizontalContentAlignment="Center" Margin="125,8,125,0" VerticalAlignment="Top"/>
@@ -66,6 +66,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btn_AddTeam" Content="Tilføj Deltagere" HorizontalAlignment="Left" Margin="34,180,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddTeam_Click"/>
-        <Button x:Name="DeleteLeague" Content="Slet Liga" Margin="0,344,12.8,0" HorizontalAlignment="Right" Width="85" RenderTransformOrigin="0.502,0.5" Height="19" VerticalAlignment="Top" Click="btn_DeleteLeague" />
+        <Button x:Name="DeleteLeague" Content="Slet Liga" Margin="0,0,12.8,4" HorizontalAlignment="Right" Width="85" RenderTransformOrigin="0.502,0.5" Click="btn_DeleteLeague" Height="19" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

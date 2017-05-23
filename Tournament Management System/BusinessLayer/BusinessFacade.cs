@@ -40,9 +40,9 @@ namespace BusinessLayer
             DataAccessFacade.SavePlayer(newPlayer);
         }
 
-        public static void UpdateTeam(Team ChosenTeam, bool byeStatus)
+        public static void UpdateTeam(Team ChosenTeam)
         {
-            DataAccessFacade.UpdateTeam(ChosenTeam, byeStatus);
+            DataAccessFacade.UpdateTeam(ChosenTeam);
         }
 
         public static void SaveTeam(Team newTeam, int leagueId)

@@ -20,7 +20,7 @@ namespace DataAccessLayer
         private string ConnectionsString =
             "Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44";
 
-        public ObservableCollection<League> GetLeagues()
+        internal ObservableCollection<League> GetLeagues()
         {
             ObservableCollection<League> LeagueList = new ObservableCollection<League>();
             using (var DBcon = new SqlConnection(ConnectionsString))
@@ -194,39 +194,7 @@ namespace DataAccessLayer
             return ItemList;
         }
 
-        public ObservableCollection<Team> GetTeams()
-        {
-            ObservableCollection<Team> TeamList = new ObservableCollection<Team>();
-            try
-            {
-                using (var DBcon = new SqlConnection(ConnectionsString))
-                {
-                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
-                    string cmdString = "Select * from TEAM";
-                    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
-
-                    DBcon.Open();
-                    using (SqlDataReader Reader = Cmd.ExecuteReader())
-                    {
-                        while (Reader.Read())
-                        {
-                            Team newTeam = new Team();
-                            newTeam.TeamId = int.Parse(Reader["TeamId_PK"].ToString());
-                            newTeam.TeamName = Reader["TeamName"].ToString();
-                            TeamList.Add(newTeam);
-                        }
-                    }
-
-                }
-                return TeamList;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public ObservableCollection<Team> GetTeamsFromLeagueID(int LeagueID)
+        private ObservableCollection<Team> GetTeamsFromLeagueID(int LeagueID)
         {
             ObservableCollection<Team> TeamsInLeague = new ObservableCollection<Team>();
             try
@@ -257,11 +225,6 @@ namespace DataAccessLayer
                 
                 throw;
             }
-        }
-
-        public ObservableCollection<Team> GetTeamsFromRoundID(int RoundId)
-        {
-            throw new NotImplementedException();
         }
 
         public ObservableCollection<IID> GetTeamID()
@@ -413,41 +376,8 @@ namespace DataAccessLayer
             }
             return ItemList;
         }
-        public ObservableCollection<Round> GetRound()
-        {
-            ObservableCollection<Round> RoundList = new ObservableCollection<Round>();
-            try
-            {
-                using (var DBcon = new SqlConnection(ConnectionsString))
-                {
-                    //vi bruger * tegnet da der ikke er noget tilfælde hvor vi ikke vil have al data ned i programmet når vi kalder denne metode
-                    string cmdString = "Select * from ROUND";
-                    SqlCommand Cmd = new SqlCommand(cmdString, DBcon);
-
-                    DBcon.Open();
-                    using (SqlDataReader Reader = Cmd.ExecuteReader())
-                    {
-                        while (Reader.Read())
-                        {
-                            Round newRound = new Round();
-                            newRound.RoundId = int.Parse(Reader["RoundID_PK"].ToString());
-                            newRound.RoundName = Reader["RoundName"].ToString();
-                            newRound.MatchesInRound = GetMatchesFromRoundID(newRound.RoundId);
-                            newRound.TeamsInRound = GetTeamsFromRoundID(newRound.RoundId);
-                            RoundList.Add(newRound);
-                        }
-                    }
-
-                }
-                return RoundList;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public ObservableCollection<Round> GetRoundsFromLeagueID(int LeagueID, ObservableCollection<Team> TeamsInLeague)
+       
+        private ObservableCollection<Round> GetRoundsFromLeagueID(int LeagueID, ObservableCollection<Team> TeamsInLeague)
         {
             ObservableCollection<Round> RoundsInLeague = new ObservableCollection<Round>();
             try

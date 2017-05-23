@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer;
 using DomainLayer;
+using Match = System.Text.RegularExpressions.Match;
 
 namespace PresentationLayer
 {
@@ -87,8 +89,10 @@ namespace PresentationLayer
             {
                 BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
                 btn_AddTeam.IsEnabled = false;
-                BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
-                
+                if (ChosenLeague.RoundsInLeague.All(x => x.MatchesInRound.Count == 0))
+                {
+                    BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                }
             }
             else if (cb_Status.SelectedIndex == 2)
             {
@@ -111,8 +115,6 @@ namespace PresentationLayer
                 this.Owner.Show();
                 this.Close();
             }
-            
-            
         }
     }
 }

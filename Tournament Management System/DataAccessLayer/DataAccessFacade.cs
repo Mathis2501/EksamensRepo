@@ -11,10 +11,10 @@ namespace DataAccessLayer
     public static class DataAccessFacade
     {
 
-        public static void UpdateLeagueStatus(int LeagueId, string LeagueStatus)
+        public static void UpdateLeagueStatus(int leagueId, string leagueStatus)
         {
-            //UpdateData UD = new UpdateData();
-            //UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
+            UpdateData UD = new UpdateData();
+            UD.UpdateLeagueStatus(leagueId, leagueStatus);
         }
         
         public static ObservableCollection<League> GetLeagueData()
@@ -48,10 +48,10 @@ namespace DataAccessLayer
             SD.SavePlayer(newPlayer);
         }
 
-        public static void UpdateTeam(Team ChosenTeam, bool byeStatus)
+        public static void UpdateTeam(Team ChosenTeam)
         {
             UpdateData UD = new UpdateData();
-            UD.UpdateTeam(ChosenTeam, byeStatus);
+            UD.UpdateTeam(ChosenTeam);
         }
 
         public static void UpdatePlayer(Player ChosenPlayer)
@@ -78,10 +78,11 @@ namespace DataAccessLayer
             SD.SaveTeam(newTeam, leagueId);
         }
 
-        public static int SaveMatch(Match newMatch, int roundId)
+        public static void SaveMatch(Match newMatch, int roundId)
         {
             SaveData SD = new SaveData();
-            return SD.SaveMatch(newMatch, roundId);
+            SD.SaveMatch(newMatch, roundId);
+            
         }
     }
 }

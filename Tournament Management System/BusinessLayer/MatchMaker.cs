@@ -46,8 +46,8 @@ namespace BusinessLayer
             {
                 var teamIdx = roundNumber % numberOfTeams;
                 Match newMatch = new Match();
-                newMatch.TeamsInMatch.Add(teams[teamIdx]);
-                newMatch.TeamsInMatch.Add(TeamsInLeague[0]);
+                newMatch.TeamsInMatch[0] = teams[teamIdx];
+                newMatch.TeamsInMatch[1] = TeamsInLeague[0];
 
                 //Save Match
                 DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[roundNumber].RoundId);
@@ -58,8 +58,8 @@ namespace BusinessLayer
                     var firstTeamIndex = (roundNumber + idx) % numberOfTeams;
                     var secondTeamIndex = (roundNumber + numberOfTeams - idx) % numberOfTeams;
                     Match newMatch2 = new Match();
-                    newMatch2.TeamsInMatch.Add(teams[firstTeamIndex]);
-                    newMatch2.TeamsInMatch.Add(teams[secondTeamIndex]);
+                    newMatch2.TeamsInMatch[0] = teams[firstTeamIndex];
+                    newMatch2.TeamsInMatch[1] = teams[secondTeamIndex];
 
                     //Save Match
                     DataAccessFacade.SaveMatch(newMatch2, RoundsInLeague[roundNumber].RoundId);
