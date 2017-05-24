@@ -42,10 +42,10 @@ namespace DataAccessLayer
             SD.SaveRound(newRound, leagueId);
         }
 
-        public static void SavePlayer(Player newPlayer)
+        public static int SavePlayer(Player newPlayer)
         {
             SaveData SD = new SaveData();
-            SD.SavePlayer(newPlayer);
+            return SD.SavePlayer(newPlayer);
         }
 
         public static void UpdateTeam(Team ChosenTeam)
@@ -83,6 +83,12 @@ namespace DataAccessLayer
             SaveData SD = new SaveData();
             SD.SaveMatch(newMatch, roundId);
             
+        }
+
+        public static Player GetPlayerById(int playerId)
+        {
+            GetData GD = new GetData();
+            return GD.GetPlayerById(playerId);
         }
     }
 }

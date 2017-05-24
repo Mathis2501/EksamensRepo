@@ -13,7 +13,7 @@ namespace BusinessLayer
     class MatchMaker
     {
         private static Random rng = new Random();
-        public ObservableCollection<Team> ShuffleTeams(ObservableCollection<Team> TeamList)
+        internal ObservableCollection<Team> ShuffleTeams(ObservableCollection<Team> TeamList)
         {
             int n = TeamList.Count;
             while (n > 1)
@@ -27,10 +27,8 @@ namespace BusinessLayer
             return TeamList;
         }
 
-        public ObservableCollection<Round> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        internal void CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
         {
-            ObservableCollection<Round> result = new ObservableCollection<Round>();
-
             TeamsInLeague = ShuffleTeams(TeamsInLeague);
 
             int numberOfMatchesInARound = TeamsInLeague.Count / 2;
@@ -65,11 +63,7 @@ namespace BusinessLayer
                     DataAccessFacade.SaveMatch(newMatch2, RoundsInLeague[roundNumber].RoundId);
                     RoundsInLeague[roundNumber].MatchesInRound.Add(newMatch2);
                 }
-
-                result.Add(RoundsInLeague[roundNumber]);
             }
-
-            return result;
         }
     }
 }

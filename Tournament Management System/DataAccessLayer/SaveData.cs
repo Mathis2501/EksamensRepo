@@ -87,7 +87,7 @@ namespace DataAccessLayer
             return newLeague.LeagueId;
         }
 
-            public void SavePlayer(Player newPlayer)
+            public int SavePlayer(Player newPlayer)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> PlayerList = new ObservableCollection<IID>();
@@ -121,6 +121,7 @@ namespace DataAccessLayer
                 DBcon.Close();
                 DBcon.Dispose();
             }
+            return newPlayer.PlayerId;
         }
 
         public void SaveRound(Round newRound, int leagueId)

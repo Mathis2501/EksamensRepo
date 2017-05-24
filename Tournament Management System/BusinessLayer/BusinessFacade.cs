@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using DataAccessLayer;
 using DomainLayer;
+using Match = System.Text.RegularExpressions.Match;
 
 namespace BusinessLayer
 {
@@ -35,9 +36,9 @@ namespace BusinessLayer
         }
 
 
-        public static void SavePlayer(Player newPlayer)
+        public static int SavePlayer(Player newPlayer)
         {
-            DataAccessFacade.SavePlayer(newPlayer);
+            return DataAccessFacade.SavePlayer(newPlayer);
         }
 
         public static void UpdateTeam(Team ChosenTeam)
@@ -66,11 +67,21 @@ namespace BusinessLayer
             DataAccessFacade.DeleteLeague(chosenLeague);
         }
 
-        public static ObservableCollection<Round> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        public static void CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
         {
             MatchMaker MM = new MatchMaker();
-            return MM.CreateMatches(TeamsInLeague, RoundsInLeague);
+            MM.CreateMatches(TeamsInLeague, RoundsInLeague);
+        }
 
+        public static ObservableCollection<Team> ShuffleTeam(ObservableCollection<Team> teamList)
+        {
+            MatchMaker MM = new MatchMaker();
+            return MM.ShuffleTeams(teamList);
+        }
+
+        public static Player GetPlayerById(int playerId)
+        {
+            return DataAccessFacade.GetPlayerById(playerId);
         }
     }
 }

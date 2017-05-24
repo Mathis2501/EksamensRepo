@@ -23,7 +23,7 @@ namespace PresentationLayer
     /// </summary>
     public partial class LeagueOverviewView : Window
     {
-        string[] LeagueStatusIndex;
+        private string[] LeagueStatusIndex;
         private League ChosenLeague;
         private Team ChosenTeam;
         public LeagueOverviewView(League chosenLeague)
