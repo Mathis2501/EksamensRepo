@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -89,10 +90,29 @@ namespace PresentationLayer
             {
                 BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
                 btn_AddTeam.IsEnabled = false;
-                if (ChosenLeague.RoundsInLeague.All(x => x.MatchesInRound.Count == 0))
+                if (!ChosenLeague.RoundsInLeague.All(x => x.MatchesInRound.Count == 0)) return;
+                if (ChosenLeague.TeamsInLeague.Count % 2 == 1)
+                {
+                    MessageBoxResult result = MessageBox.Show("Der er et ulige antal hold! \nVil du tilføje et bye hold?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result != MessageBoxResult.Yes) return;
+
+                    Player newPlayer = new Player { FirstName = "Bye", LastName = "Hold", Email = "Bye@Hold.Bye", PhoneNr = "80081135" };
+                    ObservableCollection<Player> playersInTeam = new ObservableCollection<Player>();
+                    playersInTeam.Add(newPlayer);
+                    BusinessFacade.SavePlayer(newPlayer);
+                    Team newTeam = new Team {Bye = true, TeamName = "ByeHold", PlayersInTeam = playersInTeam};
+                    BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
+
+                    ChosenLeague.TeamsInLeague.Add(newTeam);
+
+                    BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                }
+                else
                 {
                     BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
                 }
+                MessageBox.Show("Alle kampe er oprettet!");
+                lbl_CurrentNumberOfPlayers.Content = ChosenLeague.TeamsInLeague.Count;
             }
             else if (cb_Status.SelectedIndex == 2)
             {

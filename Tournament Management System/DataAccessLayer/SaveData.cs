@@ -32,12 +32,10 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@Bye", Convert.ToInt16(newTeam.Bye));
 
                 cmd.ExecuteNonQuery();
-
-                SavePlayersInTeam(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
-
-                
-
-
+                if (newTeam.PlayersInTeam.Count != 0)
+                {
+                    SavePlayersInTeam(newTeam.PlayersInTeam.First().ID, newTeam.TeamId);
+                }
             }
             catch (SqlException e)
             {
@@ -214,8 +212,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                
             }
             finally
             {
@@ -244,8 +241,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                
             }
             finally
             {
