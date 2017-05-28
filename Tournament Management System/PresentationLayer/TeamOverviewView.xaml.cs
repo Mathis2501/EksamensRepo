@@ -39,5 +39,11 @@ namespace PresentationLayer
         {
             if (checkBox_Bye.IsChecked != null) ChosenTeam.Bye = (bool)checkBox_Bye.IsChecked;
         }
+
+        private void button_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
+        }
     }
 }

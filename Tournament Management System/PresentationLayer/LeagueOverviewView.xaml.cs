@@ -96,7 +96,7 @@ namespace PresentationLayer
                     MessageBoxResult result = MessageBox.Show("Der er et ulige antal hold! \nVil du tilføje et bye hold?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (result != MessageBoxResult.Yes) return;
 
-                    Player newPlayer = new Player { FirstName = "Bye", LastName = "Hold", Email = "Bye@Hold.Bye", PhoneNr = "80081135" };
+                    Player newPlayer = new Player { FirstName = "Bye", LastName = "Hold", Email = "Bye", PhoneNr = "Bye" };
                     ObservableCollection<Player> playersInTeam = new ObservableCollection<Player>();
                     playersInTeam.Add(newPlayer);
                     BusinessFacade.SavePlayer(newPlayer);
