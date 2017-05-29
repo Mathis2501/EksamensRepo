@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
+
         Title="LeagueOverviewView" Height="401.4" Width="599.2">
      <Grid>
         <Button x:Name="btn_ViewLeagues" Content="Liga Register" HorizontalAlignment="Left" Margin="16,8,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewLeagues_Click"/>
+
         <Button x:Name="btn_ViewMatches" Content="Se Kampe" Margin="0,8,12,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85" />
         <Label x:Name="lbl_LeagueName" Content="" HorizontalContentAlignment="Center" Margin="125,8,125,0" VerticalAlignment="Top"/>
         <Rectangle Fill="#FFF4F4F5" Margin="16,34,12.8,26.4" Stroke="Black"/>
