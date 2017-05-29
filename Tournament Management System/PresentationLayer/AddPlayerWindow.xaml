@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
+        ResizeMode="CanMinimize"
         Title="AddPlayerWindow" Height="186.4" Width="300">
     <Grid Name="addPlayerWindow">
         <Label x:Name="lbl_FirstName" Content="Fornavn" HorizontalAlignment="Left" Margin="54,10,0,0" VerticalAlignment="Top"/>

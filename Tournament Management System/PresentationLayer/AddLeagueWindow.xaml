@@ -8,7 +8,6 @@
         Title="AddLeagueWindow" Height="361.4" Width="545">
     <Grid Name="addLeagueWindow">
         <Button x:Name="btn_Cancel" Content="Annuller" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_Cancel_Click"/>
-        <Button x:Name="btn_ViewPlayers" Content="SpillerRegister" Margin="0,10,16.4,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="85"/>
         <Label x:Name="lbl_LeagueName" Content="Liga Navn:" HorizontalAlignment="Left" Margin="8,48,0,0" Width="82" Height="26" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_LeagueName" HorizontalAlignment="Left" Margin="105,51,0,0" TextWrapping="Wrap" Text="" Width="145" Height="23" VerticalAlignment="Top"/>
         <Label x:Name="lbl_Reward" Content="Præmie:" HorizontalAlignment="Left" Margin="8,79,0,0" Width="69" Height="26" VerticalAlignment="Top"/>

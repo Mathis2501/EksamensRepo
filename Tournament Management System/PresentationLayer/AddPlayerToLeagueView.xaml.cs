@@ -23,13 +23,13 @@ namespace PresentationLayer
     public partial class AddPlayerToLeagueView : Window
     {
         private League ChosenLeague;
-        private ObservableCollection<Player> PlayerList;
+
         public AddPlayerToLeagueView(League chosenLeague)
         {
             InitializeComponent();
-            PlayerList = new ObservableCollection<Player>();
-            PlayerList = BusinessFacade.GetPlayerData();
-            PlayerDataGrid.ItemsSource = PlayerList;
+            ObservableCollection<Player> playerList = new ObservableCollection<Player>();
+            playerList = BusinessFacade.GetPlayerData();
+            PlayerDataGrid.ItemsSource = playerList;
             ChosenLeague = chosenLeague;
         }
 

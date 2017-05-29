@@ -12,7 +12,7 @@ namespace DataAccessLayer
 {
     public class SaveData
     {
-        public void SaveTeam(Team newTeam , int LeagueId)
+        public void SaveTeam(Team newTeam , int leagueId)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> TeamList = new ObservableCollection<IID>();
@@ -28,16 +28,14 @@ namespace DataAccessLayer
 
                 cmd.Parameters.AddWithValue("@TeamID", newTeam.TeamId);
                 cmd.Parameters.AddWithValue("@TeamName", newTeam.TeamName);
-                cmd.Parameters.AddWithValue("@LeagueID", LeagueId);
+                cmd.Parameters.AddWithValue("@LeagueID", leagueId);
                 cmd.Parameters.AddWithValue("@Bye", Convert.ToInt16(newTeam.Bye));
 
                 cmd.ExecuteNonQuery();
-
-                SavePlayersInTeams(newTeam.PlayersInTeam.First().ID , newTeam.TeamId);
-
-                
-
-
+                if (newTeam.PlayersInTeam.Count != 0)
+                {
+                    SavePlayersInTeam(newTeam.PlayersInTeam.First().ID, newTeam.TeamId);
+                }
             }
             catch (SqlException e)
             {
@@ -87,7 +85,7 @@ namespace DataAccessLayer
             return newLeague.LeagueId;
         }
 
-            public void SavePlayer(Player newPlayer)
+            public int SavePlayer(Player newPlayer)
         {
             GetData GD = new GetData();
             ObservableCollection<IID> PlayerList = new ObservableCollection<IID>();
@@ -121,6 +119,7 @@ namespace DataAccessLayer
                 DBcon.Close();
                 DBcon.Dispose();
             }
+            return newPlayer.PlayerId;
         }
 
         public void SaveRound(Round newRound, int leagueId)
@@ -213,8 +212,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                
             }
             finally
             {
@@ -223,7 +221,7 @@ namespace DataAccessLayer
             }
         }
 
-        public void SavePlayersInTeams(int playerId , int teamId)
+        private void SavePlayersInTeam(int playerId, int teamId)
         {
              
  
@@ -243,8 +241,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                
             }
             finally
             {
@@ -284,7 +281,7 @@ namespace DataAccessLayer
             }
         }
 
-        public int GetID(ObservableCollection<IID> ItemList)
+        private int GetID(ObservableCollection<IID> ItemList)
         {
             int ItemID = 1;
             if (ItemList.Count != 0)

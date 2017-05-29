@@ -32,15 +32,6 @@ namespace PresentationLayer
             RefreshGrid();
         }
 
-        private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
-        {
-            AddPlayerWindow APW = new AddPlayerWindow();
-            this.Hide();
-            APW.ShowDialog();
-            this.Show();
-            RefreshGrid();
-        }
-
         private void btn_AddLeague_Click(object sender, RoutedEventArgs e)
         {
             AddLeagueWindow ALW = new AddLeagueWindow();
@@ -71,11 +62,6 @@ namespace PresentationLayer
             PlayerRegisterView PV = new PlayerRegisterView();
             PV.Show();
             this.Close();
-        }
-
-        private void LeagueDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

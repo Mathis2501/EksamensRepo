@@ -13,7 +13,7 @@ namespace BusinessLayer
     class MatchMaker
     {
         private static Random rng = new Random();
-        public ObservableCollection<Team> ShuffleTeams(ObservableCollection<Team> TeamList)
+        internal ObservableCollection<Team> ShuffleTeams(ObservableCollection<Team> TeamList)
         {
             int n = TeamList.Count;
             while (n > 1)
@@ -27,10 +27,8 @@ namespace BusinessLayer
             return TeamList;
         }
 
-        public ObservableCollection<Round> CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
+        internal void CreateMatches(ObservableCollection<Team> TeamsInLeague, ObservableCollection<Round> RoundsInLeague)
         {
-            ObservableCollection<Round> result = new ObservableCollection<Round>();
-
             TeamsInLeague = ShuffleTeams(TeamsInLeague);
 
             int numberOfMatchesInARound = TeamsInLeague.Count / 2;
@@ -46,8 +44,10 @@ namespace BusinessLayer
             {
                 var teamIdx = roundNumber % numberOfTeams;
                 Match newMatch = new Match();
-                newMatch.TeamsInMatch.Add(teams[teamIdx]);
-                newMatch.TeamsInMatch.Add(TeamsInLeague[0]);
+                newMatch.TeamsInMatch[0] = teams[teamIdx];
+                newMatch.TeamsInMatch[1] = TeamsInLeague[0];
+                newMatch.Team1 = teams[teamIdx];
+                newMatch.Team2 = TeamsInLeague[0];
 
                 //Save Match
                 DataAccessFacade.SaveMatch(newMatch, RoundsInLeague[roundNumber].RoundId);
@@ -58,18 +58,16 @@ namespace BusinessLayer
                     var firstTeamIndex = (roundNumber + idx) % numberOfTeams;
                     var secondTeamIndex = (roundNumber + numberOfTeams - idx) % numberOfTeams;
                     Match newMatch2 = new Match();
-                    newMatch2.TeamsInMatch.Add(teams[firstTeamIndex]);
-                    newMatch2.TeamsInMatch.Add(teams[secondTeamIndex]);
+                    newMatch2.TeamsInMatch[0] = teams[firstTeamIndex];
+                    newMatch2.TeamsInMatch[1] = teams[secondTeamIndex];
+                    newMatch2.Team1 = teams[firstTeamIndex];
+                    newMatch2.Team2 = teams[secondTeamIndex];
 
                     //Save Match
                     DataAccessFacade.SaveMatch(newMatch2, RoundsInLeague[roundNumber].RoundId);
                     RoundsInLeague[roundNumber].MatchesInRound.Add(newMatch2);
                 }
-
-                result.Add(RoundsInLeague[roundNumber]);
             }
-
-            return result;
         }
     }
 }
