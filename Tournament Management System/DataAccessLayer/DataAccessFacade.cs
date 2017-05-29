@@ -13,8 +13,8 @@ namespace DataAccessLayer
 
         public static void UpdateLeagueStatus(int LeagueId, string LeagueStatus)
         {
-            //UpdateData UD = new UpdateData();
-            //UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
+            UpdateData UD = new UpdateData();
+            UD.UpdateLeagueStatus(LeagueId, LeagueStatus);
         }
         
         public static ObservableCollection<League> GetLeagueData()

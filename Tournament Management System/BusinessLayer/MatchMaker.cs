@@ -60,7 +60,7 @@ namespace BusinessLayer
             // kører for hvert antal af runde objekter i listen af RoundsInLeague
             for (var roundNumber = 0; roundNumber < RoundsInLeague.Count; roundNumber++)
             {
-                //teamIdx er et tal
+                
                 var teamIdx = roundNumber % numberOfTeams;
                 Match newMatch = new Match();
 

@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using DomainLayer;
 using System.Collections.ObjectModel;
 
+
 namespace DataAccessLayer
 {
     public class SaveData
@@ -41,7 +42,8 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
+                
             }
             finally
             {
@@ -77,7 +79,7 @@ namespace DataAccessLayer
                 }
                 catch (SqlException e)
                 {
-                    Console.WriteLine("ups " + e.Message);
+                throw e;
                 }
                 finally
                 {
@@ -113,8 +115,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw e;
             }
             finally
             {
@@ -147,8 +148,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw e;
             }
             finally
             {
@@ -182,8 +182,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw e;
             }
             finally
             {
@@ -213,8 +212,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw e;
             }
             finally
             {
@@ -243,8 +241,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw e;
             }
             finally
             {
@@ -274,8 +271,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw e;
             }
             finally
             {
