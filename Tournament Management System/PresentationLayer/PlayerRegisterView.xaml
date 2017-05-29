@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="PlayerView" Height="350" Width="533.2">
     <Grid>
-        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" HorizontalAlignment="Left" Margin="427,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_AddPlayer_Click"/>
+        <Button x:Name="btn_AddPlayer" Content="Tilføj Spiller" Margin="0,10,14.4,0" VerticalAlignment="Top" Click="btn_AddPlayer_Click" HorizontalAlignment="Right" Width="85"/>
         <Button x:Name="btn_ViewLeagues" Content="Liga Register" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Width="85" Click="btn_ViewLeagues_Click"/>
-        <DataGrid x:Name="PlayerDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" Margin="14,36,0,0" VerticalAlignment="Top" Height="277" Width="498" AutoGenerateColumns="false">
+        <DataGrid x:Name="PlayerDataGrid" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*" HorizontalContentAlignment="Stretch" Margin="14,36,14.4,7.8" AutoGenerateColumns="false">
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
                     <EventSetter Event="MouseDoubleClick" Handler="PlayerDataGrid_Row_DoubleClick"/>

@@ -7,16 +7,47 @@
         xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="RoundOverviewView" Height="400" Width="600">
+    <Window.Resources>
+        <Style x:Key="RightAlignStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Padding" Value="5,0"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="CenterAlignStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5,0"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        <DataGrid x:Name="MatchDataGrid" HorizontalAlignment="Left" Margin="10,111,0,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="248" Width="572" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" ColumnWidth="*">
+        <DataGrid x:Name="MatchDataGrid" Margin="10,110,10,10" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team1.TeamName}" Width="*"/>
-                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team2.TeamName}" Width="*"/>
-                
+                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team1.TeamName}" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding VsString}" ElementStyle="{StaticResource CenterAlignStyle}" Width="30">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team2.TeamName}" ElementStyle="{StaticResource RightAlignStyle}"  Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="lbl_LeagueName" Content="test" HorizontalAlignment="Left" Margin="150,10,150,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center" FontSize="16"/>
-        <Label x:Name="lbl_RoundName" Content="test" HorizontalAlignment="Left" Margin="150,46,0,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center" FontSize="14"/>
-        <Label x:Name="lbl_GameName" Content="test" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="261" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbl_LeagueName" Content="" Margin="150,10,150,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="16"/>
+        <Label x:Name="lbl_RoundName" Content="" Margin="150,46,150,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="14"/>
+        <Label x:Name="lbl_GameName" Content="" Margin="150,80,150,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>
