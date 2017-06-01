@@ -109,10 +109,9 @@ namespace DataAccessLayer
                 cmd.ExecuteNonQuery();
 
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
-                Console.WriteLine("ups " + e.Message);
-                Console.ReadKey();
+                throw;
             }
             finally
             {

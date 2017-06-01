@@ -45,12 +45,5 @@ namespace PresentationLayer
             this.Owner.Show();
             this.Close();
         }
-
-        private void button_Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-           
-        }
     }
 }
