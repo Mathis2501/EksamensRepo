@@ -26,7 +26,7 @@ namespace PresentationLayer
     {
         private string[] LeagueStatusIndex;
         private League ChosenLeague;
-        private Team ChosenTeam;
+
         public LeagueOverviewView(League chosenLeague)
         {
             InitializeComponent();
@@ -89,30 +89,48 @@ namespace PresentationLayer
             else if (cb_Status.SelectedIndex == 1)
             {
                 BusinessFacade.UpdateLeagueStatus(ChosenLeague.LeagueId, "Igangværende");
+                //gemmer LeagueStatus på databasen
+
                 btn_AddTeam.IsEnabled = false;
+                //fjerner muligheden for at tilføje flere hold
+
                 if (!ChosenLeague.RoundsInLeague.All(x => x.MatchesInRound.Count == 0)) return;
+                //sikrer at der ikke bliver opereret i en League hvor der allerede er genereret matches i runder
+
                 if (ChosenLeague.TeamsInLeague.Count % 2 == 1)
+                    // ser om der er et ullige antal af hold
                 {
                     MessageBoxResult result = MessageBox.Show("Der er et ulige antal hold! \nVil du tilføje et bye hold?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    //spørger bruger om der skal tilføjes et bye hold
+
                     if (result != MessageBoxResult.Yes) return;
+                    //hvis man siger nej bliver status ændret men der bliver ikke genereret kampe
 
                     Player newPlayer = new Player { FirstName = "Bye", LastName = "Hold", Email = "Bye", PhoneNr = "Bye" };
+                    //bye spilleren bliver oprettet
                     ObservableCollection<Player> playersInTeam = new ObservableCollection<Player>();
                     playersInTeam.Add(newPlayer);
+                    //bye spilleren bliver sat på en spiller liste
                     BusinessFacade.SavePlayer(newPlayer);
+                    //bye spiller bliver gemt til database
                     Team newTeam = new Team {Bye = true, TeamName = "ByeHold", PlayersInTeam = playersInTeam};
+                    //et bye hold bliver oprettet med spiller listen
                     BusinessFacade.SaveTeam(newTeam, ChosenLeague.LeagueId);
-
+                    //bye holdet til ligaen bliver gemt på databasen
                     ChosenLeague.TeamsInLeague.Add(newTeam);
+                    // bye holdet bliver tilføjet til ligaen
 
                     BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                    //genererer alle kampene
                 }
-                else
+                else //hvis der er et lige antal hold
                 {
                     BusinessFacade.CreateMatches(ChosenLeague.TeamsInLeague, ChosenLeague.RoundsInLeague);
+                    //genererer kampenene
                 }
                 MessageBox.Show("Alle kampe er oprettet!");
                 lbl_CurrentNumberOfPlayers.Content = ChosenLeague.TeamsInLeague.Count;
+                // sætter en label til at vise nummeret på antal hold i ligaen
             }
             else if (cb_Status.SelectedIndex == 2)
             {

@@ -20,7 +20,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="MatchDataGrid" Margin="10,110,10,10" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True">
+        <DataGrid x:Name="MatchDataGrid" Margin="10,112,9.6,10.4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Spiller Navn" Binding="{Binding Team1.TeamName}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
@@ -47,7 +47,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="lbl_LeagueName" Content="" Margin="150,10,150,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="16"/>
-        <Label x:Name="lbl_RoundName" Content="" Margin="150,46,150,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="14"/>
-        <Label x:Name="lbl_GameName" Content="" Margin="150,80,150,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbl_RoundName" Content="" Margin="150,78,149.6,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="14"/>
+        <Label x:Name="lbl_GameName" Content="" Margin="150,47,149.6,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

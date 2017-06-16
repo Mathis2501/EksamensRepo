@@ -34,7 +34,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
             }
             finally
             {
@@ -45,26 +45,37 @@ namespace DataAccessLayer
 
         internal void UpdateLeagueStatus(int leagueId, string leagueStatus)
         {
+            //opretter et objekt der indeholder en connection string til databasen
             SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
             try
             {
+                //åbner forbindelsen til databasen
                 DBcon.Open();
+
+                //opretter et objekt med parametrerne: en string med navnet på den stored procedure som bruges
+                //og det objekt der indeholder forbindelsen til databasen
                 SqlCommand cmd = new SqlCommand("UpdateLeagueStatus", DBcon);
+
+                //angiver hvad for en type comando der skal udføres 
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                //tilføjer parametrerne den stored procedure skal bruge
                 cmd.Parameters.AddWithValue("@LeagueID", leagueId);
                 cmd.Parameters.AddWithValue("@LeagueStatus", leagueStatus);
 
+                //udføre komandoen
                 cmd.ExecuteNonQuery();
 
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
             }
             finally
             {
+                // lukker for database forbindelsen
                 DBcon.Close();
+                //sletter forbindelses objektet
                 DBcon.Dispose();
             }
         }
@@ -85,7 +96,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
             }
             finally
             {
