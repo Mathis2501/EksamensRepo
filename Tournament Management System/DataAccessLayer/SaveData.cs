@@ -113,9 +113,10 @@ namespace DataAccessLayer
                 cmd.ExecuteNonQuery();
 
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
-                throw e;
+
+                throw;
             }
             finally
             {
