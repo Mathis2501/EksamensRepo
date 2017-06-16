@@ -34,7 +34,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
             }
             finally
             {
@@ -69,7 +69,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
             }
             finally
             {
@@ -80,7 +80,7 @@ namespace DataAccessLayer
             }
         }
 
-        internal void UpdateTeam(Team ChosenTeam, bool byeStatus)
+        internal void UpdateTeam(Team ChosenTeam)
         {
             SqlConnection DBcon = new SqlConnection("Server = ealdb1.eal.local; database=ejl44_db; User Id=ejl44_usr; Password=Baz1nga44");
             try
@@ -96,7 +96,7 @@ namespace DataAccessLayer
             }
             catch (SqlException e)
             {
-                Console.WriteLine("ups " + e.Message);
+                throw e;
             }
             finally
             {
